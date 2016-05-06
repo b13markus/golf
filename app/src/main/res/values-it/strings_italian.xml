@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?><!-- langiage id=5
+    italian-->
+<resources>
+
+    <!--START -->
+    <string name="app_name">Golf App</string>
+
+
+    <!--HOMESCREEN-->
+    <string name="hm_events_btn">Eventi</string>
+    <string name="hm_courses_btn">Percorsi</string>
+    <string name="hm_rest_btn">Ristorante</string>
+    <string name="hm_htls_btn">Hotel</string>
+    <string name="hm_news_btn">Notizie</string>
+    <string name="hm_pros_btn">Pro</string>
+    <string name="hm_proshp_btn">Proshop</string>
+    <string name="hm_contact_btn">Contatto</string>
+    <string name="hm_tee_time_btn">Tee Time</string>
+
+
+    <!-- Events -->
+    <string name="evt_list_view_nav_bar">Eventi</string>
+    <string name="evt_detail_page_nav_bar">Eventi</string>
+    <string name="evt_pastevent_btn">Eventi Precedenti</string>
+    <string name="evt_upcoming_event_btn">Futuri</string>
+    <string name="evt_book_share_title">Riservare &amp; Condividere</string>
+    <string name="evt_phone_btn">Telefono</string>
+    <string name="evt_addtodiary_btn">Aggiungere al diario</string>
+    <string name="evt_no_up_coming">Nessun Evento Futuro</string>
+    <string name="evt_no_past_evt">Nessun Evento Precedente</string>
+    <string name="events_program_btn">Programma</string>
+    <string name="events_tee_times_btn">Tee Times</string>
+    <string name="events_share_btn">Condividere</string>
+    <string name="events_email_btn">Email</string>
+
+
+    <!-- Pros -->
+    <string name="pro_contact_pop_up_title">Contatti</string>
+    <string name="pro_list_nav_bar">Pros</string>
+    <string name="pro_detail_nav_bar">Pro</string>
+    <string name="pro_rate_offer_nav_bar">Tariffe &amp; Offerte</string>
+    <string name="pro_rate_offer_btn">Tariffe &amp; Offerte</string>
+    <string name="pro_contact_btn">Contatto</string>
+    <string name="pro_phone_btn">Telefono</string>
+    <string name="pro_email_btn">Email</string>
+    <string name="pro_share_btn">Condividere</string>
+    <string name="pro_cancel_btn">Cancellare</string>
+
+
+    <string name="ps_contact_pop_up_title">Contatti</string>
+    <string name="ps_list_nav_bar">Proshops</string>
+    <string name="ps_detail_nav_bar">Proshop</string>
+    <string name="ps_special_offer_nav_bar">Offerte</string>
+    <string name="ps_special_offer_btn">Offerte</string>
+    <string name="ps_contact_btn">Contatto</string>
+    <string name="ps_phone_btn">Telefono</string>
+    <string name="ps_email_btn">Email</string>
+    <string name="ps_share_btn">Condividere</string>
+    <string name="ps_cancel_btn">Cancellare</string>
+
+
+    <!-- The Courses -->
+    <string name="crs_the_course_list_nav_bar">Percorsi</string>
+    <string name="crs_the_course_detail_nav_bar">I Percorsi</string>
+    <string name="crs_rate_details_nav_bar">Tariffe</string>
+    <string name="crs_facilities_details_nav_bar">Strutture</string>
+    <string name="crs_the_course_btn_detail_nav_bar">I Percorsi</string>
+    <string name="crs_the_course_btn">I Percorsi</string>
+    <string name="crs_facilities_btn">Strutture</string>
+    <string name="crs_rates_btn">Tariffe</string>
+    <string name="crs_shower_icon">Vestibolo</string>
+    <string name="crs_club_house_icon">Club house</string>
+    <string name="crs_club_hire_icon">Ubicazione</string>
+    <string name="crs_proshop_icon">Proshop</string>
+    <string name="crs_pros_icon">Pro</string>
+    <string name="crs_buggy_icon">Buggy</string>
+    <string name="crs_practice_icon">Allenamento</string>
+    <string name="crs_putting_icon">Putting</string>
+    <string name="crs_pitching_icon">Pitching</string>
+    <string name="crs_restaurant_icon">Ristorante</string>
+    <string name="crs_hotel_icon">Hotel </string>
+    <string name="crs_pool_icon">Piscina</string>
+    <string name="crs_tennis_icon">Tennis</string>
+    <string name="crs_wifi_icon">Wifi</string>
+    <string name="crs_parking_icon">Parcheggio</string>
+    <string name="holes">" buche"</string>
+
+
+    <!-- Restaurants -->
+    <string name="res_contact_pop_up_title">Contatti</string>
+    <string name="re_list_nav_bar">Ristorante</string>
+    <string name="re_detail_nav_bar">Ristorante</string>
+    <string name="re_suggestion_nav_bar">Suggerimenti</string>
+    <string name="re_menu_nav_bar">Menù</string>
+    <string name="re_contact_btn">Contatto</string>
+    <string name="re_suggestion_btn">Suggerimenti</string>
+    <string name="re_menu_btn">Menù</string>
+    <string name="re_phone_btn">Telefono</string>
+    <string name="re_direction_btn">Itinerario</string>
+    <string name="re_cancel_btn">Cancellare</string>
+    <string name="re_share_btn">Condividere</string>
+    <string name="re_email_btn">Email</string>
+
+
+    <!-- Hotels -->
+    <string name="htl_contact_pop_up_title">Contatti</string>
+    <string name="htl_list_nav_bar">Hotel</string>
+    <string name="htl_detail_nav_bar">Hotel </string>
+    <string name="htl_package_list_nav_bar">Pacchetti</string>
+    <string name="htl_website_btn">Sito Web</string>
+    <string name="htl_package_btn">Pacchetti</string>
+    <string name="htl_phone_btn">Telefono</string>
+    <string name="htl_direction_btn">Itinerario</string>
+    <string name="htl_cancel_btn">Cancellare</string>
+    <string name="htl_share_btn">Condividere</string>
+    <string name="htl_email_btn">Email</string>
+
+
+    <string name="nws_nav_bar">Novità</string>
+    <string name="nws_detail_nav_bar">Novità</string>
+    <string name="nws_share_btn">Condividere</string>
+
+
+    <string name="cnt_contact_pop_up_title">Contatti</string>
+    <string name="cnt_phone_btn">Telefono</string>
+    <string name="cnt_email_btn">Email</string>
+    <string name="cnt_direction_btn">Itinerario</string>
+    <string name="cnt_cancel_btn">Cancellare</string>
+
+
+    <string name="tt_book_tee_pop_up_title">Riservare il Tee</string>
+    <string name="tt_phone_btn">Telefono</string>
+    <string name="tt_cancel_btn">Cancellare</string>
+    <string name="email_button_btn">Email</string>
+
+
+    <!-- not available -->
+    <string name="no_inet">Offline mode</string>
+    <string name="no_api">Server connection error</string>
+
+
+    <!-- days -->
+    <string name="events_sunday">Domenica</string>
+    <string name="events_monday">Lunedì</string>
+    <string name="events_tuesday">Martedì</string>
+    <string name="events_wednesday">Mercoledì</string>
+    <string name="events_thursday">Giovedì</string>
+    <string name="events_friday">Venerdì</string>
+    <string name="events_saturday">Sabato</string>
+
+</resources>
