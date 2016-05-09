@@ -29,8 +29,8 @@ import com.golfapp.test.utils.PDFtools;
 public class AdapterEvent extends ArrayAdapter<EventsData> {
 
     private BaseActivity context;
-    int event = 1;
-    PDFtools df;
+    private int event = 1;
+    private PDFtools df;
 
     //1 Upcoming , //0 Past
 

@@ -38,13 +38,13 @@ import com.golfapp.test.utils.MyListView;
 public class HotelsActivity extends BaseActivity {
 
 
-    MyListView lv;
+    private MyListView lv;
     private String urlHotels;
-    List<HotelData> list = new ArrayList<>();
-    AdapterHotels adapterPros;
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
-    boolean isLoading = false;
+    private List<HotelData> list = new ArrayList<>();
+    private AdapterHotels adapterPros;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
+    private boolean isLoading = false;
     private int total;
     private boolean clearList = false;
     private View footerView;
@@ -71,7 +71,6 @@ public class HotelsActivity extends BaseActivity {
         setContentView(R.layout.activity_pros);
         getSupportActionBar().hide();
         loadItems = true;
-        addToStack(this);
         ((TextView) findViewById(R.id.prosActionTitle)).setText(getString(R.string.htl_list_nav_bar));
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         lv = (MyListView) findViewById(R.id.lvPros);
@@ -82,7 +81,7 @@ public class HotelsActivity extends BaseActivity {
                 Constants.getLanguage() +"&sectoken="+ Constants.md5()+ "&draw=" + Constants.draw + "&page=";
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);

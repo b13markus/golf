@@ -64,6 +64,4 @@ public class ProsData extends SugarRecord<ProsData> {
         this.package_url = package_url;
 
     }
-
-
 }

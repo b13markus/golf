@@ -21,37 +21,25 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bluejamesbond.text.DocumentView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.R;
+import com.golfapp.test.datafiles.HotelData;
+import com.golfapp.test.datafiles.ImageData;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.golfapp.test.R;
-import com.golfapp.test.datafiles.HotelData;
-import com.golfapp.test.datafiles.ImageData;
-
 /**
  * Created by Golakiya on 7/6/2015.
  */
 public class HotelDetailActivity extends BaseActivity {
 
-    Typeface tp, lt;
-    Button thecourse, fac;
-    TextView rates, des;
-    SliderLayout mDemoSlider;
-    SharedPreferences sp;
-    Dialog m_dialog;
+    private SharedPreferences sp;
+    private Dialog m_dialog;
     private int hotelID;
     private HotelData selectedHotel;
     private TextView badgeCountTV;
@@ -85,26 +73,22 @@ public class HotelDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hotel_detail);
         getSupportActionBar().hide();
-        thecourse = (Button) findViewById(R.id.thecour);
+        Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.htl_contact_pop_up_title));
 
-        addToStack(this);
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
-        fac = (Button) findViewById(R.id.faci);
+        Button fac = (Button) findViewById(R.id.faci);
         fac.setText(getString(R.string.htl_website_btn));
-        rates = (TextView) findViewById(R.id.ratess);
+        TextView rates = (TextView) findViewById(R.id.ratess);
         rates.setText(getString(R.string.htl_package_btn));
-        mDemoSlider = (SliderLayout) findViewById(R.id.slider);
-        tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
-        lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
-        des = (TextView) findViewById(R.id.desctext1);
+        SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
+        Typeface tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
+        Typeface lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
+        TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(lt);
-        DocumentView dv = (DocumentView) findViewById(R.id.desctext);
         thecourse.setTypeface(tp);
         fac.setTypeface(tp);
         rates.setTypeface(tp);
-        HashMap<String, String> rl_maps = new HashMap<String, String>();
-        List<String> imgss = new ArrayList<String>();
         hotelID = getIntent().getIntExtra("HotelID", 0);
         selectedHotel = Select.from(HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();
         selectedHotel.imageList = Select.from(ImageData.class).where(Condition.prop("hotel_id").eq(hotelID)).list();
@@ -112,7 +96,6 @@ public class HotelDetailActivity extends BaseActivity {
         TextView tit = (TextView) findViewById(R.id.title1);
         tit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tit.setText(selectedHotel.name);
-        JSONArray image = null;
         if (selectedHotel.imageList.size() <= 0) {
             mDemoSlider.setVisibility(View.GONE);
             findViewById(R.id.imageFrameFL).setVisibility(View.VISIBLE);

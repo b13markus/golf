@@ -21,7 +21,6 @@ import com.golfapp.test.R;
 public class AdvertisementActivity extends com.golfapp.test.activities.BaseActivity {
     public static final String URL = "URL";
     public static final String AD_NAME = "AD_NAME";
-    TextView tvTitle;
 
     private String adName = null, adUrl = null;
     private ProgressBar progressBar;
@@ -44,8 +43,7 @@ public class AdvertisementActivity extends com.golfapp.test.activities.BaseActiv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.advertisement);
         getSupportActionBar().hide();
-        addToStack(this);
-        tvTitle = (TextView) findViewById(R.id.courseDetailActionTitle);
+        TextView tvTitle = (TextView) findViewById(R.id.courseDetailActionTitle);
         tvTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setMax(100);

@@ -25,8 +25,8 @@ public class ProShopRatesAdapter extends ArrayAdapter<ProShopRatesData> {
 
     private final BaseActivity context;
     private final String notificationString;
-    boolean ishotel = false;
-    int sel = -1;
+    private boolean ishotel = false;
+    private int sel = -1;
 
     public ProShopRatesAdapter(BaseActivity context, List<ProShopRatesData> objects, boolean ishotel, String notificationString) {
         super(context, 0, objects);

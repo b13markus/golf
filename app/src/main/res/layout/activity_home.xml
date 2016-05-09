@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/a_home"
@@ -74,11 +73,11 @@
                         android:id="@+id/ttPros"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_pros_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -139,11 +138,11 @@
                         android:id="@+id/ttTeeTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_tee_time_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -202,11 +201,11 @@
                         android:id="@+id/ttEvents"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_events_btn"
                         android:textColor="@color/tvColor" />
 
@@ -275,11 +274,11 @@
                         android:id="@+id/ttProshop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_proshp_btn"
                         android:textColor="@color/tvColor" />
 
@@ -342,11 +341,11 @@
                         android:id="@+id/ttCourse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_courses_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -405,11 +404,11 @@
                         android:id="@+id/ttHotels"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_htls_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -476,11 +475,11 @@
                         android:id="@+id/ttContact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_contact_btn"
                         android:textColor="@color/tvColor" />
 
@@ -542,11 +541,11 @@
                         android:id="@+id/ttNews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_news_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -604,11 +603,11 @@
                         android:id="@+id/ttRest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_rest_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>

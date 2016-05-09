@@ -41,12 +41,15 @@ import com.golfapp.test.utils.Constants;
 public class MainActivity extends BaseActivity {
 
     private ImageView pros, event, proshop, courses, hotels, cont, news, resta, tee;
-    TextView restaurantBadgeTV, newsBadgeTV, contactUsBadgeTV, hotelsBadgeTV, golfCourseBadgeTV, proShopBadgeTV,
-            tournamentsBadgeTV, teeTimeBadgeTV, prosBadgeTV;
+    private TextView restaurantBadgeTV;
+    private TextView newsBadgeTV;
+    private TextView hotelsBadgeTV;
+    private TextView proShopBadgeTV;
+    private TextView prosBadgeTV;
     private ArrayList<String> ons;
     private JSONObject obj;
     private Dialog m_dialog;
-    String emm = "", c_phone = "", cemm = "", cc_phone = "", cdir = "", clong = "";
+    private String emm = "", c_phone = "", cemm = "", cc_phone = "", cdir = "", clong = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +97,12 @@ public class MainActivity extends BaseActivity {
         resta = (ImageView) findViewById(R.id.im_rest);
         restaurantBadgeTV = (TextView) findViewById(R.id.restaurantBadgeTV);
         newsBadgeTV = (TextView) findViewById(R.id.newsBadgeTV);
-        contactUsBadgeTV = (TextView) findViewById(R.id.contactUsBadgeTV);
+        TextView contactUsBadgeTV = (TextView) findViewById(R.id.contactUsBadgeTV);
         hotelsBadgeTV = (TextView) findViewById(R.id.hotelsBadgeTV);
-        golfCourseBadgeTV = (TextView) findViewById(R.id.golfCourseBadgeTV);
+        TextView golfCourseBadgeTV = (TextView) findViewById(R.id.golfCourseBadgeTV);
         proShopBadgeTV = (TextView) findViewById(R.id.proShopBadgeTV);
-        tournamentsBadgeTV = (TextView) findViewById(R.id.tournamentsBadgeTV);
-        teeTimeBadgeTV = (TextView) findViewById(R.id.teeTimeBadgeTV);
+        TextView tournamentsBadgeTV = (TextView) findViewById(R.id.tournamentsBadgeTV);
+        TextView teeTimeBadgeTV = (TextView) findViewById(R.id.teeTimeBadgeTV);
         prosBadgeTV = (TextView) findViewById(R.id.prosBadgeTV);
 
         restaurantBadgeTV.setLayoutParams(params);
@@ -150,7 +153,7 @@ public class MainActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }
-        ons = new ArrayList<String>();
+        ons = new ArrayList<>();
         try {
             if (obj != null) {
                 JSONArray jr = obj.getJSONArray("buttons");

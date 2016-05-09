@@ -21,27 +21,24 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.R;
+import com.golfapp.test.datafiles.ProsData;
+import com.golfapp.test.utils.BadgeView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import com.golfapp.test.R;
-
 /**
  * Created by Golakiya on 6/29/2015.
  */
 public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity {
 
-    SliderLayout mDemoSlider;
-    int prosID = 0;
-    Button con;
-    TextView rates, badgeCountTV, des;
-    Typeface tf;
-    com.golfapp.test.utils.BadgeView bnews;
-    private com.golfapp.test.datafiles.ProsData selectedPros;
-
+    private int prosID = 0;
+    private TextView badgeCountTV;
+    private Typeface tf;
+    private ProsData selectedPros;
 
     @Override
     protected void onPause() {
@@ -71,18 +68,17 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pros_detail);
         getSupportActionBar().hide();
-        addToStack(this);
-        mDemoSlider = (SliderLayout) findViewById(R.id.slider);
+        SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
         tf = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
 
-        rates = (TextView) findViewById(R.id.rates);
-        con = (Button) findViewById(R.id.contact);
+        TextView rates = (TextView) findViewById(R.id.rates);
+        Button con = (Button) findViewById(R.id.contact);
         con.setText(getString(R.string.pro_contact_btn));
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
         rates.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         rates.setText(getString(R.string.pro_rate_offer_btn));
         con.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
-        des = (TextView) findViewById(R.id.desctext1);
+        TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(tf);
         con.setOnClickListener(this);
         prosID = getIntent().getIntExtra("ProsID", 0);
@@ -104,7 +100,7 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
                 con.setClickable(false);
             }
         }
-        bnews = new com.golfapp.test.utils.BadgeView(this);
+        BadgeView bnews = new BadgeView(this);
         bnews.setTargetView(rates);
         bnews.setTextSize(getResources().getDimension(R.dimen.badge_textsize));
         // bnews.setBadgeCount(cn);

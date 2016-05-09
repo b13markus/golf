@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.golfapp.test.R;
+import com.golfapp.test.fragments.PastEventsFragment;
+import com.golfapp.test.fragments.UpcomingEventsFragment;
 
 
 /**
@@ -19,7 +21,6 @@ public class EventsActivity extends com.golfapp.test.activities.BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        addToStack(this);
         getSupportActionBar().hide();
         setupActionbar();
         ((Button) findViewById(R.id.evtUp)).setOnClickListener(this);
@@ -69,11 +70,11 @@ public class EventsActivity extends com.golfapp.test.activities.BaseActivity {
     }
 
     private void showUpcomingEvents() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.eventsContainer, new com.golfapp.test.fragments.UpcomingEventsFragment()).commitAllowingStateLoss();
+        getFragmentManager().beginTransaction().replace(R.id.eventsContainer, new UpcomingEventsFragment()).commitAllowingStateLoss();
     }
 
     private void showPastEvents() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.eventsContainer, new com.golfapp.test.fragments.PastEventsFragment()).commitAllowingStateLoss();
+        getFragmentManager().beginTransaction().replace(R.id.eventsContainer, new PastEventsFragment()).commitAllowingStateLoss();
 
     }
 

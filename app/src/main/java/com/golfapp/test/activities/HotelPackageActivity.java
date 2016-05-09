@@ -16,6 +16,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.adapters.AdapterHotelPackage;
+import com.golfapp.test.datafiles.HotelData;
+import com.golfapp.test.datafiles.HotelRatesData;
+import com.golfapp.test.utils.Constants;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -33,15 +37,14 @@ import com.golfapp.test.R;
  */
 public class HotelPackageActivity extends BaseActivity {
 
-    ListView lv;
-    com.golfapp.test.datafiles.HotelRatesData selected;
-    boolean frompush = false;
-    com.golfapp.test.adapters.AdapterHotelPackage adp;
+    private ListView lv;
+    private HotelRatesData selected;
+    private AdapterHotelPackage adp;
     private int hotelID;
-    private com.golfapp.test.datafiles.HotelData selectedHotel;
-    private List<com.golfapp.test.datafiles.HotelRatesData> rateList = new ArrayList<>();
+    private HotelData selectedHotel;
+    private List<HotelRatesData> rateList = new ArrayList<>();
     private String notificationString;
-    String url = "";
+    private String url = "";
     private SwipeRefreshLayout swipeRefreshLayout;
 
 
@@ -55,12 +58,12 @@ public class HotelPackageActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         overridePendingTransition(0, 0);
-        if (store.getString(com.golfapp.test.utils.Constants.PACKAGE + hotelID) != null) {             // Is any notification for this page.
-            notificationString = store.getString(com.golfapp.test.utils.Constants.PACKAGE + hotelID);             // Get all the packages which has new notificationwe will use this string to show new tag on list
-            store.setString(com.golfapp.test.utils.Constants.PACKAGE + hotelID, null);                 // Remove all the notification of package
+        if (store.getString(Constants.PACKAGE + hotelID) != null) {             // Is any notification for this page.
+            notificationString = store.getString(Constants.PACKAGE + hotelID);             // Get all the packages which has new notificationwe will use this string to show new tag on list
+            store.setString(Constants.PACKAGE + hotelID, null);                 // Remove all the notification of package
             clearNotification(hotelID, 0);                                      // clear notification on server
-            int totalNewsBadgeCount = store.getInt(com.golfapp.test.utils.Constants.HOTEL_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
-            store.setInt(com.golfapp.test.utils.Constants.HOTEL_PUSH_COUNT, totalNewsBadgeCount - store.getInt(hotelID + "", 0));      // Subtract this hotel notification count from total notification count
+            int totalNewsBadgeCount = store.getInt(Constants.HOTEL_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
+            store.setInt(Constants.HOTEL_PUSH_COUNT, totalNewsBadgeCount - store.getInt(hotelID + "", 0));      // Subtract this hotel notification count from total notification count
             store.setInt(hotelID + "", 0);
         }
     }
@@ -71,22 +74,21 @@ public class HotelPackageActivity extends BaseActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_pros_detail_rates_offer);
         getSupportActionBar().hide();
-        addToStack(this);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
 
         hotelID = getIntent().getIntExtra("HotelID", 0);
-        selectedHotel = Select.from(com.golfapp.test.datafiles.HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();
+        selectedHotel = Select.from(HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();
         final Button btn = (Button) findViewById(R.id.share);
         btn.setText(getString(R.string.htl_share_btn));
         btn.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         lv = (ListView) findViewById(R.id.lvProsRateOffer);
         if (selectedHotel != null) {
-            url = selectedHotel.package_url + "&sectoken=" + com.golfapp.test.utils.Constants.md5();
+            url = selectedHotel.package_url + "&sectoken=" + Constants.md5();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -99,7 +101,7 @@ public class HotelPackageActivity extends BaseActivity {
                 loadOflineData();
             }
         } else {
-            url = com.golfapp.test.utils.Constants.urlHotelPackage + "?client=" + com.golfapp.test.utils.Constants.clientId + "&sectoken=" + com.golfapp.test.utils.Constants.md5() + "&language=" + com.golfapp.test.utils.Constants.getLanguage() + "&hotel=" + hotelID;
+            url = Constants.urlHotelPackage + "?client=" + Constants.clientId + "&sectoken=" + Constants.md5() + "&language=" + Constants.getLanguage() + "&hotel=" + hotelID;
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -120,7 +122,6 @@ public class HotelPackageActivity extends BaseActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 adp.setsel(position);
                 selected = adp.getItem(position);
                 btn.setBackgroundResource(bt);
@@ -147,7 +148,7 @@ public class HotelPackageActivity extends BaseActivity {
     }
 
     private void loadOflineData() {
-        rateList = Select.from(com.golfapp.test.datafiles.HotelRatesData.class).where(Condition.prop("hotel_id").eq(hotelID)).list();
+        rateList = Select.from(HotelRatesData.class).where(Condition.prop("hotel_id").eq(hotelID)).list();
         adp = new com.golfapp.test.adapters.AdapterHotelPackage(this, rateList, true, notificationString);
         lv.setAdapter(adp);
     }
@@ -219,10 +220,10 @@ public class HotelPackageActivity extends BaseActivity {
                         String pubdate = obj.getString("pubdate");
                         String descr = obj.getString("descr");
                         String subtitle = obj.getString("subtitle");
-                        com.golfapp.test.datafiles.HotelRatesData rate = Select.from(com.golfapp.test.datafiles.HotelRatesData.class).where(Condition.prop("hotel_id").eq(hotelID)
+                        HotelRatesData rate = Select.from(HotelRatesData.class).where(Condition.prop("hotel_id").eq(hotelID)
                                 , Condition.prop("rate_id").eq(rateID)).first();
                         if (rate == null) {
-                            rate = new com.golfapp.test.datafiles.HotelRatesData(hotelID, rateID, name, descr, subtitle, pubdate);
+                            rate = new HotelRatesData(hotelID, rateID, name, descr, subtitle, pubdate);
                             rate.save();
                         } else {
                             rate.subTitle = subtitle;
@@ -248,7 +249,7 @@ public class HotelPackageActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    adp = new com.golfapp.test.adapters.AdapterHotelPackage(HotelPackageActivity.this, rateList, true, notificationString);
+                    adp = new AdapterHotelPackage(HotelPackageActivity.this, rateList, true, notificationString);
                     lv.setAdapter(adp);
                     swipeRefreshLayout.setRefreshing(false);
                 }

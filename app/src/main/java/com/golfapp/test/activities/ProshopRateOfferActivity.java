@@ -16,6 +16,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.ProShopRatesAdapter;
+import com.golfapp.test.datafiles.ProShopRatesData;
+import com.golfapp.test.datafiles.ProshopData;
 import com.golfapp.test.utils.Constants;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -27,21 +31,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-import com.golfapp.test.adapters.ProShopRatesAdapter;
-import com.golfapp.test.datafiles.ProShopRatesData;
-import com.golfapp.test.datafiles.ProshopData;
-
 /**
  * Created by Golakiya on 6/29/2015.
  */
 public class ProshopRateOfferActivity extends BaseActivity {
 
     private static String urlNews = null;
-    ListView lv;
-    ProShopRatesData selected;
-    boolean frompush = false;
-    ProShopRatesAdapter adp;
+    private ListView lv;
+    private ProShopRatesData selected;
+    private boolean frompush = false;
+    private ProShopRatesAdapter adp;
     private int proShopID;
     private ProshopData selectedProShop;
     private List<ProShopRatesData> rateList = new ArrayList<>();
@@ -75,12 +74,11 @@ public class ProshopRateOfferActivity extends BaseActivity {
         setContentView(R.layout.activity_pros_detail_rates_offer);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
         getSupportActionBar().hide();
-        addToStack(this);
         proShopID = getIntent().getIntExtra("ProShopID", 0);
 
         selectedProShop = Select.from(ProshopData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).first();

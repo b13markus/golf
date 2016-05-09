@@ -14,18 +14,20 @@ import android.widget.TextView;
 import java.util.List;
 
 import com.golfapp.test.R;
+import com.golfapp.test.activities.BaseActivity;
+import com.golfapp.test.datafiles.RestaurantRatesData;
 
 /**
  * Created by Golakiya on 6/29/2015.
  */
-public class AdapterRestaurantRates extends ArrayAdapter<com.golfapp.test.datafiles.RestaurantRatesData> {
+public class AdapterRestaurantRates extends ArrayAdapter<RestaurantRatesData> {
 
-    private final com.golfapp.test.activities.BaseActivity context;
+    private final BaseActivity context;
     private final String notificationString;
-    boolean ishotel = false;
-    int sel = -1;
+    private boolean ishotel = false;
+    private int sel = -1;
 
-    public AdapterRestaurantRates(com.golfapp.test.activities.BaseActivity context, List<com.golfapp.test.datafiles.RestaurantRatesData> objects, boolean ishotel, String notificationString) {
+    public AdapterRestaurantRates(BaseActivity context, List<RestaurantRatesData> objects, boolean ishotel, String notificationString) {
         super(context, 0, objects);
         this.context = context;
         this.notificationString = notificationString;

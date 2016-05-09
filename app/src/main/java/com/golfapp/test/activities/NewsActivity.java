@@ -36,12 +36,12 @@ import com.golfapp.test.utils.MyListView;
 
 
 public class NewsActivity extends BaseActivity {
-    MyListView lv;
-    AdpNews adapterNews;
+    private MyListView lv;
+    private AdpNews adapterNews;
     int i = 1;
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
-    List<NewsData> newsList = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
+    private List<NewsData> newsList = new ArrayList<>();
     boolean isLoading = false;
     private int total;
     private boolean clearList = false;
@@ -72,11 +72,10 @@ public class NewsActivity extends BaseActivity {
         loadItems = true;
         urlNews = Constants.urlNews + "?client=" + Constants.clientId + "&language=" + Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         getSupportActionBar().hide();
-        addToStack(this);
         lv = (MyListView) findViewById(R.id.listnews);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);

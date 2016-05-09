@@ -16,6 +16,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.AdapterRestaurantRates;
+import com.golfapp.test.datafiles.RestaurantData;
+import com.golfapp.test.datafiles.RestaurantRatesData;
 import com.golfapp.test.utils.Constants;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -27,11 +31,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-import com.golfapp.test.adapters.AdapterRestaurantRates;
-import com.golfapp.test.datafiles.RestaurantData;
-import com.golfapp.test.datafiles.RestaurantRatesData;
-
 
 /**
  * Created by Golakiya on 6/29/2015.
@@ -39,7 +38,7 @@ import com.golfapp.test.datafiles.RestaurantRatesData;
 public class RestaurantRatesActivity extends BaseActivity {
 
     // Creating JSON Parser object
-    ListView lv;
+    private ListView lv;
     private int restaurantID;
     private RestaurantData selectedRestaurant;
     private List<RestaurantRatesData> rateList = new ArrayList<>();
@@ -74,11 +73,10 @@ public class RestaurantRatesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        addToStack(this);
         setContentView(R.layout.activity_pros_detail_rates_offer);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
@@ -150,7 +148,6 @@ public class RestaurantRatesActivity extends BaseActivity {
         });
     }
 
-
     private void setupActionbar() {
         ((TextView) findViewById(R.id.prosOfferActionTitle)).setText(getString(R.string.re_suggestion_nav_bar));
         ((TextView) findViewById(R.id.prosOfferActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
@@ -170,7 +167,6 @@ public class RestaurantRatesActivity extends BaseActivity {
         });
     }
 
-
     private void loadOflineData() {
         rateList = Select.from(RestaurantRatesData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).list();
         adp = new AdapterRestaurantRates(this, rateList, true, notificationString);
@@ -182,7 +178,6 @@ public class RestaurantRatesActivity extends BaseActivity {
                 url + "&sectoken=" + Constants.md5(), null,
                 this, this);
         applicationInstance.addToRequestQueue(jsonObjReq, "News");
-
     }
 
     @Override

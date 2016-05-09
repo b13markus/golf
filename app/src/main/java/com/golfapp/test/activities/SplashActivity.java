@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
@@ -21,7 +20,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.RegistrationIntentService;
+import com.golfapp.test.utils.ApplicationClass;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.NetworkStateReceiver;
+import com.golfapp.test.utils.PrefStore;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
@@ -31,22 +35,15 @@ import org.json.JSONObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.golfapp.test.R;
-import com.golfapp.test.RegistrationIntentService;
-import com.golfapp.test.utils.ApplicationClass;
-import com.golfapp.test.utils.NetworkStateReceiver;
-import com.golfapp.test.utils.PrefStore;
-
 public class SplashActivity extends Activity implements NetworkStateReceiver.NetworkStateReceiverListener,
-        View.OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener {
+        Response.Listener<JSONObject>, Response.ErrorListener {
 
     private String urlNews;
-    private int SPLASH_TIME_OUT = 2000;
-    int remain = 2000;
-    boolean isTimeout = false;
-    private JSONObject obj;
-    int progress = 0;
-    ProgressBar splashProgress;
+    private static final int SPLASH_TIME_OUT = 2000;
+    private int remain = 2000;
+    private boolean isTimeout = false;
+    private int progress = 0;
+    private ProgressBar splashProgress;
     private PrefStore store;
     private NetworkStateReceiver networkStateReceiver;
 
@@ -212,7 +209,7 @@ public class SplashActivity extends Activity implements NetworkStateReceiver.Net
     void gotoAdd() {
         try {
             if (store.getString(Constants.PROFILE_STRING) != null) {
-                obj = new JSONObject(store.getString(Constants.PROFILE_STRING));
+                JSONObject obj = new JSONObject(store.getString(Constants.PROFILE_STRING));
                 JSONObject advert = obj.getJSONObject("advertisemet");
                 String url = advert.getString("image");
                 if (!url.equals("") && !url.equals("null")) {
@@ -252,11 +249,6 @@ public class SplashActivity extends Activity implements NetworkStateReceiver.Net
 
     @Override
     public void networkUnavailable() {
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 }

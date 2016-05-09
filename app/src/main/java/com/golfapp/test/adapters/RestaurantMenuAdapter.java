@@ -19,8 +19,8 @@ import com.golfapp.test.datafiles.RestaurantMenuData;
  */
 public class RestaurantMenuAdapter extends ArrayAdapter<RestaurantMenuData> {
 
-    Typeface b, lt;
-    BaseActivity context;
+    private Typeface b, lt;
+    private BaseActivity context;
 
 
     public RestaurantMenuAdapter(BaseActivity context, List<RestaurantMenuData> objects) {

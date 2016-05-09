@@ -31,9 +31,8 @@ import com.golfapp.test.utils.PDFtools;
 
 public class EventDetailActivity extends BaseActivity {
 
-    Typeface tp, lt;
-    String cct = "", cdf = "", plat = "";
-    String on = null, tee = null;
+    private String cct = "", cdf = "", plat = "";
+    private String on = null, tee = null;
     private int eventID;
     private EventsData selectedEvent;
     @Override
@@ -53,7 +52,6 @@ public class EventDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
         getSupportActionBar().hide();
-        addToStack(this);
         TextView ti = (TextView) findViewById(R.id.title1);
         TextView date = (TextView) findViewById(R.id.sudate);
         TextView sub = (TextView) findViewById(R.id.subtitle);
@@ -61,8 +59,8 @@ public class EventDetailActivity extends BaseActivity {
         TextView rem2 = (TextView) findViewById(R.id.desc);
         TextView bns = (TextView) findViewById(R.id.bns);
 
-        tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
-        lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
+        Typeface tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
+        Typeface lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
         eventID = getIntent().getIntExtra("EventID", 0);
         selectedEvent = Select.from(EventsData.class).where(Condition.prop("event_id").eq(eventID)).first();
         ti.setText(selectedEvent.name);

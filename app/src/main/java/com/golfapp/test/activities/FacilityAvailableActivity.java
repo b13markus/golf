@@ -24,13 +24,12 @@ import com.golfapp.test.datafiles.CoursesData;
 
 public class FacilityAvailableActivity extends BaseActivity {
 
-    int shower = 0, clubhouse = 0, proshop = 0, pro = 0,
+    private int shower = 0, clubhouse = 0, proshop = 0, pro = 0,
             clubhaire = 0, buggy = 0, practice = 0, putting = 0,
             pitching = 0, restaurant = 0, hotel = 0, pool = 0, tennis = 0,
             wifi = 0, parking = 0;
-    String tit = "";
-    int courseID;
-    private CoursesData selectedCourse;
+    private String tit = "";
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -46,14 +45,12 @@ public class FacilityAvailableActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addToStack(this);
         setContentView(R.layout.activity_facility);
         getSupportActionBar().hide();
-        courseID = getIntent().getIntExtra("CourseID", 0);
-        selectedCourse = Select.from(CoursesData.class).where(Condition.prop("course_id").eq(courseID)).first();
-        JSONArray arr = new JSONArray();
+        int courseID = getIntent().getIntExtra("CourseID", 0);
+        CoursesData selectedCourse = Select.from(CoursesData.class).where(Condition.prop("course_id").eq(courseID)).first();
         try {
-            arr = new JSONArray(selectedCourse.facilities);
+            JSONArray arr = new JSONArray(selectedCourse.facilities);
             for (int i = 0; i < arr.length(); i++) {
                 switch (arr.getString(i)) {
                     case "Shower":

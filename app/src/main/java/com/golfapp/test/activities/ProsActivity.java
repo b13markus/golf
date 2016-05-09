@@ -16,7 +16,12 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.AdapterPros;
+import com.golfapp.test.datafiles.ImageData;
+import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.MyListView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -26,30 +31,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-import com.golfapp.test.adapters.AdapterPros;
-import com.golfapp.test.datafiles.ImageData;
-import com.golfapp.test.datafiles.ProsData;
-import com.golfapp.test.utils.MyListView;
-
 /**
  * Created by aman on 11/21/2015.
  */
 public class ProsActivity extends BaseActivity {
 
 
-    MyListView lv;
+    private MyListView lv;
     private String urlPros;
-    List<ProsData> list = new ArrayList<>();
-    AdapterPros adapterPros;
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
-    boolean isLoading = false;
+    private List<ProsData> list = new ArrayList<>();
+    private AdapterPros adapterPros;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
+    private boolean isLoading = false;
     private int total;
     private boolean clearList = false;
     private View footerView;
     static boolean loadItems = false;               //used to refresh list when internet is back            true coming from home screen
-    Typeface tf;
 
     @Override
     protected void onPause() {
@@ -72,9 +70,7 @@ public class ProsActivity extends BaseActivity {
         setContentView(R.layout.activity_pros);
         loadItems = true;
         getSupportActionBar().hide();
-        tf = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
-        addToStack(this);
         lv = (MyListView) findViewById(R.id.lvPros);
         ((TextView) findViewById(R.id.prosActionTitle)).setText(getString(R.string.pro_list_nav_bar));
         setupActionBar();
@@ -85,7 +81,7 @@ public class ProsActivity extends BaseActivity {
                 Constants.getLanguage()+"&sectoken="+ Constants.md5() + "&draw=" + Constants.draw + "&page=";
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);

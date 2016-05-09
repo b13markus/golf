@@ -16,6 +16,13 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.AdapterRestaurant;
+import com.golfapp.test.datafiles.ImageData;
+import com.golfapp.test.datafiles.ProsData;
+import com.golfapp.test.datafiles.RestaurantData;
+import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.MyListView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -25,19 +32,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-import com.golfapp.test.adapters.AdapterRestaurant;
-
 /**
  * Created by Golakiya on 6/29/2015.
  */
 public class RestaurantActivity extends BaseActivity {
 
     private String urlPros = "";
-    com.golfapp.test.utils.MyListView lv;
-    List<com.golfapp.test.datafiles.RestaurantData> list = new ArrayList<>();
-    com.golfapp.test.adapters.AdapterRestaurant adapterRestaurant;
-    SwipeRefreshLayout swipeRefreshLayout;
+    private MyListView lv;
+    private List<RestaurantData> list = new ArrayList<>();
+    private AdapterRestaurant adapterRestaurant;
+    private SwipeRefreshLayout swipeRefreshLayout;
     int pageNumber = 0;
     boolean isLoading = false;
     private int total;
@@ -70,15 +74,14 @@ public class RestaurantActivity extends BaseActivity {
         ((TextView) findViewById(R.id.prosActionTitle)).setText(R.string.re_list_nav_bar);
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         getSupportActionBar().hide();
-        addToStack(this);
-        urlPros = com.golfapp.test.utils.Constants.urlRestaurantData + "?client=" + com.golfapp.test.utils.Constants.clientId +"&sectoken="+ com.golfapp.test.utils.Constants.md5()+ "&language=" + com.golfapp.test.utils.Constants.getLanguage() + "&draw=" + com.golfapp.test.utils.Constants.draw + "&page=";
-        lv = (com.golfapp.test.utils.MyListView) findViewById(R.id.lvPros);
+        urlPros = Constants.urlRestaurantData + "?client=" + Constants.clientId +"&sectoken="+ Constants.md5()+ "&language=" + Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
+        lv = (MyListView) findViewById(R.id.lvPros);
         clearList = true;
         footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
         lv.addFooterView(footerView);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
@@ -122,7 +125,7 @@ public class RestaurantActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (getIntent().getBooleanExtra("Push", false)) {
-            startActivity(new Intent(this, com.golfapp.test.activities.MainActivity.class).putExtra("Push", true));
+            startActivity(new Intent(this, MainActivity.class).putExtra("Push", true));
             finish();
         } else {
             finish();
@@ -165,17 +168,17 @@ public class RestaurantActivity extends BaseActivity {
 
     private void loadOffline() {
         clearList = true;
-        list = com.golfapp.test.datafiles.ProsData.listAll(com.golfapp.test.datafiles.RestaurantData.class);
+        list = ProsData.listAll(RestaurantData.class);
         for (int a = 0; a < list.size(); a++) {
-            list.get(a).imageList = Select.from(com.golfapp.test.datafiles.ImageData.class).where(Condition.prop("restaurant_id").eq(list.get(a).restaurantID)).list();
+            list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("restaurant_id").eq(list.get(a).restaurantID)).list();
         }
         setListView();
     }
 
     private void setListView() {
         if (list.size() == 1) {
-            Intent it = new Intent(RestaurantActivity.this, com.golfapp.test.activities.RestaurantDetailActivity.class);
-            com.golfapp.test.datafiles.RestaurantData pro = list.get(0);
+            Intent it = new Intent(RestaurantActivity.this, RestaurantDetailActivity.class);
+            RestaurantData pro = list.get(0);
             it.putExtra("RestaurantID", pro.restaurantID);
             //it.putExtra("rat",rat);
             startActivity(it);
@@ -256,9 +259,9 @@ public class RestaurantActivity extends BaseActivity {
                         int menu_count = obj.getInt("menu_count");
                         String menu_url = obj.getString("menu_url");
 
-                        com.golfapp.test.datafiles.RestaurantData restaurantData = Select.from(com.golfapp.test.datafiles.RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
+                        RestaurantData restaurantData = Select.from(RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
                         if (restaurantData == null) {
-                            restaurantData = new com.golfapp.test.datafiles.RestaurantData(restaurantID, position, package_count, menu_count, name, descr
+                            restaurantData = new RestaurantData(restaurantID, position, package_count, menu_count, name, descr
                                     , phone, email, website, address, streetno, route, city, state, postalcode, country, package_url, menu_url, latitude, longitude);
                             restaurantData.save();
                         } else {
@@ -283,15 +286,15 @@ public class RestaurantActivity extends BaseActivity {
                             restaurantData.menuUrl = menu_url;
                             restaurantData.save();
                         }
-                        com.golfapp.test.datafiles.ImageData.deleteAll(com.golfapp.test.datafiles.ImageData.class, "restaurant_id = ? ", restaurantID + "");
+                        ImageData.deleteAll(ImageData.class, "restaurant_id = ? ", restaurantID + "");
                         JSONArray imagesArray = obj.getJSONArray("images");
                         for (int b = 0; b < imagesArray.length(); b++) {
 
                             JSONObject imageObj = imagesArray.getJSONObject(b);
                             String Imagename = imageObj.getString("name");
                             String url = imageObj.getString("url");
-                            com.golfapp.test.datafiles.ImageData.deleteAll(com.golfapp.test.datafiles.ImageData.class, "restaurant_id = ? and name = ? and url = ? ", restaurantID + "", Imagename, url);
-                            com.golfapp.test.datafiles.ImageData image = new com.golfapp.test.datafiles.ImageData(0, 0, 0, restaurantID, 0, 0, Imagename, url);
+                            ImageData.deleteAll(ImageData.class, "restaurant_id = ? and name = ? and url = ? ", restaurantID + "", Imagename, url);
+                            ImageData image = new ImageData(0, 0, 0, restaurantID, 0, 0, Imagename, url);
                             image.save();
                             restaurantData.imageList.add(image);
 
@@ -338,8 +341,8 @@ public class RestaurantActivity extends BaseActivity {
                 if (isNetworkAvailable()) {
                     loadItems = false;
                 }
-                Intent it = new Intent(RestaurantActivity.this, com.golfapp.test.activities.RestaurantDetailActivity.class);
-                com.golfapp.test.datafiles.RestaurantData pro = list.get(position);
+                Intent it = new Intent(RestaurantActivity.this, RestaurantDetailActivity.class);
+                RestaurantData pro = list.get(position);
                 it.putExtra("RestaurantID", pro.restaurantID);
                 //it.putExtra("rat",rat);
                 startActivity(it);

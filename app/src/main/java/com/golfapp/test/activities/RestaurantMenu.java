@@ -14,6 +14,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.RestaurantMenuAdapter;
+import com.golfapp.test.datafiles.RestaurantData;
+import com.golfapp.test.datafiles.RestaurantMenuData;
+import com.golfapp.test.utils.Constants;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -24,18 +29,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-
 
 public class RestaurantMenu extends BaseActivity {
 
-    ListView lv;
-    int restaurantID;
+    private ListView lv;
+    private int restaurantID;
     private com.golfapp.test.datafiles.RestaurantData selectedCourse;
     private boolean clearList;
     private int total;
-    private List<com.golfapp.test.datafiles.RestaurantMenuData> list = new ArrayList<>();
-    com.golfapp.test.adapters.RestaurantMenuAdapter adapter;
+    private List<RestaurantMenuData> list = new ArrayList<>();
+    private RestaurantMenuAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onResume() {
@@ -53,7 +56,6 @@ public class RestaurantMenu extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        addToStack(this);
         setContentView(R.layout.activity_the_courses);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -61,11 +63,11 @@ public class RestaurantMenu extends BaseActivity {
         clearList = true;
         lv = (ListView) findViewById(R.id.lvc);
         restaurantID = getIntent().getIntExtra("RestaurantID", 0);
-        selectedCourse = Select.from(com.golfapp.test.datafiles.RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
+        selectedCourse = Select.from(RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
         if (!isNetworkAvailable()) {
             loadOfflineData();
         } else {
-            swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+            swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                     android.R.color.holo_green_light,
                     android.R.color.holo_green_light,
                     android.R.color.holo_green_light);
@@ -131,13 +133,13 @@ public class RestaurantMenu extends BaseActivity {
 
     private void getCourseRates() {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                selectedCourse.menuUrl+"&sectoken="+ com.golfapp.test.utils.Constants.md5(), null,
+                selectedCourse.menuUrl+"&sectoken="+ Constants.md5(), null,
                 this, this);
         applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 
     private void loadOfflineData() {
-        list = Select.from(com.golfapp.test.datafiles.RestaurantMenuData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).list();
+        list = Select.from(RestaurantMenuData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).list();
         setListView();
     }
 
@@ -169,10 +171,10 @@ public class RestaurantMenu extends BaseActivity {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int ratesID = obj.getInt("id");
                         String section = obj.getString("section");
-                        com.golfapp.test.datafiles.RestaurantMenuData heading = Select.from(com.golfapp.test.datafiles.RestaurantMenuData.class).where(Condition.prop("restaurant_id").eq(restaurantID),
+                        RestaurantMenuData heading = Select.from(RestaurantMenuData.class).where(Condition.prop("restaurant_id").eq(restaurantID),
                                 Condition.prop("rate_id").eq(ratesID)).first();
                         if (heading == null) {
-                            heading = new com.golfapp.test.datafiles.RestaurantMenuData(restaurantID, ratesID, 0, 1, section, "", "");
+                            heading = new RestaurantMenuData(restaurantID, ratesID, 0, 1, section, "", "");
                             heading.save();
                         } else {
                             heading.section = section;
@@ -185,10 +187,10 @@ public class RestaurantMenu extends BaseActivity {
                             int itemID = itemObj.getInt("id");
                             String descr = itemObj.getString("descr");
                             String price = itemObj.getString("price");
-                            com.golfapp.test.datafiles.RestaurantMenuData item = Select.from(com.golfapp.test.datafiles.RestaurantMenuData.class).where(Condition.prop("restaurant_id").eq(restaurantID),
+                            RestaurantMenuData item = Select.from(RestaurantMenuData.class).where(Condition.prop("restaurant_id").eq(restaurantID),
                                     Condition.prop("rate_id").eq(ratesID), Condition.prop("item_id").eq(itemID)).first();
                             if (item == null) {
-                                item = new com.golfapp.test.datafiles.RestaurantMenuData(restaurantID, ratesID, itemID, 0, "", descr, price);
+                                item = new RestaurantMenuData(restaurantID, ratesID, itemID, 0, "", descr, price);
                                 item.save();
                             } else {
                                 item.descr = descr;
@@ -223,7 +225,7 @@ public class RestaurantMenu extends BaseActivity {
     private void setListView() {
         if (clearList) {
             clearList = false;
-            adapter = new com.golfapp.test.adapters.RestaurantMenuAdapter(this, list);
+            adapter = new RestaurantMenuAdapter(this, list);
             lv.setAdapter(adapter);
         } else {
             adapter.notifyDataSetChanged();
@@ -245,7 +247,7 @@ public class RestaurantMenu extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(getApplicationContext(), com.golfapp.test.activities.MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }

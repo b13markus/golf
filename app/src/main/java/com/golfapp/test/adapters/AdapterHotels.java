@@ -25,7 +25,7 @@ import com.golfapp.test.utils.BadgeView;
  */
 public class AdapterHotels extends ArrayAdapter<HotelData> {
 
-    BaseActivity context;
+    private BaseActivity context;
 
     public AdapterHotels(BaseActivity context, List<HotelData> objects) {
         super(context, 0, objects);

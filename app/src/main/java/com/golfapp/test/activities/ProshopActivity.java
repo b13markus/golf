@@ -39,19 +39,17 @@ import com.golfapp.test.utils.MyListView;
  */
 public class ProshopActivity extends BaseActivity {
 
-
-    MyListView lv;
+    private MyListView lv;
     private String urlPros;
-    List<ProshopData> list = new ArrayList<>();
-    AdapterProshop adapterPros;
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
-    boolean isLoading = false;
+    private List<ProshopData> list = new ArrayList<>();
+    private AdapterProshop adapterPros;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
+    private boolean isLoading = false;
     private int total;
     private boolean clearList = false;
     private View footerView;
     private static boolean loadItems = false;
-
 
     @Override
     protected void onPause() {
@@ -74,7 +72,6 @@ public class ProshopActivity extends BaseActivity {
         setContentView(R.layout.activity_pros);
         getSupportActionBar().hide();
         loadItems = true;
-        addToStack(this);
         ((TextView) findViewById(R.id.prosActionTitle)).setText(R.string.ps_list_nav_bar);
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         lv = (MyListView) findViewById(R.id.lvPros);
@@ -85,7 +82,7 @@ public class ProshopActivity extends BaseActivity {
                 Constants.getLanguage() +"&sectoken="+ Constants.md5() + "&draw=" + Constants.draw + "&page=";
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);

@@ -39,17 +39,12 @@ import java.util.List;
  */
 public class CourseActivity extends BaseActivity {
 
-
-    JSONObject object;
-    JSONArray jr;
-    int i = 1;
-    boolean fhome = false;
-    MyListView lv;
-    List<CoursesData> list = new ArrayList<>();
-    AdapterCourse adapterPros;
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
-    boolean isLoading = false;
+    private MyListView lv;
+    private List<CoursesData> list = new ArrayList<>();
+    private AdapterCourse adapterPros;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
+    private boolean isLoading = false;
     private int total;
     private boolean clearList = false;
     private View footerView;
@@ -65,13 +60,11 @@ public class CourseActivity extends BaseActivity {
         }
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,17 +73,15 @@ public class CourseActivity extends BaseActivity {
         urlCourse = Constants.urlCourseData + "?client=" + Constants.clientId + "&sectoken=" + Constants.md5() + "&language=" +
                 Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         loadItems = true;
-        addToStack(this);
         ((TextView) findViewById(R.id.courseActionTitle)).setText(R.string.crs_the_course_list_nav_bar);
         ((TextView) findViewById(R.id.courseActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         getSupportActionBar().hide();
         clearList = true;
         lv = ((MyListView) findViewById(R.id.listnews));
 
-        fhome = getIntent().getBooleanExtra("home", false);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
@@ -104,7 +95,6 @@ public class CourseActivity extends BaseActivity {
                 }
             });
         }
-        jr = new JSONArray();
         footerView = inflater.inflate(R.layout.footer_view, null, false);
         lv.addFooterView(footerView);
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {

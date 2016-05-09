@@ -24,15 +24,14 @@ import com.bluejamesbond.text.DocumentView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.R;
+import com.golfapp.test.datafiles.ImageData;
+import com.golfapp.test.datafiles.ProshopData;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-
-import com.golfapp.test.R;
-import com.golfapp.test.datafiles.ImageData;
-import com.golfapp.test.datafiles.ProshopData;
 
 /**
  * Created by Golakiya on 6/29/2015.
@@ -40,11 +39,9 @@ import com.golfapp.test.datafiles.ProshopData;
 public class ProshopDetailActivity extends BaseActivity {
 
 
-    SliderLayout mDemoSlider;
-    Button con;
-    TextView rates, badgeCountTV, des;
-    Typeface tf;
-    SharedPreferences sp;
+    private TextView badgeCountTV;
+    private Typeface tf;
+    private SharedPreferences sp;
     private int proShopID;
     private ProshopData selectedProShop;
 
@@ -75,22 +72,21 @@ public class ProshopDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pros_detail);
-        addToStack(this);
         getSupportActionBar().hide();
         proShopID = getIntent().getIntExtra("ProShopID", 0);
         selectedProShop = Select.from(ProshopData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).first();
         selectedProShop.imageList = Select.from(ImageData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).list();
-        mDemoSlider = (SliderLayout) findViewById(R.id.slider);
+        SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
         DocumentView dv = (DocumentView) findViewById(R.id.desctext12);
         tf = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
-        rates = (TextView) findViewById(R.id.rates);
-        con = (Button) findViewById(R.id.contact);
+        TextView rates = (TextView) findViewById(R.id.rates);
+        Button con = (Button) findViewById(R.id.contact);
         con.setText(getString(R.string.ps_contact_btn));
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
         rates.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         rates.setText(R.string.ps_special_offer_btn);
         con.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
-        des = (TextView) findViewById(R.id.desctext1);
+        TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(tf);
         con.setOnClickListener(this);
         des.setText(selectedProShop.desc);

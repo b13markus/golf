@@ -1,19 +1,13 @@
 package com.golfapp.test.activities;
 
-import android.content.Context;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
+import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,23 +15,13 @@ import com.golfapp.test.AppConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.fragments.ImageFragment;
 import com.golfapp.test.utils.CirclePageIndicator;
-import com.squareup.picasso.Picasso;
-
-import java.util.ArrayDeque;
-
 
 /**
  * Created by Golakiya on 7/5/2015.
  */
 public class CoursesSlideshow extends BaseActivity {
 
-    String tit = "";
-    private ViewPager mViewPager;
-    TextView imgNameTxt;
-    CirclePageIndicator mIndicator;
-    private ArrayDeque<ImageView> mRecycledViewsList;
     private int[] coursesRes = new int[0] ;
-
 
     @Override
     protected void onResume() {
@@ -67,13 +51,11 @@ public class CoursesSlideshow extends BaseActivity {
         setContentView(R.layout.activity_course_image);
         getSupportActionBar().hide();
         initResImages();
-        tit = getIntent().getStringExtra("title");
-        addToStack(this);
+        String tit = getIntent().getStringExtra("title");
         setupActionbar();
-        mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
+        CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
-        MyPagerAdapter adapter = new MyPagerAdapter();
-        /*ImageAdapter adapter = new ImageAdapter(getSupportFragmentManager());*/
+        ImageAdapter adapter = new ImageAdapter(getFragmentManager());
         pager.setAdapter(adapter);
         mIndicator.setViewPager(pager);
     }
@@ -98,9 +80,7 @@ public class CoursesSlideshow extends BaseActivity {
     }
 
 
-    private class ImageAdapter extends FragmentPagerAdapter {
-
-
+    private class ImageAdapter extends FragmentStatePagerAdapter {
         public ImageAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -119,60 +99,4 @@ public class CoursesSlideshow extends BaseActivity {
             return coursesRes.length;
         }
     }
-
-
-    private class MyPagerAdapter extends PagerAdapter {
-
-        LayoutInflater mLayoutInflater;
-
-        public MyPagerAdapter() {
-            mRecycledViewsList = new ArrayDeque<>();
-            mLayoutInflater = (LayoutInflater) CoursesSlideshow.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        ImageView primaryView;
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-
-            ImageView view = null;
-            if (mRecycledViewsList.isEmpty()) {
-                view = new ImageView(CoursesSlideshow.this);
-            } else {
-                view = mRecycledViewsList.pop();
-            }
-            view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-                    LayoutParams.WRAP_CONTENT));
-            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-            //view.setBackgroundResource(imgs[position]);
-            Picasso.with(getApplicationContext()).load(coursesRes[position]).into(view);
-            ((ViewPager) container).addView(view, 0);
-            return view;
-        }
-
-        @Override
-        public int getCount() {
-            return coursesRes.length;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            ViewPager pager = (ViewPager) container;
-            ImageView recycledView = (ImageView) object;
-            pager.removeView(recycledView);
-            mRecycledViewsList.push(recycledView);
-        }
-
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0 == ((View) arg1);
-        }
-
-        public Parcelable saveState() {
-            return null;
-        }
-    }
-
 }

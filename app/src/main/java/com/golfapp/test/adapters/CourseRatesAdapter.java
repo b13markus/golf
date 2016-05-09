@@ -7,20 +7,21 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import com.golfapp.test.R;
+import com.golfapp.test.activities.BaseActivity;
+import com.golfapp.test.datafiles.CourseRateData;
+
+import java.util.List;
 
 /**
  * Created by Appstane on 7/22/2015.
  */
 public class CourseRatesAdapter extends ArrayAdapter<com.golfapp.test.datafiles.CourseRateData> {
 
-    Typeface b, lt;
-    com.golfapp.test.activities.BaseActivity context;
+    private Typeface b, lt;
+    private BaseActivity context;
 
-
-    public CourseRatesAdapter(com.golfapp.test.activities.BaseActivity context, List<com.golfapp.test.datafiles.CourseRateData> objects) {
+    public CourseRatesAdapter(BaseActivity context, List<CourseRateData> objects) {
         super(context, 0, objects);
         this.context = context;
         b = Typeface.createFromAsset(context.getAssets(), "fonts/BI.ttf");

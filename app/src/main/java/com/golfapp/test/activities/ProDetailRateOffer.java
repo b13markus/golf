@@ -16,6 +16,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.AdapterProsRateOffer;
+import com.golfapp.test.datafiles.ProRates;
+import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.Constants;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -27,26 +31,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-import com.golfapp.test.adapters.AdapterProsRateOffer;
-import com.golfapp.test.datafiles.ProRates;
-import com.golfapp.test.datafiles.ProsData;
-
 /**
  * Created by Golakiya on 6/29/2015.
  */
 public class ProDetailRateOffer extends BaseActivity {
 
     private static String urlNews = null;
-    ListView lv;
-    ProRates selected;
-    boolean frompush = false;
-    AdapterProsRateOffer adp;
+    private ListView lv;
+    private ProRates selected;
+    private boolean frompush = false;
+    private AdapterProsRateOffer adp;
     private int prosID;
     private ProsData selectedPros;
     private List<ProRates> rateList = new ArrayList<>();
     private String notificationString;
-    SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -73,10 +72,9 @@ public class ProDetailRateOffer extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pros_detail_rates_offer);
-        addToStack(this);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);

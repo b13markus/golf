@@ -20,9 +20,7 @@ import com.golfapp.test.R;
 public class BrowserActivity extends BaseActivity {
     public static final String URL = "URL";
     public static final String AD_NAME = "AD_NAME";
-    TextView tvTitle;
 
-    private String adName = null, adUrl = null;
     private ProgressBar progressBar;
     private WebView webview;
 
@@ -43,8 +41,7 @@ public class BrowserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.l_browser);
         getSupportActionBar().hide();
-        addToStack(this);
-        tvTitle = (TextView) findViewById(R.id.courseDetailActionTitle);
+        TextView tvTitle = (TextView) findViewById(R.id.courseDetailActionTitle);
         tvTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setMax(100);
@@ -86,8 +83,8 @@ public class BrowserActivity extends BaseActivity {
                 progressBar.setProgress(newProgress);
             }
         });
-        adName = getIntent().getStringExtra(AD_NAME);
-        adUrl = getIntent().getStringExtra(URL).toLowerCase();
+        String adName = getIntent().getStringExtra(AD_NAME);
+        String adUrl = getIntent().getStringExtra(URL).toLowerCase();
         if (!adUrl.contains("http")) {
             adUrl = "http://" + adUrl;
         }

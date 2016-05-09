@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.activities.BaseActivity;
+import com.golfapp.test.datafiles.ProshopData;
+import com.golfapp.test.utils.BadgeView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -20,11 +23,11 @@ import com.golfapp.test.R;
 /**
  * Created by Golakiya on 6/29/2015.
  */
-public class AdapterProshop extends ArrayAdapter<com.golfapp.test.datafiles.ProshopData> {
+public class AdapterProshop extends ArrayAdapter<ProshopData> {
 
-    com.golfapp.test.activities.BaseActivity context;
+    private BaseActivity context;
 
-    public AdapterProshop(com.golfapp.test.activities.BaseActivity context, List<com.golfapp.test.datafiles.ProshopData> objects) {
+    public AdapterProshop(BaseActivity context, List<ProshopData> objects) {
         super(context, 0, objects);
         this.context = context;
     }
@@ -43,7 +46,7 @@ public class AdapterProshop extends ArrayAdapter<com.golfapp.test.datafiles.Pros
                     context.getResources().getDimensionPixelSize(R.dimen.badge_size_list),
                     context.getResources().getDimensionPixelSize(R.dimen.badge_size_list), Gravity.RIGHT);
             viewHolder.notificationBadgeCountTV.setLayoutParams(params);
-            viewHolder.bnews = new com.golfapp.test.utils.BadgeView(context);
+            viewHolder.bnews = new BadgeView(context);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

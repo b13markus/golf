@@ -26,11 +26,6 @@ import com.golfapp.test.utils.JustifiedTextView;
 
 public class CourseDetailActivity extends BaseActivity {
 
-    Typeface tp, lt;
-    Button thecourse, rates, fac;
-    SliderLayout mDemoSlider;
-    TextView des;
-    private int courseID;
     private CoursesData selectedCourse;
     @Override
     protected void onResume() {
@@ -48,29 +43,28 @@ public class CourseDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
-        addToStack(this);
         getSupportActionBar().hide();
-        thecourse = (Button) findViewById(R.id.thecour);
+        Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.crs_the_course_btn));
-        fac = (Button) findViewById(R.id.faci);
+        Button fac = (Button) findViewById(R.id.faci);
         fac.setText(getString(R.string.crs_facilities_btn));
-        rates = (Button) findViewById(R.id.ratess);
+        Button rates = (Button) findViewById(R.id.ratess);
         rates.setText(getString(R.string.crs_rates_btn));
         TextView tit = (TextView) findViewById(R.id.title1);
         tit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         TextView stit = (TextView) findViewById(R.id.subtitle);
         JustifiedTextView jst = (JustifiedTextView) findViewById(R.id.jst);
-        mDemoSlider = (SliderLayout) findViewById(R.id.slider);
-        tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
-        lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
+        SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
+        Typeface tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
+        Typeface lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
         stit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/I.ttf"));
         jst.setTypeFace(Typeface.createFromAsset(getAssets(), "fonts/LT.ttf"));
-        des = (TextView) findViewById(R.id.desctext1);
+        TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(lt);
         thecourse.setTypeface(tp);
         fac.setTypeface(tp);
         rates.setTypeface(tp);
-        courseID = getIntent().getIntExtra("CourseID", 0);
+        int courseID = getIntent().getIntExtra("CourseID", 0);
         selectedCourse = Select.from(CoursesData.class).where(Condition.prop("course_id").eq(courseID)).first();
         selectedCourse.imageList = Select.from(ImageData.class).where(Condition.prop("course_id").eq(courseID)).list();
         try {

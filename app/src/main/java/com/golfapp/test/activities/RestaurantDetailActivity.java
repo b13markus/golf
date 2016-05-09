@@ -22,29 +22,23 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bluejamesbond.text.DocumentView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
-import com.golfapp.test.R;
-
 /**
  * Created by Golakiya on 7/6/2015.
  */
 public class RestaurantDetailActivity extends BaseActivity {
 
-    Typeface tp, lt;
-    Button thecourse, fac;
-    TextView rates, des;
-    SliderLayout mDemoSlider;
-    Dialog m_dialog;
-    SharedPreferences sp;
+    private Dialog m_dialog;
+    private SharedPreferences sp;
     private int restaurantID;
     private com.golfapp.test.datafiles.RestaurantData selectedRasturant;
     private TextView badgeCountTV;
@@ -77,20 +71,18 @@ public class RestaurantDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rest_detail);
         getSupportActionBar().hide();
-        addToStack(this);
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
-        thecourse = (Button) findViewById(R.id.thecour);
+        Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.re_contact_btn));
-        fac = (Button) findViewById(R.id.faci);
+        Button fac = (Button) findViewById(R.id.faci);
         fac.setText(getString(R.string.re_menu_btn));
-        rates = (TextView) findViewById(R.id.ratess);
+        TextView rates = (TextView) findViewById(R.id.ratess);
         rates.setText(getString(R.string.re_suggestion_btn));
-        mDemoSlider = (SliderLayout) findViewById(R.id.slider);
-        tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
-        lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
+        SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
+        Typeface tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
+        Typeface lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
 
-        DocumentView dv = (DocumentView) findViewById(R.id.desctext);
-        des = (TextView) findViewById(R.id.desctext1);
+        TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(lt);
         thecourse.setTypeface(tp);
         fac.setTypeface(tp);
@@ -169,7 +161,7 @@ public class RestaurantDetailActivity extends BaseActivity {
 
     class Listener implements ImageLoadingListener {
 
-        RoundedImageView imageView;
+        private RoundedImageView imageView;
 
         public Listener(RoundedImageView ivAdImage) {
             imageView = ivAdImage;

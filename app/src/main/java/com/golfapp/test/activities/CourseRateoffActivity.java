@@ -14,6 +14,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.adapters.CourseRatesAdapter;
+import com.golfapp.test.datafiles.CourseRateData;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -29,15 +31,13 @@ import com.golfapp.test.R;
 
 public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActivity {
 
-    ListView lv;
-    int courseID;
+    private ListView lv;
+    private int courseID;
     private com.golfapp.test.datafiles.CoursesData selectedCourse;
     private boolean clearList;
-    private int total;
-    private List<com.golfapp.test.datafiles.CourseRateData> list = new ArrayList<>();
-    com.golfapp.test.adapters.CourseRatesAdapter adapter;
+    private List<CourseRateData> list = new ArrayList<>();
+    private CourseRatesAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-
 
     @Override
     protected void onPause() {
@@ -49,10 +49,9 @@ public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActiv
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_courses);
-        addToStack(this);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_green_light,
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
@@ -109,7 +108,7 @@ public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActiv
                     list.clear();
                 }
                 if (jsonObject.getInt("success") == 1) {
-                    total = jsonObject.getJSONObject("paging").getInt("total");
+                    int total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("rates");
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);

@@ -14,7 +14,6 @@ import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -23,6 +22,9 @@ import com.bluejamesbond.text.DocumentView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.R;
+import com.golfapp.test.datafiles.ImageData;
+import com.golfapp.test.datafiles.NewsData;
 import com.golfapp.test.utils.Constants;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
@@ -39,25 +41,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.golfapp.test.R;
-import com.golfapp.test.datafiles.ImageData;
-import com.golfapp.test.datafiles.NewsData;
-
 
 /**
  * Created by Golakiya on 6/30/2015.
  */
 public class NewsDetailActivity extends BaseActivity {
 
-    TextView title, stit, sdate, des;
-    Button btn;
-    SliderLayout mDemoSlider;
-    Typeface tf;
-    String urlNe = "";
-    DocumentView dv;
-    SharedPreferences sp;
-    Boolean frompush = false;
-    LinearLayout ll;
+    private TextView title, stit, sdate, des;
+    private SliderLayout mDemoSlider;
+    private String urlNe = "";
+    private DocumentView dv;
+    private SharedPreferences sp;
     private int newsID;
     private NewsData selectedNews;
 
@@ -78,7 +72,6 @@ public class NewsDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
         getSupportActionBar().hide();
-        addToStack(this);
         newsID = getIntent().getIntExtra("NewsID", 0);
         int particularNewsBadgeCont = store.getInt(newsID + "", 0);
         if (particularNewsBadgeCont > 0) {
@@ -95,11 +88,10 @@ public class NewsDetailActivity extends BaseActivity {
 
         // desc = (TextView) findViewById(R.id.desc1);
         dv = (DocumentView) findViewById(R.id.desctext13);
-        btn = (Button) findViewById(R.id.btnShareOnNews);
+        Button btn = (Button) findViewById(R.id.btnShareOnNews);
         btn.setText(getString(R.string.nws_share_btn));
-        ll = (LinearLayout) findViewById(R.id.lino);
 
-        tf = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
         Typeface tfb = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
         Typeface tfi = Typeface.createFromAsset(getAssets(), "fonts/BI.ttf");
         des = (TextView) findViewById(R.id.desctext1);

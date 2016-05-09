@@ -19,7 +19,7 @@ import com.golfapp.test.datafiles.HotelData;
 
 public class HotelWebsiteActivity extends BaseActivity {
 
-    String titt = "Website", url = "http://www.google.com";
+    private String titt = "Website", url = "http://www.google.com";
     private int hotelID;
     private HotelData selectedHotel;
 
@@ -40,7 +40,6 @@ public class HotelWebsiteActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_web);
-        addToStack(this);
         hotelID = getIntent().getIntExtra("HotelID", 0);
         selectedHotel = Select.from(HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();
         ProgressBar progressBar;

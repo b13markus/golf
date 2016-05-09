@@ -26,7 +26,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.RegistrationIntentService;
+import com.golfapp.test.utils.ApplicationClass;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.CustomRequest;
+import com.golfapp.test.utils.NetworkStateReceiver;
+import com.golfapp.test.utils.PrefStore;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -48,19 +54,10 @@ import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.golfapp.test.R;
-import com.golfapp.test.RegistrationIntentService;
-import com.golfapp.test.utils.ApplicationClass;
-import com.golfapp.test.utils.CustomRequest;
-import com.golfapp.test.utils.NetworkStateReceiver;
-import com.golfapp.test.utils.PrefStore;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 /**
@@ -73,7 +70,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
     public LayoutInflater inflater;
     public ApplicationClass applicationInstance;
     private NetworkStateReceiver networkStateReceiver;
-    private static ArrayList<AppCompatActivity> activitiesBackStack = new ArrayList<>();
     private JSONObject obj;
     public ImageLoader il;
     public DisplayImageOptions options;
@@ -104,10 +100,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    public void addToStack(BaseActivity activity) {
-        activitiesBackStack.add(activity);              // put all the activities in backstack to kill after some time.
     }
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -318,7 +310,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
         store.setBoolean("StartKilling", true);                 // App is going in background update the kill backstack flag to true.
         unregisterReceiver(pushNotificationReceiver);
         store.setInt(Constants.IS_APPLICATION_VISIBLE, 0);
-        clearBackStacks();          //      start the backstack clear timer
         store.setString(Constants.APP_START_TIME, System.currentTimeMillis() + "");     // Update the last visit time for Advertisement
     }
 
@@ -349,34 +340,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
             }
         });
         applicationInstance.addToRequestQueue(jsObjRequest);
-    }
-
-    private void clearBackStacks() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if (store.getBoolean("StartKilling", false)) {              // this will execute when app is in background for more than time for clearing backstack.
-                    String clearStack = store.getString(Constants.KILL_BACKSTACK_TIME);
-                    long appStartTimeInt = Long.valueOf(clearStack);
-                    long currentTime = System.currentTimeMillis();
-                    long timeDifference = currentTime - appStartTimeInt;
-                    long diffInSec = getTimeDifference(appStartTimeInt, currentTime);
-                    if (diffInSec >= Constants.CLEAR_BACKSTACK_TIME_IN_SECONDS) {
-                        if (store.getBoolean("StartKilling", false))
-                            for (int a = 0; a < activitiesBackStack.size(); a++) {
-                                try {
-                                    activitiesBackStack.get(a).finish();
-                                } catch (Exception e) {
-
-                                } catch (Error e) {
-
-                                }
-                            }
-                    }
-                }
-            }
-        }, Constants.TASK_KILL_DURATION_IN_MILISECONDS);
     }
 
     public boolean isNetworkAvailable() {

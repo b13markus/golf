@@ -8,16 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.R;
+import com.golfapp.test.activities.BaseActivity;
+import com.golfapp.test.datafiles.ProsData;
+import com.golfapp.test.utils.BadgeView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import com.golfapp.test.R;
-import com.golfapp.test.activities.BaseActivity;
-import com.golfapp.test.datafiles.ProsData;
-import com.golfapp.test.utils.BadgeView;
 
 
 /**
@@ -25,7 +24,7 @@ import com.golfapp.test.utils.BadgeView;
  */
 public class AdapterPros extends ArrayAdapter<ProsData> {
 
-    BaseActivity context;
+    private BaseActivity context;
 
     public AdapterPros(BaseActivity context, List<ProsData> objects) {
         super(context, 0, objects);

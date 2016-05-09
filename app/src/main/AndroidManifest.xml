@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.golfapp.test">
+    package="com.golfapp.test" >
 
     <!-- for apex badge -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <permission
         android:name="golfclub.soulvant.user22.permission.C2D_MESSAGE"
@@ -24,48 +25,84 @@
 
     <!-- Permission to vibrate -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    -
+    <compatible-screens>
 
+        <!-- all small size screens -->
 
-    -<compatible-screens>
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="280"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="360"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="420"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="560"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="640"
+            android:screenSize="small" />
 
-    <!-- all small size screens -->
+        <!-- all normal size screens -->
 
-
-    <screen android:screenDensity="ldpi" android:screenSize="small"/>
-    <screen android:screenDensity="mdpi" android:screenSize="small"/>
-    <screen android:screenDensity="hdpi" android:screenSize="small"/>
-    <screen android:screenDensity="xhdpi" android:screenSize="small"/>
-    <screen android:screenDensity="280" android:screenSize="small"/>
-    <screen android:screenDensity="360" android:screenSize="small"/>
-    <screen android:screenDensity="420" android:screenSize="small"/>
-    <screen android:screenDensity="480" android:screenSize="small"/>
-    <screen android:screenDensity="560" android:screenSize="small"/>
-    <screen android:screenDensity="640" android:screenSize="small"/>
-
-    <!-- all normal size screens -->
-
-
-    <screen android:screenDensity="ldpi" android:screenSize="normal"/>
-    <screen android:screenDensity="mdpi" android:screenSize="normal"/>
-    <screen android:screenDensity="hdpi" android:screenSize="normal"/>
-    <screen android:screenDensity="xhdpi" android:screenSize="normal"/>
-    <screen android:screenDensity="280" android:screenSize="normal"/>
-    <screen android:screenDensity="360" android:screenSize="normal"/>
-    <screen android:screenDensity="420" android:screenSize="normal"/>
-    <screen android:screenDensity="480" android:screenSize="normal"/>
-    <screen android:screenDensity="560" android:screenSize="normal"/>
-    <screen android:screenDensity="640" android:screenSize="normal"/>
-
-</compatible-screens>
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="280"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="360"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="420"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="560"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="640"
+            android:screenSize="normal" />
+    </compatible-screens>
 
     <application
-        android:name="com.golfapp.test.utils.ApplicationClass"
+        android:name=".utils.ApplicationClass"
         android:allowBackup="true"
         android:icon="@drawable/a_app_icon_android"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/AppTheme"
-        tools:node="replace">
+        tools:node="replace" >
         <meta-data
             android:name="DATABASE"
             android:value="aurous.db" />
@@ -80,10 +117,10 @@
             android:value="com.golfapp.test" />
 
         <activity
-            android:name="com.golfapp.test.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -91,86 +128,85 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.golfapp.test.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.ProsActivity"
+            android:name=".activities.ProsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.ProsDetailActivity"
+            android:name=".activities.ProsDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.ProDetailRateOffer"
+            android:name=".activities.ProDetailRateOffer"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.NewsActivity"
+            android:name=".activities.NewsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.NewsDetailActivity"
+            android:name=".activities.NewsDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.EventsActivity"
+            android:name=".activities.EventsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.EventDetailActivity"
+            android:name=".activities.EventDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.CourseActivity"
+            android:name=".activities.CourseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.CourseDetailActivity"
+            android:name=".activities.CourseDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.FacilityAvailableActivity"
+            android:name=".activities.FacilityAvailableActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.CourseRateoffActivity"
+            android:name=".activities.CourseRateoffActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.RestaurantActivity"
+            android:name=".activities.RestaurantActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.RestaurantMenu"
+            android:name=".activities.RestaurantMenu"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.RestaurantDetailActivity"
+            android:name=".activities.RestaurantDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.RestaurantRatesActivity"
+            android:name=".activities.RestaurantRatesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.HotelsActivity"
+            android:name=".activities.HotelsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.HotelDetailActivity"
+            android:name=".activities.HotelDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.HotelPackageActivity"
+            android:name=".activities.HotelPackageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.HotelWebsiteActivity"
+            android:name=".activities.HotelWebsiteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.ProshopActivity"
+            android:name=".activities.ProshopActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.ProshopDetailActivity"
+            android:name=".activities.ProshopDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.CoursesSlideshow"
+            android:name=".activities.CoursesSlideshow"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.ProshopRateOfferActivity"
+            android:name=".activities.ProshopRateOfferActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.BrowserActivity"
+            android:name=".activities.BrowserActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.golfapp.test.activities.AdvertisementActivity"
+            android:name=".activities.AdvertisementActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name="com.golfapp.test.activities.Advertisement"
+            android:name=".activities.Advertisement"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen.Advertisement" />
@@ -178,7 +214,7 @@
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
@@ -191,8 +227,8 @@
             android:value="@integer/google_play_services_version" />
         <!-- [START gcm_listener] -->
         <service
-            android:name="com.golfapp.test.MyGcmListenerService"
-            android:exported="false">
+            android:name=".MyGcmListenerService"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
@@ -200,15 +236,15 @@
         <!-- [END gcm_listener] -->
         <!-- [START instanceId_listener] -->
         <service
-            android:name="com.golfapp.test.MyInstanceIDListenerService"
-            android:exported="false">
+            android:name=".MyInstanceIDListenerService"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
         <!-- [END instanceId_listener] -->
         <service
-            android:name="com.golfapp.test.RegistrationIntentService"
+            android:name=".RegistrationIntentService"
             android:exported="false" />
     </application>
 
