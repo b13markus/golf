@@ -37,14 +37,14 @@ import com.golfapp.test.utils.MyListView;
  */
 public class UpcomingEventsFragment extends BaseFragment {
 
-    MyListView lv;
-    List<EventsData> list = new ArrayList<>();
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
+    private MyListView lv;
+    private List<EventsData> list = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
     boolean isLoading = false;
     private int total;
     private boolean clearList = false;
-    AdapterEvent adapterEvent;
+    private AdapterEvent adapterEvent;
     private View footerView;
     private String urlUpComingEvent;
     private TextView emptyTextTV;

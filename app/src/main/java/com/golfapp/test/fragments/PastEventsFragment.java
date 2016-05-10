@@ -33,14 +33,14 @@ import com.golfapp.test.R;
  */
 public class PastEventsFragment extends com.golfapp.test.fragments.BaseFragment {
 
-    com.golfapp.test.utils.MyListView lv;
-    List<com.golfapp.test.datafiles.EventsData> list = new ArrayList<>();
-    SwipeRefreshLayout swipeRefreshLayout;
-    int pageNumber = 0;
-    boolean isLoading = false;
+    private com.golfapp.test.utils.MyListView lv;
+    private List<com.golfapp.test.datafiles.EventsData> list = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private int pageNumber = 0;
+    private boolean isLoading = false;
     private int total;
     private boolean clearList = false;
-    com.golfapp.test.adapters.AdapterEvent adapterEvent;
+    private com.golfapp.test.adapters.AdapterEvent adapterEvent;
     private View footerView;
     private String urlPastEvent = "";
     private TextView emptyTextTV;

@@ -122,7 +122,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
     @Override
     protected void onResume() {
         super.onResume();
-        md5();
         store = new PrefStore(this);
         store.setBoolean("StartKilling", false);                // when activity is resumed stop the killing flag
         store.setInt(Constants.IS_APPLICATION_VISIBLE, 1);          // Now app is visible for push notifications update home screen
@@ -214,31 +213,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
             showAdd();
         }
         store.setString(Constants.APP_START_TIME, System.currentTimeMillis() + "");
-    }
-
-    public String md5() {
-        try {
-            // Create MD5 Hash
-
-            DateTimeZone denverTimeZone = DateTimeZone.forID("Europe/Zurich");
-            DateTime denverDateTime = new DateTime(denverTimeZone);
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-mm-yyyy hh.mm.ss");
-            String dtStr = fmt.print(denverDateTime);
-            dtStr = dtStr + "sacha31" + Constants.clientId;
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(dtStr.getBytes());
-            byte messageDigest[] = digest.digest();
-
-            // Create Hex String
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < messageDigest.length; i++)
-                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
-            return hexString.toString();
-
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     public void showAdd() {
