@@ -12,8 +12,8 @@ import java.util.Locale;
  */
 public class Constants {
 
-    public static final String app_name = "Golf App FR";
-    public static final String clientId = "22";
+    public static final String app_name = "Golf Club Giez";
+    public static final String clientId = "2751";
 
     public static int draw = 7;
     public static int ddraw = 7;
@@ -23,7 +23,7 @@ public class Constants {
     public static final String PROFILE_STRING = "Profile";
 
     //----APIs URLS----------------------------------------------------------------------------------------------------- LANGUAGE_ID FOR ALL URL REQUIRED
-    public static final String webServiceUrl = "http://golfapp.ch/app_fe_dev/api/";
+    public static final String webServiceUrl = "http://golfapp.ch/app/api/";
     //Required Fields
     public static final String urlAdvertising = webServiceUrl + "profile";               //clientId
     public static final String urlNews = webServiceUrl + "news";                          //clientId
@@ -93,23 +93,25 @@ public class Constants {
 
     public static int getLanguage() {
         String lang = Locale.getDefault().getLanguage();
-        int cc = 1;
+        int cc = 2;
         switch (lang) {
-            case "en":
-                cc = 1;
-                break;
+//            case "en":
+//                cc = 2;
+//                break;
             case "fr":
                 cc = 2;
                 break;
-            case "de":
-                cc = 3;
-                break;
-            case "es":
-                cc = 4;
-                break;
-            case "it":
-                cc = 5;
-                break;
+//            case "de":
+//                cc = 1;
+//                break;
+//            case "es":
+//                cc = 1;
+//                break;
+//            case "it":
+//                cc = 1;
+//                break;
+            default:
+                cc = 2;
         }
 
         return cc;
