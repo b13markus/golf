@@ -38,9 +38,9 @@ public class CoursesSlideshow extends BaseActivity {
     private void initResImages() {
         if(AppConstants.currentCourse == 0){
             coursesRes = AppConstants.course_1;
-        }else if(AppConstants.currentCourse == 1){
+        } else if(AppConstants.currentCourse == 1){
             coursesRes = AppConstants.course_2;
-        }else if(AppConstants.currentCourse == 2){
+        } else if(AppConstants.currentCourse == 2){
             coursesRes = AppConstants.course_3;
         }
     }

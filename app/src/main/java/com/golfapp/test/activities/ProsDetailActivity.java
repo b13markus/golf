@@ -3,6 +3,7 @@ package com.golfapp.test.activities;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -118,6 +119,7 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
                 Picasso.with(this)
                         .load(selectedPros.imageList.get(0).url)
                         .networkPolicy(NetworkPolicy.OFFLINE)
+                        .config(Bitmap.Config.RGB_565)
                         .placeholder(R.drawable.a_place_holder_detail_page)
                         .error(R.drawable.a_place_holder_detail_page)
                         .into(iv, loadImage(iv, placeHolder, selectedPros.imageList.get(0).url,R.drawable.a_place_holder_detail_page));

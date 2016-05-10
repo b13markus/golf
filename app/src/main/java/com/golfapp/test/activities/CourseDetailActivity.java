@@ -1,6 +1,7 @@
 package com.golfapp.test.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -112,6 +113,7 @@ public class CourseDetailActivity extends BaseActivity {
                 Picasso.with(this)
                         .load(selectedCourse.imageList.get(0).url)
                         .networkPolicy(NetworkPolicy.OFFLINE)
+                        .config(Bitmap.Config.RGB_565)
                         .placeholder(R.drawable.a_place_holder_detail_page)
                         .error(R.drawable.a_place_holder_detail_page)
                         .into(iv, loadImage(iv, placeHolder, selectedCourse.imageList.get(0).url,R.drawable.a_place_holder_detail_page));

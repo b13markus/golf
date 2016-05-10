@@ -2,6 +2,7 @@ package com.golfapp.test.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,6 +70,7 @@ public class AdapterCourse extends ArrayAdapter<CoursesData> {
             Picasso.with(context)
                     .load(object.imageList.get(0).url)
                     .networkPolicy(NetworkPolicy.OFFLINE)
+                    .config(Bitmap.Config.RGB_565)
                     .placeholder(R.drawable.a_place_holder_list_view)
                     .error(R.drawable.a_place_holder_list_view)
                     .into(viewHolder.ivUser, loadImage(viewHolder.ivUser, viewHolder.placeHolderImage, object.imageList.get(0).url,R.drawable.a_place_holder_list_view));
@@ -109,6 +111,7 @@ public class AdapterCourse extends ArrayAdapter<CoursesData> {
             final AtomicBoolean playAnimation = new AtomicBoolean(true);
             Picasso.with(context)
                     .load(url)
+                    .config(Bitmap.Config.RGB_565)
                     .placeholder(placeHolder)
                     .error(placeHolder)
                     .into(imageView, new Callback() {

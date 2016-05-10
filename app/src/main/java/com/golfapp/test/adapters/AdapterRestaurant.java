@@ -1,6 +1,7 @@
 package com.golfapp.test.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,16 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.R;
+import com.golfapp.test.activities.BaseActivity;
+import com.golfapp.test.datafiles.RestaurantData;
+import com.golfapp.test.utils.BadgeView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import com.golfapp.test.R;
-import com.golfapp.test.activities.BaseActivity;
-import com.golfapp.test.datafiles.RestaurantData;
-import com.golfapp.test.utils.BadgeView;
 
 
 /**
@@ -67,6 +67,7 @@ public class AdapterRestaurant extends ArrayAdapter<RestaurantData> {
             Picasso.with(context)
                     .load(data.imageList.get(0).url)
                     .networkPolicy(NetworkPolicy.OFFLINE)
+                    .config(Bitmap.Config.RGB_565)
                     .placeholder(R.drawable.a_place_holder_list_view)
                     .error(R.drawable.a_place_holder_list_view)
                     .into(viewHolder.ivUser, context.loadImage(viewHolder.ivUser, viewHolder.placeHolderImage, data.imageList.get(0).url,R.drawable.a_place_holder_list_view));

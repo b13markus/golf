@@ -15,20 +15,29 @@ android {
         versionName "1.0.13"
     }
     productFlavors {
-        var1 {
-            applicationId 'com.golfapp.var1'
+        user_22 {
+            applicationId "com.golfapp.test"
         }
-        var2 {
-            applicationId 'com.golfapp.var2'
+        user_2751 {
+            applicationId "com.golfapp.gcgiez"
         }
-        var3 {
-            applicationId 'com.golfapp.var3'
+    }
+    signingConfigs {
+        releaseApp {
+            storeFile file('GC_La_Cote.jks')
+            storePassword 'wordpass'
+            keyAlias 'golf'
+            keyPassword 'wordpass'
         }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            zipAlignEnabled true
+            jniDebuggable false
+            signingConfig signingConfigs.releaseApp
         }
     }
 }
@@ -44,7 +53,7 @@ dependencies {
     compile 'com.github.bluejamesbond:textjustify-android:2.1.0'
     compile 'net.danlew:android.joda:2.9.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-    compile 'com.google.android.gms:play-services:8.4.0'
+    compile "com.google.android.gms:play-services-gcm:8.4.0"
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:cardview-v7:23.3.0'
     compile 'me.leolin:ShortcutBadger:1.1.3@aar'

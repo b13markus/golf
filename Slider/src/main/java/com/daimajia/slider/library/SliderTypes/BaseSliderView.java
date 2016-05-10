@@ -12,15 +12,12 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.ImageView;
 
 import com.daimajia.slider.library.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Callback;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -230,6 +227,7 @@ public abstract class BaseSliderView {
             final AtomicBoolean playAnimation = new AtomicBoolean(true);
             Picasso.with(mContext)
                     .load(url)
+                    .config(Bitmap.Config.RGB_565)
                     .placeholder(R.drawable.a_place_holder_detail_page)
                     .error(R.drawable.a_place_holder_detail_page)
                     .into(imageView, new Callback() {
@@ -303,6 +301,7 @@ public abstract class BaseSliderView {
         Picasso.with(mContext)
                 .load(mUrl)
                 .networkPolicy(NetworkPolicy.OFFLINE)
+                .config(Bitmap.Config.RGB_565)
                 .placeholder(R.drawable.a_place_holder_detail_page)
                 .error(R.drawable.a_place_holder_detail_page)
                 .into(targetImageView, loadImage(targetImageView, placeHolderImage, mUrl));

@@ -456,6 +456,7 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
             final AtomicBoolean playAnimation = new AtomicBoolean(true);
             Picasso.with(BaseActivity.this)
                     .load(url)
+                    .config(Bitmap.Config.RGB_565)
                     .placeholder(placeHolder)
                     .error(placeHolder)
                     .into(imageView, new Callback() {

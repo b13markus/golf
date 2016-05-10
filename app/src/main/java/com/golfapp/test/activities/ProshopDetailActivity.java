@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -123,6 +124,7 @@ public class ProshopDetailActivity extends BaseActivity {
                 Picasso.with(this)
                         .load(selectedProShop.imageList.get(0).url)
                         .networkPolicy(NetworkPolicy.OFFLINE)
+                        .config(Bitmap.Config.RGB_565)
                         .placeholder(R.drawable.a_place_holder_detail_page)
                         .error(R.drawable.a_place_holder_detail_page)
                         .into(iv, loadImage(iv, placeHolder, selectedProShop.imageList.get(0).url,R.drawable.a_place_holder_detail_page));

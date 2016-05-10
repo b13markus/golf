@@ -1,5 +1,6 @@
 package com.golfapp.test.adapters;
 
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
@@ -73,6 +74,7 @@ public class AdapterPros extends ArrayAdapter<ProsData> {
             Picasso.with(context)
                     .load(viewHolder.data.imageList.get(0).url)
                     .networkPolicy(NetworkPolicy.OFFLINE)
+                    .config(Bitmap.Config.RGB_565)
                     .placeholder(R.drawable.a_place_holder_list_view)
                     .error(R.drawable.a_place_holder_list_view)
                     .into(viewHolder.ivUser, context.loadImage(viewHolder.ivUser, viewHolder.placeHolderImage, viewHolder.data.imageList.get(0).url,R.drawable.a_place_holder_list_view));
