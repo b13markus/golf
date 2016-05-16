@@ -22,6 +22,7 @@ import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -43,6 +44,7 @@ public class RegistrationIntentService extends IntentService {
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
 
     public RegistrationIntentService() {
         super(TAG);
@@ -124,68 +126,15 @@ public class RegistrationIntentService extends IntentService {
 
             }
         });
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         requestQueue.add(jsObjRequest);
 
 
-        // Add custom implementation, as needed.
-        /*String postReceiverUrl = Constants.urlRegister;
-        Log.v(TAG, "postURL: " + postReceiverUrl);
 
-// HttpClient
-        HttpClient httpClient = new DefaultHttpClient();
-
-// post header
-        HttpPost httpPost = new HttpPost(postReceiverUrl);
-
-// add your data
-        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("device_token", token));
-
-        String deviceId = Settings.Secure.getString(this.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        Log.d("","Device_id-"+deviceId);
-        nameValuePairs.add(new BasicNameValuePair("device_id", deviceId));
-        nameValuePairs.add(new BasicNameValuePair("device_os", "android"));
-        nameValuePairs.add(new BasicNameValuePair("client",Constants.clientId));
-        nameValuePairs.add(new BasicNameValuePair("language", ""+Constants.getlanguage()));
-
-        try {
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-        } catch (UnsupportedEncodingException e)
-        {
-            e.printStackTrace();
-        }
-
-        // execute HTTP post request
-        HttpResponse response = null;
-        try {
-            response = httpClient.execute(httpPost);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        HttpEntity resEntity = response.getEntity();
-
-        if (resEntity != null) {
-            String responseStr = null;
-            try {
-                responseStr = EntityUtils.toString(resEntity).trim();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Log.v(TAG, "Register Response: " +  responseStr);
-            try {
-                JSONObject obj=new JSONObject(responseStr);
-                int succ=obj.getInt("success");
-                if(succ==1)
-                {
-                    sharedPreferences.edit().putBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER,true).apply();
-                    sharedPreferences.edit().putInt(QuickstartPreferences.REG_ID,obj.getInt("regid")).apply();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 
     private void subscribeTopics(String token) throws IOException {
@@ -194,6 +143,4 @@ public class RegistrationIntentService extends IntentService {
             pubSub.subscribe(token, "/topics/" + topic, null);
         }
     }
-    // [END subscribe_topics]
-
 }

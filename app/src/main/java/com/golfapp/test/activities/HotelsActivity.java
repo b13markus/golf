@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -37,6 +38,7 @@ import java.util.List;
 public class HotelsActivity extends BaseActivity {
 
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private MyListView lv;
     private String urlHotels;
     private List<HotelData> list = new ArrayList<>();
@@ -215,6 +217,12 @@ public class HotelsActivity extends BaseActivity {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlHotels + pageNumber, null,
                 this, this);
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 

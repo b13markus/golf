@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.golfapp.test.R;
@@ -36,6 +36,7 @@ import java.util.List;
  */
 public class ProshopRateOfferActivity extends BaseActivity {
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private static String urlNews = null;
     private ListView lv;
     private ProShopRatesData selected;
@@ -155,8 +156,13 @@ public class ProshopRateOfferActivity extends BaseActivity {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlNews+"&sectoken="+ Constants.md5(), null,
                 this, this);
-        applicationInstance.addToRequestQueue(jsonObjReq, "News");
 
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        applicationInstance.addToRequestQueue(jsonObjReq, "News");
     }
 
     @Override
@@ -168,38 +174,6 @@ public class ProshopRateOfferActivity extends BaseActivity {
             toast(getString(R.string.no_inet));
             swipeRefreshLayout.setRefreshing(false);
         }
-    }
-
-    private void checkIfUpdateReuired(final int prosID) {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                urlNews, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        try {
-                            if (jsonObject.getInt("success") == 1) {
-                                JSONArray prosArray = jsonObject.getJSONArray("packages");
-                                if (prosArray.length() > 0) {
-                                    if (prosID != prosArray.getJSONObject(0).getInt("id")) {        // top Pros ID does not match with our top id means update is available.
-                                        getNews();
-                                    } else {
-                                        swipeRefreshLayout.setRefreshing(false);
-                                    }
-                                } else {
-                                    swipeRefreshLayout.setRefreshing(false);
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 
     public class SaveData extends AsyncTask<JSONObject, Void, Void> {

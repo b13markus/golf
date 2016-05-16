@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -38,6 +39,7 @@ import java.util.TimerTask;
 public class SplashActivity extends Activity implements NetworkStateReceiver.NetworkStateReceiverListener,
         Response.Listener<JSONObject>, Response.ErrorListener {
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private String urlNews;
     private static final int SPLASH_TIME_OUT = 2000;
     private int remain = 2000;
@@ -171,6 +173,13 @@ public class SplashActivity extends Activity implements NetworkStateReceiver.Net
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlNews, null,
                 this, this);
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+
         applicationInstance.addToRequestQueue(jsonObjReq, "Profile");
     }
 

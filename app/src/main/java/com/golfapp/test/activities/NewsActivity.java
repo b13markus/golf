@@ -13,8 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.golfapp.test.R;
@@ -27,7 +27,6 @@ import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ import java.util.List;
 
 
 public class NewsActivity extends BaseActivity {
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private MyListView lv;
     private AdpNews adapterNews;
     int i = 1;
@@ -128,7 +128,6 @@ public class NewsActivity extends BaseActivity {
         }
     }
 
-
     @Override
     public void onRefresh() {
         super.onRefresh();
@@ -141,44 +140,6 @@ public class NewsActivity extends BaseActivity {
             toast(getString(R.string.no_inet));
             swipeRefreshLayout.setRefreshing(false);
         }
-    }
-
-    private void checkIfUpdateReuired(final int id) {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                urlNews + 1, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        try {
-                            if (jsonObject.getInt("success") == 1) {
-                                total = jsonObject.getJSONObject("paging").getInt("total");
-                                JSONArray prosArray = jsonObject.getJSONArray("news");
-                                if (prosArray.length() > 0) {
-                                    if (id != prosArray.getJSONObject(0).getInt("id")) {        // top Course ID does not match with our top id means update is available.
-                                        clearList = true;
-                                        lv.addFooterView(footerView);
-                                        pageNumber = 0;
-                                        getNews();
-                                    } else {
-                                        swipeRefreshLayout.setRefreshing(false);
-                                    }
-                                } else {
-                                    swipeRefreshLayout.setRefreshing(false);
-                                }
-                            } else {
-                                swipeRefreshLayout.setRefreshing(false);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 
     @Override
@@ -195,7 +156,6 @@ public class NewsActivity extends BaseActivity {
         } else {                // means coming back from detail page
             loadItems = true;       // make it true
         }
-
     }
 
     private void getNews() {
@@ -204,6 +164,13 @@ public class NewsActivity extends BaseActivity {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlNews + pageNumber, null,
                 this, this);
+
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         applicationInstance.addToRequestQueue(jsonObjReq, "News");
     }
 
@@ -319,7 +286,6 @@ public class NewsActivity extends BaseActivity {
         swipeRefreshLayout.setRefreshing(false);
     }
 
-
     private void setupActionbar() {
         ((TextView) findViewById(R.id.newsActionTitle)).setText(getString(R.string.nws_nav_bar));
         ((TextView) findViewById(R.id.newsActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
@@ -360,25 +326,4 @@ public class NewsActivity extends BaseActivity {
             }
         }
     }
-
-    /*Adshower ads;
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("", "onStop");
-        ads = new Adshower(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("", "on resume");
-        if (adp != null) {
-            adp.refresh();
-        }
-        if (ads != null) {
-            ads.isTimeout(this);
-        }
-    }*/
 }

@@ -13,20 +13,17 @@ import android.widget.AbsListView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.golfapp.test.R;
 
 /**
  * Created by aman on 11/24/2015.
@@ -122,43 +119,6 @@ public class PastEventsFragment extends com.golfapp.test.fragments.BaseFragment 
             swipeRefreshLayout.setRefreshing(false);
         }
     }
-
-    private void checkIfUpdateReuired(final int prosID) {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                urlPastEvent + 1, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        try {
-                            if (jsonObject.getInt("success") == 1) {
-                                total = jsonObject.getJSONObject("paging").getInt("total");
-                                JSONArray prosArray = jsonObject.getJSONArray("events");
-                                if (prosArray.length() > 0) {
-                                    if (prosID != prosArray.getJSONObject(0).getInt("id")) {        // top Pros ID does not match with our top id means update is available.
-                                        clearList = true;
-                                        lv.addFooterView(footerView);
-                                        pageNumber = 0;
-                                        getPastNews();
-                                    } else {
-                                        swipeRefreshLayout.setRefreshing(false);
-                                    }
-                                } else {
-                                    swipeRefreshLayout.setRefreshing(false);
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        baseActivity.applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
-    }
-
 
     private void loadOffline() {
         clearList = true;
