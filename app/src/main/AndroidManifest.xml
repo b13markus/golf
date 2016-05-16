@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.golfapp.test" >
+
+    <!-- for apex badge -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <permission
+        android:name="golfclub.soulvant.user22.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="golfclub.soulvant.user22.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!-- Network State Permissions to detect Internet status -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Permission to vibrate -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    -
+    <compatible-screens>
+
+        <!-- all small size screens -->
+
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="280"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="360"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="420"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="560"
+            android:screenSize="small" />
+        <screen
+            android:screenDensity="640"
+            android:screenSize="small" />
+
+        <!-- all normal size screens -->
+
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="280"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="360"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="420"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="560"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="640"
+            android:screenSize="normal" />
+    </compatible-screens>
+
+    <application
+        android:name=".utils.ApplicationClass"
+        android:allowBackup="true"
+        android:icon="@drawable/a_app_icon_android"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        tools:node="replace" >
+        <meta-data
+            android:name="DATABASE"
+            android:value="aurous.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.golfapp.test" />
+
+        <activity
+            android:name=".activities.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProDetailRateOffer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.NewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.NewsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.EventsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.EventDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CourseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CourseDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.FacilityAvailableActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CourseRateoffActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RestaurantActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RestaurantMenu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RestaurantDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RestaurantRatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HotelsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HotelDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HotelPackageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HotelWebsiteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProshopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProshopDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CoursesSlideshow"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProshopRateOfferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.BrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AdvertisementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.Advertisement"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen.Advertisement" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="golfclub.soulvant.user22" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!-- [START gcm_listener] -->
+        <service
+            android:name=".MyGcmListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <!-- [END gcm_listener] -->
+        <!-- [START instanceId_listener] -->
+        <service
+            android:name=".MyInstanceIDListenerService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <!-- [END instanceId_listener] -->
+        <service
+            android:name=".RegistrationIntentService"
+            android:exported="false" />
+    </application>
+
+</manifest>

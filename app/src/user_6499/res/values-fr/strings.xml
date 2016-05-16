@@ -1,0 +1,150 @@
+<?xml version= "1.0" encoding= "utf-8"?><!-- Language id =2french-->
+<resources>
+
+    <!--START -->
+    <string name="app_name">GC Crans sur Sierre</string>
+
+
+    <!--HOMESCREEN-->
+    <string name="hm_events_btn">Events</string>
+    <string name="hm_courses_btn">Parcours</string>
+    <string name="hm_rest_btn">Restaurants</string>
+    <string name="hm_htls_btn">Hôtels</string>
+    <string name="hm_news_btn">News</string>
+    <string name="hm_pros_btn">Pros</string>
+    <string name="hm_proshp_btn">Proshop</string>
+    <string name="hm_contact_btn">Contact</string>
+    <string name="hm_tee_time_btn">Tee Time</string>
+
+
+    <!-- Events -->
+    <string name="evt_list_view_nav_bar">Events</string>
+    <string name="evt_detail_page_nav_bar">Events</string>
+    <string name="evt_pastevent_btn">Passés</string>
+    <string name="evt_upcoming_event_btn">Futurs</string>
+    <string name="evt_book_share_title">Réserver &amp; Partager</string>
+    <string name="evt_phone_btn">Téléphone</string>
+    <string name="evt_addtodiary_btn">"Ajouter à l'agenda"</string>
+    <string name="evt_no_up_coming">Pas de futurs events</string>
+    <string name="evt_no_past_evt">"Pas d'events passés"</string>
+    <string name="events_program_btn">Programme</string>
+    <string name="events_tee_times_btn">Tee Times</string>
+    <string name="events_share_btn">Partager</string>
+    <string name="events_email_btn">Email</string>
+
+
+    <!-- Pros -->
+    <string name="pro_contact_pop_up_title">Contact</string>
+    <string name="pro_list_nav_bar">Pros</string>
+    <string name="pro_detail_nav_bar">Pro</string>
+    <string name="pro_rate_offer_nav_bar">Tarifs &amp; Offres</string>
+    <string name="pro_rate_offer_btn">Tarifs &amp; Offres</string>
+    <string name="pro_contact_btn">Contact</string>
+    <string name="pro_phone_btn">Téléphone</string>
+    <string name="pro_email_btn">Email</string>
+    <string name="pro_share_btn">Partager</string>
+    <string name="pro_cancel_btn">Annuler</string>
+
+
+    <string name="ps_contact_pop_up_title">Contact</string>
+    <string name="ps_list_nav_bar">Proshops</string>
+    <string name="ps_detail_nav_bar">Proshop</string>
+    <string name="ps_special_offer_nav_bar">Offres</string>
+    <string name="ps_special_offer_btn">Offres</string>
+    <string name="ps_contact_btn">Contact</string>
+    <string name="ps_phone_btn">Téléphone</string>
+    <string name="ps_email_btn">Email</string>
+    <string name="ps_share_btn">Partager</string>
+    <string name="ps_cancel_btn">Annuler</string>
+
+
+    <!-- The Courses -->
+    <string name="crs_the_course_list_nav_bar">Les Parcours</string>
+    <string name="crs_the_course_detail_nav_bar">Le Parcours</string>
+    <string name="crs_rate_details_nav_bar">Tarifs</string>
+    <string name="crs_facilities_details_nav_bar">Facilités</string>
+    <string name="crs_the_course_btn_detail_nav_bar">Le Parcours</string>
+    <string name="crs_the_course_btn">Parcours</string>
+    <string name="crs_facilities_btn">Facilités</string>
+    <string name="crs_rates_btn">Tarifs</string>
+    <string name="crs_shower_icon">Vestiaire</string>
+    <string name="crs_club_house_icon">Club house</string>
+    <string name="crs_club_hire_icon">Location</string>
+    <string name="crs_proshop_icon">Proshop</string>
+    <string name="crs_pros_icon">Pros</string>
+    <string name="crs_buggy_icon">Buggy</string>
+    <string name="crs_practice_icon">Practice</string>
+    <string name="crs_putting_icon">Putting</string>
+    <string name="crs_pitching_icon">Pitching</string>
+    <string name="crs_restaurant_icon">Restaurant</string>
+    <string name="crs_hotel_icon">Hôtel</string>
+    <string name="crs_pool_icon">Piscine</string>
+    <string name="crs_tennis_icon">Tennis</string>
+    <string name="crs_wifi_icon">Wifi</string>
+    <string name="crs_parking_icon">Parking</string>
+    <string name="holes">" trous"</string>
+
+
+    <!-- Restaurants -->
+    <string name="res_contact_pop_up_title">Contact</string>
+    <string name="re_list_nav_bar">Restaurants</string>
+    <string name="re_detail_nav_bar">Restaurant</string>
+    <string name="re_suggestion_nav_bar">Suggestions</string>
+    <string name="re_menu_nav_bar">Menu</string>
+    <string name="re_contact_btn">Contact</string>
+    <string name="re_suggestion_btn">Suggestions</string>
+    <string name="re_menu_btn">Menu</string>
+    <string name="re_phone_btn">Téléphone</string>
+    <string name="re_direction_btn">Navigation</string>
+    <string name="re_cancel_btn">Annuler</string>
+    <string name="re_share_btn">Partager</string>
+    <string name="re_email_btn">Email</string>
+
+
+    <!-- Hotels -->
+    <string name="htl_contact_pop_up_title">Contact</string>
+    <string name="htl_list_nav_bar">Hôtels</string>
+    <string name="htl_detail_nav_bar">Hôtel</string>
+    <string name="htl_package_list_nav_bar">Packages</string>
+    <string name="htl_website_btn">Website</string>
+    <string name="htl_package_btn">Packages</string>
+    <string name="htl_phone_btn">Téléphone</string>
+    <string name="htl_direction_btn">Navigation</string>
+    <string name="htl_cancel_btn">Annuler</string>
+    <string name="htl_share_btn">Partager</string>
+    <string name="htl_email_btn">Email</string>
+
+
+    <string name="nws_nav_bar">News</string>
+    <string name="nws_detail_nav_bar">News</string>
+    <string name="nws_share_btn">Partager</string>
+
+
+    <string name="cnt_contact_pop_up_title">Contact</string>
+    <string name="cnt_phone_btn">Téléphone</string>
+    <string name="cnt_email_btn">Email</string>
+    <string name="cnt_direction_btn">Navigation</string>
+    <string name="cnt_cancel_btn">Annuler</string>
+
+
+    <string name="tt_book_tee_pop_up_title">Réserver Tee Time</string>
+    <string name="tt_phone_btn">Téléphone</string>
+    <string name="tt_cancel_btn">Annuler</string>
+    <string name="email_button_btn">Email</string>
+
+
+    <!-- not available -->
+    <string name="no_inet">Offline mode</string>
+    <string name="no_api">Internet connection error</string>
+
+
+    <!-- days -->
+    <string name="events_sunday">Dimanche</string>
+    <string name="events_monday">Lundi</string>
+    <string name="events_tuesday">Mardi</string>
+    <string name="events_wednesday">Mercredi</string>
+    <string name="events_thursday">Jeudi</string>
+    <string name="events_friday">Vendredi</string>
+    <string name="events_saturday">Samedi</string>
+
+</resources>

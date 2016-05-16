@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="0dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/left_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/tvgg"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:weightSum="100">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="63"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dateet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/event_date_bg"
+                android:gravity="center"
+                android:inputType="textNoSuggestions"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:id="@+id/linna"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/ivEventArrow"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/lvEventDesc1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/actionBarColor"
+                        android:textSize="19dp" />
+
+                    <TextView
+                        android:id="@+id/lvEventDesc2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Sub Title"
+                        android:textColor="@color/tvColor"
+                        android:textSize="@dimen/event_desc_text_size" />
+
+                    <TextView
+                        android:id="@+id/lvEventDesc3"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="00/1/2015"
+                        android:textColor="@color/tvColor"
+                        android:textSize="@dimen/event_desc_text_size"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/lvEventDesc4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry.... "
+                        android:textColor="@color/tvColor"
+                        android:textSize="@dimen/event_desc_text_size"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/ivEventWinner"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@+id/linna"
+                    android:padding="5dip"
+                    android:src="@drawable/a_winner_icon"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/ivEventArrow"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:padding="5dip"
+                    android:rotation="180"
+                    android:src="@drawable/a_back_btn"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
