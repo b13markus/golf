@@ -135,7 +135,7 @@
 
     <!-- not available -->
     <string name="no_inet">Offline mode</string>
-    <string name="no_api">Server connection error</string>
+    <string name="no_api">Internet connection error</string>
 
 
     <!-- days -->

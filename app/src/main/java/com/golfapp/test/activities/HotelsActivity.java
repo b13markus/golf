@@ -13,10 +13,16 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.R;
+import com.golfapp.test.adapters.AdapterHotels;
+import com.golfapp.test.datafiles.HotelData;
+import com.golfapp.test.datafiles.ImageData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.MyListView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -26,18 +32,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.golfapp.test.R;
-import com.golfapp.test.adapters.AdapterHotels;
-import com.golfapp.test.datafiles.HotelData;
-import com.golfapp.test.datafiles.ImageData;
-import com.golfapp.test.utils.MyListView;
-
 /**
  * Created by Golakiya on 6/29/2015.
  */
 public class HotelsActivity extends BaseActivity {
 
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private MyListView lv;
     private String urlHotels;
     private List<HotelData> list = new ArrayList<>();
@@ -216,6 +217,12 @@ public class HotelsActivity extends BaseActivity {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlHotels + pageNumber, null,
                 this, this);
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 

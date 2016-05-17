@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/a_screen_bkg"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/actionBarColor"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/courseDetailActionBack"
+            android:layout_width="@dimen/width_action_bar_buttons"
+            android:layout_height="@dimen/height_action_bar_buttons"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/left_margin"
+            android:layout_weight="1"
+            android:src="@drawable/a_share_icon" />
+
+
+        <ImageView
+            android:id="@+id/courseDetailActionHome"
+            android:layout_width="@dimen/width_action_bar_buttons"
+            android:layout_height="@dimen/height_action_bar_buttons"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/left_margin"
+            android:layout_weight="1"
+            android:src="@drawable/a_close_icon" />
+
+        <TextView
+            android:id="@+id/courseDetailActionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/courseDetailActionBack"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/courseDetailActionHome"
+            android:layout_toRightOf="@+id/courseDetailActionBack"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_size"  />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </WebView>
+
+</LinearLayout>

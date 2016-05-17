@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.golfapp.test.R;
@@ -36,6 +36,7 @@ import java.util.List;
  */
 public class ProDetailRateOffer extends BaseActivity {
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private static String urlNews = null;
     private ListView lv;
     private ProRates selected;
@@ -159,39 +160,6 @@ public class ProDetailRateOffer extends BaseActivity {
         }
     }
 
-    private void checkIfUpdateReuired(final int prosID) {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                urlNews, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        try {
-                            if (jsonObject.getInt("success") == 1) {
-                                JSONArray prosArray = jsonObject.getJSONArray("packages");
-                                if (prosArray.length() > 0) {
-                                    if (prosID != prosArray.getJSONObject(0).getInt("id")) {        // top Pros ID does not match with our top id means update is available.
-                                        getNews();
-                                    } else {
-                                        swipeRefreshLayout.setRefreshing(false);
-                                    }
-                                } else {
-                                    swipeRefreshLayout.setRefreshing(false);
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
-    }
-
-
     private void loadOflineData() {
         rateList = Select.from(ProRates.class).where(Condition.prop("pros_id").eq(prosID)).list();
         adp = new AdapterProsRateOffer(this, rateList, true, notificationString);
@@ -202,6 +170,12 @@ public class ProDetailRateOffer extends BaseActivity {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlNews, null,
                 this, this);
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         applicationInstance.addToRequestQueue(jsonObjReq, "News");
 
     }

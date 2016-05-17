@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends BaseActivity {
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private ImageView pros, event, proshop, courses, hotels, cont, news, resta, tee;
     private TextView restaurantBadgeTV;
     private TextView newsBadgeTV;
@@ -326,6 +328,12 @@ public class MainActivity extends BaseActivity {
                         setButtons();
                     }
                 }, this);
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         applicationInstance.addToRequestQueue(jsonObjReq, "Profile");
     }
 

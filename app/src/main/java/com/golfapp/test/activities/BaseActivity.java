@@ -22,6 +22,7 @@ import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -45,15 +46,9 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -66,6 +61,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 public class BaseActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener, SwipeRefreshLayout.OnRefreshListener,
         OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener, AdapterView.OnItemClickListener {
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100*30;
     public PrefStore store;
     public LayoutInflater inflater;
     public ApplicationClass applicationInstance;
@@ -166,6 +162,11 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
                 displayAdvertisement();
             }
         });
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         applicationInstance.addToRequestQueue(jsonObjReq, "Profile");
     }
 
@@ -313,6 +314,10 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
 
             }
         });
+        jsObjRequest.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         applicationInstance.addToRequestQueue(jsObjRequest);
     }
 

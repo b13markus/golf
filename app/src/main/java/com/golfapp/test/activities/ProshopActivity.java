@@ -13,32 +13,31 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.golfapp.test.utils.Constants;
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.golfapp.test.R;
 import com.golfapp.test.adapters.AdapterProshop;
 import com.golfapp.test.datafiles.ImageData;
 import com.golfapp.test.datafiles.ProshopData;
+import com.golfapp.test.utils.Constants;
 import com.golfapp.test.utils.MyListView;
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Golakiya on 6/29/2015.
  */
 public class ProshopActivity extends BaseActivity {
 
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     private MyListView lv;
     private String urlPros;
     private List<ProshopData> list = new ArrayList<>();
@@ -160,43 +159,6 @@ public class ProshopActivity extends BaseActivity {
             toast(getString(R.string.no_inet));
             swipeRefreshLayout.setRefreshing(false);
         }
-
-    }
-
-    private void checkIfUpdateReuired(final int prosID) {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                urlPros + 1, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        try {
-                            if (jsonObject.getInt("success") == 1) {
-                                total = jsonObject.getJSONObject("paging").getInt("total");
-                                JSONArray prosArray = jsonObject.getJSONArray("proshops");
-                                if (prosArray.length() > 0) {
-                                    if (prosID != prosArray.getJSONObject(0).getInt("id")) {        // top Pros ID does not match with our top id means update is available.
-                                        clearList = true;
-                                        lv.addFooterView(footerView);
-                                        pageNumber = 0;
-                                        getPros();
-                                    } else {
-                                        swipeRefreshLayout.setRefreshing(false);
-                                    }
-                                } else {
-                                    swipeRefreshLayout.setRefreshing(false);
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 
     @Override
@@ -253,6 +215,10 @@ public class ProshopActivity extends BaseActivity {
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 urlPros + pageNumber, null,
                 this, this);
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
+                MY_SOCKET_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         applicationInstance.addToRequestQueue(jsonObjReq, "Pros");
     }
 

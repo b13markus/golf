@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="left_margin">15dp</dimen>
+    <dimen name="right_margin">15dp</dimen>
+
+    <dimen name="ten_margin">10dp</dimen>
+
+
+    <dimen name="round_radius">5dip</dimen>
+    <dimen name="round_radius_lvimage">5dip</dimen>
+
+    <dimen name="badge_size">20dip</dimen>
+    <dimen name="badge_size_list">25dip</dimen>
+
+
+    <dimen name="bnt_margin">     10dp</dimen>
+    <dimen name="btn_height">   30dp</dimen>
+    <dimen name="btn_padding">  10dp</dimen>
+    <dimen name="btn_stroke">   2dp</dimen>
+    <dimen name="btn_radius">   5dp</dimen>
+    <dimen name="btn_size">     14sp</dimen>
+    <dimen name="btn_text_size">20dp</dimen>
+    <dimen name="btn_bg_padding">  1dp</dimen>
+
+    <dimen name="title_size">20dp</dimen>
+    <dimen name="sub_title_size">18dp</dimen>
+    <dimen name="des_size">17sp</dimen>
+
+    <dimen name="facility_all_margin">10dp</dimen>
+
+    <dimen name="event_padding">2dp</dimen>
+    <dimen name="event_radius">5dp</dimen>
+    <dimen name="event_desc_text_size">17dp</dimen>
+    <dimen name="home_bt_margin">25dp</dimen>
+    <dimen name="home_bt_margin_med">25dp</dimen>
+    <dimen name="home_bt_size" >125px</dimen>
+    <dimen name="dialog_cont_bt">20sp</dimen>
+    <dimen name="home_bt_padding">0dp</dimen>
+    <dimen name="top_margin">15dp</dimen>
+    <dimen name="badge_left_margin">10dp</dimen>
+    <dimen name="badge_textsize">7sp</dimen>
+    <dimen name="new_badge_width">40dp</dimen>
+
+
+
+<bool name="default_circle_indicator_centered">true</bool>
+
+<color name="default_circle_indicator_fill_color">#FFFF0000</color>
+<color name="default_circle_indicator_page_color">#00000000</color>
+
+<integer name="default_circle_indicator_orientation">0</integer>
+
+<dimen name="default_circle_indicator_radius">4dp</dimen>
+
+<bool name="default_circle_indicator_snap">false</bool>
+
+<color name="default_circle_indicator_stroke_color">#94BC0D</color>
+
+<dimen name="default_circle_indicator_stroke_width">1dp</dimen>
+    <dimen name="text_descr">16sp</dimen>
+    <dimen name="height_action_bar_buttons">50dip</dimen>
+    <dimen name="width_action_bar_buttons">50dip</dimen>
+
+
+    <dimen name="button_height">40dip</dimen>
+    <dimen name="button_width">40dip</dimen>
+    <dimen name="image_button_padding">3dip</dimen>
+
+    <declare-styleable name="ViewPagerIndicator">
+
+<!-- Style of the circle indicator. -->
+<attr name="vpiCirclePageIndicatorStyle" format="reference" />
+<!-- Style of the icon indicator's views. -->
+<attr name="vpiIconPageIndicatorStyle" format="reference" />
+<!-- Style of the line indicator. -->
+<attr name="vpiLinePageIndicatorStyle" format="reference" />
+<!-- Style of the title indicator. -->
+<attr name="vpiTitlePageIndicatorStyle" format="reference" />
+<!-- Style of the tab indicator's tabs. -->
+<attr name="vpiTabPageIndicatorStyle" format="reference" />
+<!-- Style of the underline indicator. -->
+<attr name="vpiUnderlinePageIndicatorStyle" format="reference" />
+</declare-styleable>
+
+<attr name="centered" format="boolean" />
+<attr name="selectedColor" format="color" />
+<attr name="strokeWidth" format="dimension" />
+<attr name="unselectedColor" format="color" />
+
+<declare-styleable name="CirclePageIndicator">
+
+<!-- Whether or not the indicators should be centered. -->
+<attr name="centered" />
+<!-- Color of the filled circle that represents the current page. -->
+<attr name="fillColor" format="color" />
+<!-- Color of the filled circles that represents pages. -->
+<attr name="pageColor" format="color" />
+<!-- Orientation of the indicator. -->
+<attr name="android:orientation" />
+<!-- Radius of the circles. This is also the spacing between circles. -->
+<attr name="radius" format="dimension" />
+<!-- Whether or not the selected indicator snaps to the circles. -->
+<attr name="snap" format="boolean" />
+<!-- Color of the open circles. -->
+<attr name="strokeColor" format="color" />
+<!-- Width of the stroke used to draw the circles. -->
+<attr name="strokeWidth" />
+<!-- View background -->
+<attr name="android:background" />
+</declare-styleable>
+<declare-styleable name="LinePageIndicator">
+
+<!-- Whether or not the indicators should be centered. -->
+<attr name="centered" />
+<!-- Color of the unselected lines that represent the pages. -->
+<attr name="unselectedColor" />
+<!-- Color of the selected line that represents the current page. -->
+<attr name="selectedColor" />
+<!-- Width of each indicator line. -->
+<attr name="lineWidth" format="dimension" />
+<!-- Width of each indicator line's stroke. -->
+<attr name="strokeWidth" />
+<!-- Width of the gap between each indicator line. -->
+<attr name="gapWidth" format="dimension" />
+<!-- View background -->
+<attr name="android:background" />
+</declare-styleable>
+<declare-styleable name="TitlePageIndicator">
+
+<!-- Screen edge padding. -->
+<attr name="clipPadding" format="dimension" />
+<!-- Color of the footer line and indicator. -->
+<attr name="footerColor" format="color" />
+<!-- Height of the footer line. -->
+<attr name="footerLineHeight" format="dimension" />
+<!-- Style of the indicator. Default is triangle. -->
+<attr name="footerIndicatorStyle">
+    <enum name="none" value="0" />
+    <enum name="triangle" value="1" />
+    <enum name="underline" value="2" />
+</attr>
+<!-- Height of the indicator above the footer line. -->
+<attr name="footerIndicatorHeight" format="dimension" />
+<!-- Left and right padding of the underline indicator. -->
+<attr name="footerIndicatorUnderlinePadding" format="dimension" />
+<!-- Padding between the bottom of the title and the footer. -->
+<attr name="footerPadding" format="dimension" />
+<!-- Position of the line. -->
+<attr name="linePosition">
+    <enum name="bottom" value="0" />
+    <enum name="top" value="1" />
+</attr>
+<!-- Color of the selected title. -->
+<attr name="selectedColor" />
+<!-- Whether or not the selected item is displayed as bold. -->
+<attr name="selectedBold" format="boolean" />
+<!-- Color of regular titles. -->
+<attr name="android:textColor" />
+<!-- Size of title text. -->
+<attr name="android:textSize" />
+<!-- Padding between titles when bumping into each other. -->
+<attr name="titlePadding" format="dimension" />
+<!-- Padding between titles and the top of the View. -->
+<attr name="topPadding" format="dimension" />
+<!-- View background -->
+<attr name="android:background" />
+</declare-styleable>
+<declare-styleable name="UnderlinePageIndicator">
+
+<!-- Whether or not the selected indicator fades. -->
+<attr name="fades" format="boolean" />
+<!-- Length of the delay to fade the indicator. -->
+<attr name="fadeDelay" format="integer" />
+<!-- Length of the indicator fade to transparent. -->
+<attr name="fadeLength" format="integer" />
+<!-- Color of the selected line that represents the current page. -->
+<attr name="selectedColor" />
+<!-- View background -->
+<attr name="android:background" />
+</declare-styleable>
+
+    </resources>
+

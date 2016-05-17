@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -17,8 +18,6 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.golfapp.test.R;
 
 
 public class Advertisement extends BaseActivity {
