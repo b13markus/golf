@@ -90,9 +90,8 @@ public class RestaurantRatesActivity extends BaseActivity {
         lv = (ListView) findViewById(R.id.lvProsRateOffer);
         if (selectedRestaurant != null) {
             url = selectedRestaurant.packageUrl;
-            if (!isNetworkAvailable()) {
-                loadOflineData();
-            } else {
+            loadOflineData();
+            if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
                     public void run() {
@@ -100,11 +99,13 @@ public class RestaurantRatesActivity extends BaseActivity {
                     }
                 });
                 getNews();
+            } else {
+                toast(getString(R.string.no_inet));
             }
         } else {
             url = Constants.urlRestaurantSugg + "?client=" + Constants.clientId + "&language=" + Constants.getLanguage() + "&restaurant=" + restaurantID;
-            if (!isNetworkAvailable()) {
-            } else {
+            loadOflineData();
+            if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
                     public void run() {
@@ -112,8 +113,9 @@ public class RestaurantRatesActivity extends BaseActivity {
                     }
                 });
                 getNews();
+            } else {
+                toast(getString(R.string.no_inet));
             }
-
         }
         setupActionbar();
         lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -191,6 +193,7 @@ public class RestaurantRatesActivity extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOflineData();
         if (isNetworkAvailable()) {
             getNews();
         } else {

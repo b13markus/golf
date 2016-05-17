@@ -87,15 +87,16 @@ public class CourseActivity extends BaseActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
-        if (!isNetworkAvailable()) {
-            loadOffline();
-        } else {
+        loadOffline();
+        if (isNetworkAvailable()) {
             swipeRefreshLayout.post(new Runnable() {
                 @Override
                 public void run() {
                     swipeRefreshLayout.setRefreshing(true);
                 }
             });
+        } else {
+            toast(getString(R.string.no_inet));
         }
         footerView = inflater.inflate(R.layout.footer_view, null, false);
         lv.addFooterView(footerView);
@@ -154,6 +155,7 @@ public class CourseActivity extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOffline();
         if (isNetworkAvailable()) {
             clearList = true;
             pageNumber = 0;

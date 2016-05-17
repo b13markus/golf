@@ -59,15 +59,16 @@ public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActiv
         clearList = true;
         courseID = getIntent().getIntExtra("CourseID", 0);
         selectedCourse = Select.from(com.golfapp.test.datafiles.CoursesData.class).where(Condition.prop("course_id").eq(courseID)).first();
-        if (!isNetworkAvailable()) {
-            loadOfflineData();
-        } else {
+        loadOfflineData();
+        if (isNetworkAvailable()) {
             swipeRefreshLayout.post(new Runnable() {
                 @Override
                 public void run() {
                     swipeRefreshLayout.setRefreshing(true);
                 }
             });
+        } else {
+            toast(getString(R.string.no_inet));
         }
         setupActionbar();
     }
@@ -172,6 +173,7 @@ public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActiv
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOfflineData();
         if (isNetworkAvailable()) {
             clearList = true;
             getCourseRates();

@@ -78,15 +78,16 @@ public class NewsActivity extends BaseActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
-        if (!isNetworkAvailable()) {
-            loadOffline();
-        } else {
+        loadOffline();
+        if (isNetworkAvailable()) {
             swipeRefreshLayout.post(new Runnable() {
                 @Override
                 public void run() {
                     swipeRefreshLayout.setRefreshing(true);
                 }
             });
+        } else {
+            toast(getString(R.string.no_inet));
         }
         footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
         lv.addFooterView(footerView);
@@ -131,6 +132,7 @@ public class NewsActivity extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOffline();
         if (isNetworkAvailable()) {
             clearList = true;
             pageNumber = 0;

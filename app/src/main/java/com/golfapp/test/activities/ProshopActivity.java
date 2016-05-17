@@ -85,15 +85,16 @@ public class ProshopActivity extends BaseActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
-        if (!isNetworkAvailable()) {
-            loadOffline();
-        } else {
+        loadOffline();
+        if (isNetworkAvailable()) {
             swipeRefreshLayout.post(new Runnable() {
                 @Override
                 public void run() {
                     swipeRefreshLayout.setRefreshing(true);
                 }
             });
+        } else {
+            toast(getString(R.string.no_inet));
         }
         lv.setOnItemClickListener(this);
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -150,6 +151,7 @@ public class ProshopActivity extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOffline();
         if (isNetworkAvailable()) {
             clearList = true;
             pageNumber = 0;

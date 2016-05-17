@@ -64,9 +64,8 @@ public class RestaurantMenu extends BaseActivity {
         lv = (ListView) findViewById(R.id.lvc);
         restaurantID = getIntent().getIntExtra("RestaurantID", 0);
         selectedCourse = Select.from(RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
-        if (!isNetworkAvailable()) {
-            loadOfflineData();
-        } else {
+        loadOfflineData();
+        if (isNetworkAvailable()) {
             swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
                     android.R.color.holo_green_light,
                     android.R.color.holo_green_light,
@@ -77,6 +76,8 @@ public class RestaurantMenu extends BaseActivity {
                     swipeRefreshLayout.setRefreshing(true);
                 }
             });
+        } else {
+            toast(getString(R.string.no_inet));
         }
         setupActionbar();
     }
@@ -84,6 +85,7 @@ public class RestaurantMenu extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOfflineData();
         if (isNetworkAvailable()) {
             getCourseRates();
         } else {

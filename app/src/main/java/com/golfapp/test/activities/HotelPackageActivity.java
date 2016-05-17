@@ -89,6 +89,7 @@ public class HotelPackageActivity extends BaseActivity {
         lv = (ListView) findViewById(R.id.lvProsRateOffer);
         if (selectedHotel != null) {
             url = selectedHotel.package_url + "&sectoken=" + Constants.md5();
+            loadOflineData();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -98,10 +99,11 @@ public class HotelPackageActivity extends BaseActivity {
                 });
                 getNews();
             } else {
-                loadOflineData();
+                toast(getString(R.string.no_inet));
             }
         } else {
             url = Constants.urlHotelPackage + "?client=" + Constants.clientId + "&sectoken=" + Constants.md5() + "&language=" + Constants.getLanguage() + "&hotel=" + hotelID;
+            loadOflineData();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -111,6 +113,7 @@ public class HotelPackageActivity extends BaseActivity {
                 });
                 getNews();
             } else {
+                toast(getString(R.string.no_inet));
             }
         }
         setupActionbar();
@@ -169,6 +172,7 @@ public class HotelPackageActivity extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOflineData();
         if (isNetworkAvailable()) {
             getNews();
         } else {

@@ -89,6 +89,7 @@ public class ProDetailRateOffer extends BaseActivity {
         btn.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         lv = (ListView) findViewById(R.id.lvProsRateOffer);
         if (selectedPros != null) {
+            loadOflineData();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -98,9 +99,10 @@ public class ProDetailRateOffer extends BaseActivity {
                 });
                 getNews();
             } else {
-                loadOflineData();
+                toast(getString(R.string.no_inet));
             }
         } else {
+            loadOflineData();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -152,6 +154,7 @@ public class ProDetailRateOffer extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOflineData();
         if (isNetworkAvailable()) {
             getNews();
         } else {

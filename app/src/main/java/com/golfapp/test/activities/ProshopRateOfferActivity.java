@@ -96,7 +96,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 adp.setsel(position);
-                selected = (ProShopRatesData) adp.getItem(position);
+                selected = adp.getItem(position);
                 btn.setBackgroundResource(bt);
             }
         });
@@ -119,6 +119,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
         });
         if (selectedProShop != null) {
             urlNews = selectedProShop.package_url;
+            loadOflineData();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -128,11 +129,12 @@ public class ProshopRateOfferActivity extends BaseActivity {
                 });
                 getNews();
             } else {
-                loadOflineData();
+                toast(getString(R.string.no_inet));
             }
         } else {
             frompush = true;
             urlNews = Constants.urlProShopOffer + "?client=" + Constants.clientId + "&language=" + Constants.getLanguage() + "&proshop=" + proShopID;
+            loadOflineData();
             if (isNetworkAvailable()) {
                 swipeRefreshLayout.post(new Runnable() {
                     @Override
@@ -141,6 +143,8 @@ public class ProshopRateOfferActivity extends BaseActivity {
                     }
                 });
                 getNews();
+            } else {
+                toast(getString(R.string.no_inet));
             }
         }
 
@@ -168,6 +172,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
     @Override
     public void onRefresh() {
         super.onRefresh();
+        loadOflineData();
         if (isNetworkAvailable()) {
             getNews();
         } else {
