@@ -39,11 +39,11 @@ android {
         }
         user_2751 {
             applicationId "com.golfapp.gcgiez"
-            sourceSets {
-                main {
-                    res.srcDirs = ['src/user_2751/res']
-                }
-            }
+//            sourceSets {
+//                main {
+//                    res.srcDirs = ['src/user_2751/res']
+//                }
+//            }
         }
         user_6492 {
             applicationId "com.golfapp.gcverbier"

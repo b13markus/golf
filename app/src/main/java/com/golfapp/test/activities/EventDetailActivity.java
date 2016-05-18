@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.R;
+import com.golfapp.test.datafiles.EventsData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.PDFtools;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -23,10 +26,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-
-import com.golfapp.test.R;
-import com.golfapp.test.datafiles.EventsData;
-import com.golfapp.test.utils.PDFtools;
 
 
 public class EventDetailActivity extends BaseActivity {
@@ -63,8 +62,10 @@ public class EventDetailActivity extends BaseActivity {
         Typeface lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
         eventID = getIntent().getIntExtra("EventID", 0);
         selectedEvent = Select.from(EventsData.class).where(Condition.prop("event_id").eq(eventID)).first();
-        ti.setText(selectedEvent.name);
-        sub.setText(selectedEvent.format);
+        if(selectedEvent!=null) {
+            ti.setText(selectedEvent.name);
+            sub.setText(selectedEvent.format);
+        }
         String rf = selectedEvent.remark1;
         if (rf.equals("") || rf.equals("null")) {
             rem1.setVisibility(View.GONE);
