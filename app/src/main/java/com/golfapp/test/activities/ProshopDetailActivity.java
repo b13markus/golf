@@ -257,7 +257,6 @@ public class ProshopDetailActivity extends BaseActivity {
             case R.id.rates:
                 if (!isNetworkAvailable()) {
                     toast(getString(R.string.no_api));
-                    return;
                 }
                 Intent it = new Intent(getApplicationContext(), ProshopRateOfferActivity.class);
                 it.putExtra("ProShopID", selectedProShop.proShopID);

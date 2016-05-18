@@ -152,7 +152,6 @@ public class HotelDetailActivity extends BaseActivity {
                 public void onClick(View v) {
                     if (!isNetworkAvailable()) {
                         toast(getString(R.string.no_api));
-                        return;
                     }
                     Intent it = new Intent(HotelDetailActivity.this, HotelPackageActivity.class);
                     it.putExtra("HotelID", selectedHotel.hotelID);
@@ -165,7 +164,6 @@ public class HotelDetailActivity extends BaseActivity {
             public void onClick(View v) {
                 if (!isNetworkAvailable()) {
                     toast(getString(R.string.no_api));
-                    return;
                 }
                 startActivity(new Intent(getApplicationContext(), BrowserActivity.class).
                         putExtra(BrowserActivity.URL, selectedHotel.website).

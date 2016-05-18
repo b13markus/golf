@@ -337,7 +337,6 @@ public class ProsActivity extends BaseActivity {
                     loadItems = false;
                 } else {
                     toast(getString(R.string.no_api));
-                    return;
                 }
                 Intent it = new Intent(ProsActivity.this, ProsDetailActivity.class);
                 ProsData pro = list.get(position);

@@ -334,14 +334,12 @@ public class ProshopActivity extends BaseActivity {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         if (!swipeRefreshLayout.isRefreshing()) {
             if (!isLoading) {
                 if (isNetworkAvailable()) {
                     loadItems = false;
                 } else {
                     toast(getString(R.string.no_api));
-                    return;
                 }
                 Intent it = new Intent(ProshopActivity.this, ProshopDetailActivity.class);
                 ProshopData pro = list.get(position);
