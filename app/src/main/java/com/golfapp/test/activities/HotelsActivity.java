@@ -345,6 +345,9 @@ public class HotelsActivity extends BaseActivity {
             if (!isLoading) {
                 if (isNetworkAvailable()) {
                     loadItems = false;
+                } else {
+                    toast(getString(R.string.no_api));
+                    return;
                 }
                 Intent it = new Intent(HotelsActivity.this, HotelDetailActivity.class);
                 HotelData pro = list.get(position);

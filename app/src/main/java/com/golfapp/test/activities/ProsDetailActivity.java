@@ -247,8 +247,11 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.rates:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 Intent it = new Intent(getApplicationContext(), com.golfapp.test.activities.ProDetailRateOffer.class);
                 it.putExtra("ProsID", selectedPros.prosID);
                 startActivity(it);

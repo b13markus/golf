@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/a_screen_bkg">
@@ -39,8 +38,8 @@
             android:layout_toLeftOf="@+id/courseDetailActionHome"
             android:layout_toRightOf="@+id/courseDetailActionBack"
             android:gravity="center"
-            android:textColor="@android:color/white"
             android:singleLine="true"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/title_size" />
     </RelativeLayout>
 
@@ -79,8 +78,8 @@
                 android:layout_weight="0.67"
                 android:background="@drawable/btn_round"
                 android:singleLine="true"
-                android:textColor="@android:color/white"
                 android:textAllCaps="false"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_size" />
 
             <Button
@@ -89,13 +88,13 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginBottom="@dimen/bnt_margin"
                 android:layout_marginLeft="8dp"
-                android:textColor="@android:color/white"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="@dimen/bnt_margin"
                 android:layout_weight="0.67"
                 android:background="@drawable/btn_round"
                 android:singleLine="true"
                 android:textAllCaps="false"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_size" />
 
             <Button
@@ -104,22 +103,22 @@
                 android:layout_height="@dimen/btn_height"
                 android:layout_marginBottom="@dimen/bnt_margin"
                 android:layout_marginRight="8dp"
-                android:textColor="@android:color/white"
                 android:layout_marginTop="@dimen/bnt_margin"
                 android:layout_weight="0.67"
                 android:background="@drawable/btn_round"
                 android:singleLine="true"
                 android:textAllCaps="false"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/btn_size" />
 
         </LinearLayout>
 
 
         <ScrollView
-            android:scrollbars="none"
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,8 +126,7 @@
                 android:orientation="vertical">
 
 
-                <com.daimajia.slider.library.SliderLayout xmlns:custom="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
+                <com.daimajia.slider.library.SliderLayout
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"

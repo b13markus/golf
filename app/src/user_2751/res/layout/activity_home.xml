@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/a_home"
@@ -21,9 +20,6 @@
             android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal"
             android:weightSum="3">
-
-
-
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -72,22 +68,21 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttTeeTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_tee_time_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
 
-
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -134,16 +129,15 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttRest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_rest_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -153,9 +147,9 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:gravity="left|center_vertical"
-                android:layout_marginLeft="5dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -197,21 +191,19 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttEvents"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_events_btn"
                         android:textColor="@color/tvColor" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
         </LinearLayout>
@@ -270,21 +262,19 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttProshop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_proshp_btn"
                         android:textColor="@color/tvColor" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -313,7 +303,6 @@
                         android:layout_gravity="center_vertical|center_horizontal"
                         android:layout_weight="1">
 
-
                         <ImageView
                             android:id="@+id/im_course"
                             android:layout_width="60dp"
@@ -337,16 +326,15 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttCourse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_courses_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
@@ -369,7 +357,6 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="10dp">
-
 
                     <FrameLayout
                         android:layout_width="60dp"
@@ -400,24 +387,20 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttPros"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_pros_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
 
-
             </LinearLayout>
-
-
 
         </LinearLayout>
 
@@ -452,7 +435,6 @@
                         android:layout_gravity="center_vertical|center_horizontal"
                         android:layout_weight="1">
 
-
                         <ImageView
                             android:id="@+id/im_cont"
                             android:layout_width="60dp"
@@ -480,16 +462,15 @@
                         android:id="@+id/ttContact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_contact_btn"
                         android:textColor="@color/tvColor" />
 
                 </LinearLayout>
-
 
             </LinearLayout>
 
@@ -546,16 +527,17 @@
                         android:id="@+id/ttNews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_news_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -603,22 +585,20 @@
                             android:visibility="gone" />
                     </FrameLayout>
 
-
                     <TextView
                         android:id="@+id/ttHotels"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
                         android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
                         android:gravity="center_horizontal|center_vertical"
                         android:singleLine="true"
-                        android:ellipsize="end"
                         android:text="@string/hm_htls_btn"
                         android:textColor="@color/tvColor" />
                 </LinearLayout>
 
             </LinearLayout>
-
 
         </LinearLayout>
 

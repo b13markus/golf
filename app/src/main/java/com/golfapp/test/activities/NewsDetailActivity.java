@@ -110,9 +110,7 @@ public class NewsDetailActivity extends BaseActivity {
             selectedNews.imageList = Select.from(ImageData.class).where(Condition.prop("news_id").eq(newsID)).list();
             setd(null);
         } else {
-            if (!isNetworkAvailable()) {
-
-            } else {
+            if (isNetworkAvailable()) {
                 getNewsData();
             }
         }

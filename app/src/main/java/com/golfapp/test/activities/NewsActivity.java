@@ -319,6 +319,9 @@ public class NewsActivity extends BaseActivity {
             if (!isLoading) {
                 if (isNetworkAvailable()) {
                     loadItems = false;
+                } else {
+                    toast(getString(R.string.no_api));
+                    return;
                 }
                 Intent it = new Intent(NewsActivity.this, NewsDetailActivity.class);
                 NewsData pro = newsList.get(position);

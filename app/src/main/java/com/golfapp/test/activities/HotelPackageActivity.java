@@ -47,7 +47,6 @@ public class HotelPackageActivity extends BaseActivity {
     private String url = "";
     private SwipeRefreshLayout swipeRefreshLayout;
 
-
     @Override
     protected void onPause() {
         super.onPause();

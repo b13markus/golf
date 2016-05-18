@@ -150,6 +150,10 @@ public class HotelDetailActivity extends BaseActivity {
             rates.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (!isNetworkAvailable()) {
+                        toast(getString(R.string.no_api));
+                        return;
+                    }
                     Intent it = new Intent(HotelDetailActivity.this, HotelPackageActivity.class);
                     it.putExtra("HotelID", selectedHotel.hotelID);
                     startActivity(it);
@@ -159,6 +163,10 @@ public class HotelDetailActivity extends BaseActivity {
         fac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 startActivity(new Intent(getApplicationContext(), BrowserActivity.class).
                         putExtra(BrowserActivity.URL, selectedHotel.website).
                         putExtra(BrowserActivity.AD_NAME, selectedHotel.name));

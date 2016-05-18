@@ -135,6 +135,10 @@ public class RestaurantDetailActivity extends BaseActivity {
             rates.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (!isNetworkAvailable()) {
+                        toast(getString(R.string.no_api));
+                        return;
+                    }
                     Intent it = new Intent(RestaurantDetailActivity.this, com.golfapp.test.activities.RestaurantRatesActivity.class);
                     it.putExtra("RestaurantID", selectedRasturant.restaurantID);
                     startActivity(it);
@@ -150,6 +154,10 @@ public class RestaurantDetailActivity extends BaseActivity {
             fac.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (!isNetworkAvailable()) {
+                        toast(getString(R.string.no_api));
+                        return;
+                    }
                     Intent it = new Intent(RestaurantDetailActivity.this, RestaurantMenu.class);
                     it.putExtra("RestaurantID", selectedRasturant.restaurantID);
                     startActivity(it);

@@ -25,7 +25,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActivity {
 
     private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;

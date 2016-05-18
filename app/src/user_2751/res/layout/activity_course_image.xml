@@ -5,7 +5,6 @@
     android:background="@color/round_white"
     android:orientation="vertical">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,9 +38,9 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/courseDeatilActionHome"
             android:layout_toRightOf="@+id/courseDeatilActionBack"
-            android:textColor="@android:color/white"
             android:gravity="center"
             android:singleLine="true"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/title_size" />
     </RelativeLayout>
 
@@ -67,10 +66,11 @@
 
         </com.golfapp.test.utils.pagerContainer>-->
         <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
             android:id="@+id/viewPager"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal" />
+
         <com.golfapp.test.utils.CirclePageIndicator
             android:id="@+id/indicator"
             android:layout_width="fill_parent"

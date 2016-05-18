@@ -124,7 +124,6 @@ public class ProDetailRateOffer extends BaseActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 adp.setsel(position);
                 selected = (ProRates) adp.getItem(position);
                 btn.setBackgroundResource(bt);

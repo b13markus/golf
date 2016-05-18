@@ -252,26 +252,46 @@ public class MainActivity extends BaseActivity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.im_pros:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("pros")) {
                     startActivity(new Intent(this, ProsActivity.class).putExtra("home", true));
                 }
                 break;
             case R.id.im_news:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("news")) {
                     startActivity(new Intent(this, NewsActivity.class).putExtra("home", true));
                 }
                 break;
             case R.id.im_event:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("events")) {
                     startActivity(new Intent(this, EventsActivity.class).putExtra("home", true));
                 }
                 break;
             case R.id.im_course:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("courses")) {
                     startActivity(new Intent(this, CourseActivity.class).putExtra("home", true));
                 }
                 break;
             case R.id.im_proshop:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("proshop")) {
                     startActivity(new Intent(this, ProshopActivity.class).putExtra("home", true));
                 }
@@ -282,11 +302,19 @@ public class MainActivity extends BaseActivity {
                 }
                 break;
             case R.id.im_hotel:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("hotel")) {
                     startActivity(new Intent(this, HotelsActivity.class).putExtra("home", true));
                 }
                 break;
             case R.id.im_rest:
+                if (!isNetworkAvailable()) {
+                    toast(getString(R.string.no_api));
+                    return;
+                }
                 if (ons.contains("restaurant")) {
                     startActivity(new Intent(this, RestaurantActivity.class).putExtra("home", true));
                 }
