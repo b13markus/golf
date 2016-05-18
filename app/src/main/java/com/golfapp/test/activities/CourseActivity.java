@@ -365,7 +365,7 @@ public class CourseActivity extends BaseActivity {
                 if (isNetworkAvailable()) {
                     loadItems = false;
                 } else {
-                    toast(getString(R.string.no_api));
+                    toast(getString(R.string.no_inet));
                 }
                 Intent it = new Intent(CourseActivity.this, CourseDetailActivity.class);
                 CoursesData pro = list.get(position);

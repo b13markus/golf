@@ -11,8 +11,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         multiDexEnabled true
-        versionCode 15
-        versionName "1.0.14"
+        versionCode 16
+        versionName "1.0.15"
     }
 
     // delete unaligned files
@@ -39,11 +39,6 @@ android {
         }
         user_2751 {
             applicationId "com.golfapp.gcgiez"
-//            sourceSets {
-//                main {
-//                    res.srcDirs = ['src/user_2751/res']
-//                }
-//            }
         }
         user_6492 {
             applicationId "com.golfapp.gcverbier"

@@ -336,7 +336,7 @@ public class ProsActivity extends BaseActivity {
                 if (isNetworkAvailable()) {
                     loadItems = false;
                 } else {
-                    toast(getString(R.string.no_api));
+                    toast(getString(R.string.no_inet));
                 }
                 Intent it = new Intent(ProsActivity.this, ProsDetailActivity.class);
                 ProsData pro = list.get(position);

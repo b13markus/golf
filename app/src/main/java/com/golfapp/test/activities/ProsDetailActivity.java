@@ -249,7 +249,7 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         switch (v.getId()) {
             case R.id.rates:
                 if (!isNetworkAvailable()) {
-                    toast(getString(R.string.no_api));
+                    toast(getString(R.string.no_inet));
                     return;
                 }
                 Intent it = new Intent(getApplicationContext(), com.golfapp.test.activities.ProDetailRateOffer.class);
