@@ -1,6 +1,5 @@
 package com.golfapp.test.activities;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +9,6 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -76,17 +74,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
     public DisplayImageOptions options;
     public static boolean showAdvertisements = true;
     private static ArrayList<AppCompatActivity> activitiesBackStack = new ArrayList<>();
-    private boolean isOverdue = false;
-    private Activity mActivity;
-    private Handler mHandler = new Handler();
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            isOverdue = true;
-            Log.d("TAG", "runnable");
-            mHandler.removeCallbacks(mRunnable);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -34,7 +34,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Created by Golakiya on 7/4/2015.
  */
