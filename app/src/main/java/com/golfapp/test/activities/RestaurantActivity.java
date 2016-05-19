@@ -352,7 +352,7 @@ public class RestaurantActivity extends BaseActivity {
                 if (isNetworkAvailable()) {
                     loadItems = false;
                 } else {
-                    toast(getString(R.string.no_api));
+                    toast(getString(R.string.no_inet));
                 }
                 Intent it = new Intent(RestaurantActivity.this, RestaurantDetailActivity.class);
                 RestaurantData pro = list.get(position);

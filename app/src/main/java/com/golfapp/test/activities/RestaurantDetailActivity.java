@@ -136,7 +136,7 @@ public class RestaurantDetailActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     if (!isNetworkAvailable()) {
-                        toast(getString(R.string.no_api));
+                        toast(getString(R.string.no_inet));
                         return;
                     }
                     Intent it = new Intent(RestaurantDetailActivity.this, com.golfapp.test.activities.RestaurantRatesActivity.class);
@@ -155,7 +155,7 @@ public class RestaurantDetailActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     if (!isNetworkAvailable()) {
-                        toast(getString(R.string.no_api));
+                        toast(getString(R.string.no_inet));
                         return;
                     }
                     Intent it = new Intent(RestaurantDetailActivity.this, RestaurantMenu.class);
