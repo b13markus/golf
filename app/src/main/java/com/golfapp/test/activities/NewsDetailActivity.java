@@ -75,6 +75,7 @@ public class NewsDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
         getSupportActionBar().hide();
+        addToBack(this);
         newsID = getIntent().getIntExtra("NewsID", 0);
         int particularNewsBadgeCont = store.getInt(newsID + "", 0);
         if (particularNewsBadgeCont > 0) {

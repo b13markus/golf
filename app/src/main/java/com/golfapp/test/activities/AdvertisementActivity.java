@@ -18,7 +18,7 @@ import com.golfapp.test.R;
 /**
  * Created by aman on 12/3/2015.
  */
-public class AdvertisementActivity extends com.golfapp.test.activities.BaseActivity {
+public class AdvertisementActivity extends BaseActivity {
     public static final String URL = "URL";
     public static final String AD_NAME = "AD_NAME";
 
@@ -43,6 +43,7 @@ public class AdvertisementActivity extends com.golfapp.test.activities.BaseActiv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.advertisement);
         getSupportActionBar().hide();
+        addToBack(this);
         TextView tvTitle = (TextView) findViewById(R.id.courseDetailActionTitle);
         tvTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

@@ -71,6 +71,7 @@ public class ProshopActivity extends BaseActivity {
         setContentView(R.layout.activity_pros);
         getSupportActionBar().hide();
         loadItems = true;
+        addToBack(this);
         ((TextView) findViewById(R.id.prosActionTitle)).setText(R.string.ps_list_nav_bar);
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         lv = (MyListView) findViewById(R.id.lvPros);

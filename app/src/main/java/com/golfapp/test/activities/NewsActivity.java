@@ -69,6 +69,7 @@ public class NewsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
         loadItems = true;
+        addToBack(this);
         urlNews = Constants.urlNews + "?client=" + Constants.clientId + "&language=" + Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         getSupportActionBar().hide();
         lv = (MyListView) findViewById(R.id.listnews);

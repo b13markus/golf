@@ -51,6 +51,7 @@ public class CoursesSlideshow extends BaseActivity {
         setContentView(R.layout.activity_course_image);
         getSupportActionBar().hide();
         initResImages();
+        addToBack(this);
         String tit = getIntent().getStringExtra("title");
         setupActionbar();
         CirclePageIndicator mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);

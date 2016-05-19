@@ -81,7 +81,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
                 android.R.color.holo_green_light);
         getSupportActionBar().hide();
         proShopID = getIntent().getIntExtra("ProShopID", 0);
-
+        addToBack(this);
         selectedProShop = Select.from(ProshopData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).first();
         setupActionbar();
         final Button btn = (Button) findViewById(R.id.share);

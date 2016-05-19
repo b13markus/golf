@@ -75,6 +75,7 @@ public class CourseActivity extends BaseActivity {
         urlCourse = Constants.urlCourseData + "?client=" + Constants.clientId + "&sectoken=" + Constants.md5() + "&language=" +
                 Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         loadItems = true;
+        addToBack(this);
         ((TextView) findViewById(R.id.courseActionTitle)).setText(R.string.crs_the_course_list_nav_bar);
         ((TextView) findViewById(R.id.courseActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         getSupportActionBar().hide();

@@ -71,6 +71,7 @@ public class ProsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pros);
         loadItems = true;
+        addToBack(this);
         getSupportActionBar().hide();
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         lv = (MyListView) findViewById(R.id.lvPros);

@@ -76,7 +76,7 @@ public class HotelDetailActivity extends BaseActivity {
         getSupportActionBar().hide();
         Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.htl_contact_pop_up_title));
-
+        addToBack(this);
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
         Button fac = (Button) findViewById(R.id.faci);
         fac.setText(getString(R.string.htl_website_btn));

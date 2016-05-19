@@ -1,5 +1,6 @@
 package com.golfapp.test.activities;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -49,8 +51,11 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
@@ -70,6 +75,18 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
     public ImageLoader il;
     public DisplayImageOptions options;
     public static boolean showAdvertisements = true;
+    private static ArrayList<AppCompatActivity> activitiesBackStack = new ArrayList<>();
+    private boolean isOverdue = false;
+    private Activity mActivity;
+    private Handler mHandler = new Handler();
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            isOverdue = true;
+            Log.d("TAG", "runnable");
+            mHandler.removeCallbacks(mRunnable);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -262,7 +279,6 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
     private BroadcastReceiver pushNotificationReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {         // Received Push notification when app is live.
-
             if (context instanceof MainActivity) {          // if current opened class is main screen
                 ((MainActivity) context).setBadgeCount();       // update badges on main screen
             }
@@ -286,13 +302,44 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
         unregisterReceiver(pushNotificationReceiver);
         store.setInt(Constants.IS_APPLICATION_VISIBLE, 0);
         store.setString(Constants.APP_START_TIME, System.currentTimeMillis() + "");     // Update the last visit time for Advertisement
+        clearBackStacks();
+    }
+
+    protected void addToBack(BaseActivity activity) {
+        activitiesBackStack.add(activity);
+    }
+
+    private void clearBackStacks() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (store.getBoolean("StartKilling", false)) {              // this will execute when app is in background for more than time for clearing backstack.
+                    String clearStack = store.getString(Constants.KILL_BACKSTACK_TIME);
+                    long appStartTimeInt = Long.valueOf(clearStack);
+                    long currentTime = System.currentTimeMillis();
+                    long timeDifference = currentTime - appStartTimeInt;
+                    long diffInSec = getTimeDifference(appStartTimeInt, currentTime);
+                    if (diffInSec >= Constants.CLEAR_BACKSTACK_TIME_IN_SECONDS) {
+                        if (store.getBoolean("StartKilling", false))
+                            for (int a = 0; a < activitiesBackStack.size(); a++) {
+                                try {
+                                    activitiesBackStack.get(a).finish();
+                                } catch (Exception | Error e) {
+                                    Log.d("TAG", e.getMessage());
+                                }
+                            }
+                    }
+                }
+            }
+        }, Constants.TASK_KILL_DURATION_IN_MILISECONDS);
     }
 
     public void clearNotification(final int id, final int clientId) {           // remove notification of the item.
         String url = Constants.removeNotifications;
         int registrationID = store.getInt(Constants.REG_ID, 0);
         String deviceId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("regid", registrationID + "");
         params.put("device_id", deviceId);
         if (clientId != 0) {

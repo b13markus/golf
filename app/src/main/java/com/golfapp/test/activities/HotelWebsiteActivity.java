@@ -39,6 +39,7 @@ public class HotelWebsiteActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        addToBack(this);
         setContentView(R.layout.activity_web);
         hotelID = getIntent().getIntExtra("HotelID", 0);
         selectedHotel = Select.from(HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();

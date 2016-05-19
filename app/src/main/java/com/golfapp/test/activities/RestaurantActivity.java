@@ -73,6 +73,7 @@ public class RestaurantActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pros);
         loadItems = true;
+        addToBack(this);
         ((TextView) findViewById(R.id.prosActionTitle)).setText(R.string.re_list_nav_bar);
         ((TextView) findViewById(R.id.prosActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         getSupportActionBar().hide();

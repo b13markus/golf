@@ -71,7 +71,7 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         getSupportActionBar().hide();
         SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
         tf = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
-
+        addToBack(this);
         TextView rates = (TextView) findViewById(R.id.rates);
         Button con = (Button) findViewById(R.id.contact);
         con.setText(getString(R.string.pro_contact_btn));

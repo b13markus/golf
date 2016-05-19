@@ -74,6 +74,7 @@ public class ProshopDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pros_detail);
         getSupportActionBar().hide();
+        addToBack(this);
         proShopID = getIntent().getIntExtra("ProShopID", 0);
         selectedProShop = Select.from(ProshopData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).first();
         selectedProShop.imageList = Select.from(ImageData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).list();

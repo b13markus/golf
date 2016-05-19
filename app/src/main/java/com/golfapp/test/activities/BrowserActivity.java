@@ -41,6 +41,7 @@ public class BrowserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.l_browser);
         getSupportActionBar().hide();
+        addToBack(this);
         TextView tvTitle = (TextView) findViewById(R.id.courseDetailActionTitle);
         tvTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         progressBar = (ProgressBar) findViewById(R.id.progressBar);

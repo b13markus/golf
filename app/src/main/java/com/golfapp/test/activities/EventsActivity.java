@@ -23,6 +23,7 @@ public class EventsActivity extends com.golfapp.test.activities.BaseActivity {
         setContentView(R.layout.activity_event);
         getSupportActionBar().hide();
         setupActionbar();
+        addToBack(this);
         ((Button) findViewById(R.id.evtUp)).setOnClickListener(this);
         ((Button) findViewById(R.id.evtUp)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         ((Button) findViewById(R.id.evtUp)).setText(getString(R.string.evt_upcoming_event_btn));

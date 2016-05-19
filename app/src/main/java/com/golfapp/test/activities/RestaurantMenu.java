@@ -59,7 +59,7 @@ public class RestaurantMenu extends BaseActivity {
         setContentView(R.layout.activity_the_courses);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-
+        addToBack(this);
         clearList = true;
         lv = (ListView) findViewById(R.id.lvc);
         restaurantID = getIntent().getIntExtra("RestaurantID", 0);

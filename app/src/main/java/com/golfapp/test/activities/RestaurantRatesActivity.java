@@ -81,7 +81,7 @@ public class RestaurantRatesActivity extends BaseActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
-
+        addToBack(this);
         restaurantID = getIntent().getIntExtra("RestaurantID", 0);
         selectedRestaurant = Select.from(RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
         final Button btn = (Button) findViewById(R.id.share);

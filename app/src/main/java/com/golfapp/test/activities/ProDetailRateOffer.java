@@ -79,7 +79,7 @@ public class ProDetailRateOffer extends BaseActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light,
                 android.R.color.holo_green_light);
-
+        addToBack(this);
         getSupportActionBar().hide();
         prosID = getIntent().getIntExtra("ProsID", 0);
         selectedPros = Select.from(ProsData.class).where(Condition.prop("pros_id").eq(prosID)).first();

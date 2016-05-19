@@ -81,7 +81,7 @@ public class RestaurantDetailActivity extends BaseActivity {
         SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
         Typeface tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
         Typeface lt = Typeface.createFromAsset(getAssets(), "fonts/LT.ttf");
-
+        addToBack(this);
         TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(lt);
         thecourse.setTypeface(tp);

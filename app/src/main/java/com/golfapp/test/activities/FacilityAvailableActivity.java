@@ -47,6 +47,7 @@ public class FacilityAvailableActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facility);
         getSupportActionBar().hide();
+        addToBack(this);
         int courseID = getIntent().getIntExtra("CourseID", 0);
         CoursesData selectedCourse = Select.from(CoursesData.class).where(Condition.prop("course_id").eq(courseID)).first();
         try {

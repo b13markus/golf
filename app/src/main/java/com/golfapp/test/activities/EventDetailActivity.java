@@ -51,6 +51,7 @@ public class EventDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
         getSupportActionBar().hide();
+        addToBack(this);
         TextView ti = (TextView) findViewById(R.id.title1);
         TextView date = (TextView) findViewById(R.id.sudate);
         TextView sub = (TextView) findViewById(R.id.subtitle);

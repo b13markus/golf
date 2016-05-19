@@ -54,6 +54,7 @@ public class CourseRateoffActivity extends com.golfapp.test.activities.BaseActiv
                 android.R.color.holo_green_light);
 
         getSupportActionBar().hide();
+        addToBack(this);
         lv = (ListView) findViewById(R.id.lvc);
         clearList = true;
         courseID = getIntent().getIntExtra("CourseID", 0);

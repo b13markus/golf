@@ -71,6 +71,7 @@ public class HotelPackageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        addToBack(this);
         setContentView(R.layout.activity_pros_detail_rates_offer);
         getSupportActionBar().hide();
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);

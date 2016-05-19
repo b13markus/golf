@@ -45,6 +45,7 @@ public class CourseDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
         getSupportActionBar().hide();
+        addToBack(this);
         Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.crs_the_course_btn));
         Button fac = (Button) findViewById(R.id.faci);
