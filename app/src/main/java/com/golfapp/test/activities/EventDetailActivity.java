@@ -66,18 +66,18 @@ public class EventDetailActivity extends BaseActivity {
         if(selectedEvent!=null) {
             ti.setText(selectedEvent.name);
             sub.setText(selectedEvent.format);
-        }
-        String rf = selectedEvent.remark1;
-        if (rf.equals("") || rf.equals("null")) {
-            rem1.setVisibility(View.GONE);
-        } else {
-            rem1.setText(rf);
-        }
-        String r = selectedEvent.remark2;
-        if (r.equals("") || r.equals("null")) {
-            rem2.setVisibility(View.GONE);
-        } else {
-            rem2.setText(r);
+            String rf = selectedEvent.remark1;
+            if (rf.equals("") || rf.equals("null")) {
+                rem1.setVisibility(View.GONE);
+            } else {
+                rem1.setText(rf);
+            }
+            String r = selectedEvent.remark2;
+            if (r.equals("") || r.equals("null")) {
+                rem2.setVisibility(View.GONE);
+            } else {
+                rem2.setText(r);
+            }
         }
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
