@@ -179,7 +179,9 @@ public class NewsActivity extends BaseActivity {
 
     private void loadOffline() {
         clearList = true;
-        newsList = NewsData.listAll(NewsData.class);
+//        newsList = NewsData.listAll(NewsData.class);
+//        newsList = Select.from(NewsData.class).orderBy("updated").list();
+        newsList = NewsData.findWithQuery(NewsData.class, "SELECT * FROM NEWS_DATA ORDER BY updated DESC", null);
         for (int a = 0; a < newsList.size(); a++) {
             newsList.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("news_id").eq(newsList.get(a).newsID)).list();
         }
