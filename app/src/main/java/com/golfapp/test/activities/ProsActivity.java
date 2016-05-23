@@ -167,8 +167,8 @@ public class ProsActivity extends BaseActivity {
 
     private void loadOffline() {
         clearList = true;
-        list = ProsData.listAll(ProsData.class);
-//        list =  ProsData.findWithQuery(ProsData.class, "SELECT * FROM PROS_DATA ORDER BY updated DESC", null);
+//        list = ProsData.listAll(ProsData.class);
+        list =  ProsData.findWithQuery(ProsData.class, "SELECT * FROM PROS_DATA ORDER BY position", null);
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("pros_id").eq(list.get(a).prosID)).list();
         }
