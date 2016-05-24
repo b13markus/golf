@@ -21,6 +21,7 @@ import com.golfapp.test.adapters.AdapterHotelPackage;
 import com.golfapp.test.datafiles.HotelData;
 import com.golfapp.test.datafiles.HotelRatesData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.TinyDB;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -64,6 +65,8 @@ public class HotelPackageActivity extends BaseActivity {
             int totalNewsBadgeCount = store.getInt(Constants.HOTEL_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
             store.setInt(Constants.HOTEL_PUSH_COUNT, totalNewsBadgeCount - store.getInt(hotelID + "", 0));      // Subtract this hotel notification count from total notification count
             store.setInt(hotelID + "", 0);
+//            store.setBoolean(hotelID + "", false);
+            TinyDB.getInstance(this).putBoolean(hotelID + "", false);
         }
     }
 

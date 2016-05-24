@@ -25,7 +25,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import com.golfapp.test.activities.HotelPackageActivity;
+import com.golfapp.test.activities.NewsDetailActivity;
+import com.golfapp.test.activities.ProDetailRateOffer;
+import com.golfapp.test.activities.ProshopRateOfferActivity;
+import com.golfapp.test.activities.RestaurantRatesActivity;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.PrefStore;
+import com.golfapp.test.utils.TinyDB;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import org.json.JSONException;
@@ -33,12 +40,6 @@ import org.json.JSONObject;
 
 import java.util.Random;
 
-import com.golfapp.test.activities.HotelPackageActivity;
-import com.golfapp.test.activities.NewsDetailActivity;
-import com.golfapp.test.activities.ProDetailRateOffer;
-import com.golfapp.test.activities.ProshopRateOfferActivity;
-import com.golfapp.test.activities.RestaurantRatesActivity;
-import com.golfapp.test.utils.PrefStore;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class MyGcmListenerService extends GcmListenerService {
@@ -69,6 +70,8 @@ public class MyGcmListenerService extends GcmListenerService {
                         totalHotelBadgeCount = totalHotelBadgeCount + 1;                        // then update the counter.
                         particularHotelBadgeCont = particularHotelBadgeCont + 1;
                         store.setInt(sid + "", particularHotelBadgeCont);                            // then save the notification badge for this id.
+//                        store.setBoolean(sid + "" , true);
+                        TinyDB.getInstance(this).putBoolean(sid + "", true);
                         store.setInt(Constants.HOTEL_PUSH_COUNT, totalHotelBadgeCount);         // update total badge count
                         String packageID = store.getString(Constants.PACKAGE + sid);
                         if (packageID == null) {
@@ -84,6 +87,8 @@ public class MyGcmListenerService extends GcmListenerService {
                             store.setInt(Constants.HOTEL_PUSH_COUNT, totalHotelBadgeCount);     // update total push counts for home screen
                             particularHotelBadgeCont = particularHotelBadgeCont + 1;            // Update push count for particular hotel
                             store.setInt(sid + "", particularHotelBadgeCont);
+//                            store.setBoolean(sid + "" , true);
+                            TinyDB.getInstance(this).putBoolean(sid + "", true);
                             packageID = packageID + " , " + pack;
                             store.setString(Constants.PACKAGE + sid, packageID);                // Update the packages that have new notification
                         }

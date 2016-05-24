@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -54,7 +55,8 @@ public class AdapterHotels extends ArrayAdapter<HotelData> {
         }
         viewHolder.data = getItem(position);
         int notificationBadgeCount = context.store.getInt(viewHolder.data.hotelID + "", 0);
-        if (notificationBadgeCount > 0) {
+        boolean isHotel = TinyDB.getInstance(context).getBoolean(viewHolder.data.hotelID + "", false);
+        if (notificationBadgeCount > 0 && isHotel) {
             viewHolder.notificationBadgeCountTV.setText(notificationBadgeCount + "");
             viewHolder.notificationBadgeCountTV.setVisibility(View.VISIBLE);
         } else {

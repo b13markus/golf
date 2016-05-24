@@ -28,6 +28,7 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.golfapp.test.R;
 import com.golfapp.test.datafiles.HotelData;
 import com.golfapp.test.datafiles.ImageData;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -61,7 +62,8 @@ public class HotelDetailActivity extends BaseActivity {
                 getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
         badgeCountTV.setLayoutParams(params);
         int particularNewsBadgeCont = store.getInt(hotelID + "", 0);        // get Notification count for this news
-        if (particularNewsBadgeCont > 0) {
+        boolean isHotel = TinyDB.getInstance(this).getBoolean(hotelID + "", false);
+        if (particularNewsBadgeCont > 0 && isHotel ) {
             badgeCountTV.setText(particularNewsBadgeCont + "");
             badgeCountTV.setVisibility(View.VISIBLE);
         } else {
