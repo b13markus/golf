@@ -6,7 +6,7 @@ import com.orm.dsl.Ignore;
 /**
  * Created by aman on 11/21/2015.
  */
-public class ImageData extends SugarRecord<ImageData> {
+public class ImageData extends SugarRecord {
 
     public int prosID;
     public int newsID;

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by aman on 11/26/2015.
  */
-public class RestaurantData extends SugarRecord<RestaurantData> {
+public class RestaurantData extends SugarRecord {
 
     public int restaurantID;
     public int position;

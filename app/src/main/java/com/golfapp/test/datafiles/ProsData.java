@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by aman on 11/21/2015.
  */
-public class ProsData extends SugarRecord<ProsData> {
+public class ProsData extends SugarRecord {
 
     public int prosID;
     public String name;

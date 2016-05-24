@@ -5,7 +5,7 @@ import com.orm.SugarRecord;
 /**
  * Created by aman on 11/26/2015.
  */
-public class RestaurantRatesData extends SugarRecord<RestaurantRatesData> {
+public class RestaurantRatesData extends SugarRecord {
     public int restaurantID;
     public int rateID;
     public String name;

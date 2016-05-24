@@ -5,7 +5,7 @@ import com.orm.SugarRecord;
 /**
  * Created by aman on 11/24/2015.
  */
-public class EventsData extends SugarRecord<EventsData> {
+public class EventsData extends SugarRecord {
 
     public int eventID;
     public int isUpcomingEvent;

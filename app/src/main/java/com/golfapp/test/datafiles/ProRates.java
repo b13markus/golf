@@ -5,7 +5,7 @@ import com.orm.SugarRecord;
 /**
  * Created by aman on 11/23/2015.
  */
-public class ProRates extends SugarRecord<ProRates> {
+public class ProRates extends SugarRecord{
 
 
     public int prosID;
