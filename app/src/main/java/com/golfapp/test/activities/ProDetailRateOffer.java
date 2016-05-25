@@ -163,7 +163,8 @@ public class ProDetailRateOffer extends BaseActivity {
     }
 
     private void loadOflineData() {
-        rateList = Select.from(ProRates.class).where(Condition.prop("pros_id").eq(prosID)).list();
+//        rateList = Select.from(ProRates.class).where(Condition.prop("pros_id").eq(prosID)).list();
+        rateList = ProRates.findWithQuery(ProRates.class, "SELECT * FROM PRO_RATES ORDER BY pub_Date DESC", null);
         adp = new AdapterProsRateOffer(this, rateList, true, notificationString);
         lv.setAdapter(adp);
     }
@@ -239,6 +240,7 @@ public class ProDetailRateOffer extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        ProRates.deleteAll(ProRates.class);
         new SaveData().execute(jsonObject);
     }
 
