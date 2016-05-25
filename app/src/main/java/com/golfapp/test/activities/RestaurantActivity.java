@@ -232,6 +232,7 @@ public class RestaurantActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        RestaurantData.deleteAll(RestaurantData.class);
         new SaveData().execute(jsonObject);
     }
 
