@@ -71,7 +71,6 @@ public class NewsDetailActivity extends BaseActivity {
             int totalNewsBadgeCount = store.getInt(Constants.NEWS_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
             store.setInt(Constants.NEWS_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
             store.setInt(sid + "", 0);
-//            store.setBoolean(hotelID + "", false);
             TinyDB.getInstance(this).putBoolean(sid, false);
         }
     }

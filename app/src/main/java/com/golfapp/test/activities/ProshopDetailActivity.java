@@ -29,6 +29,7 @@ import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.datafiles.ImageData;
 import com.golfapp.test.datafiles.ProshopData;
+import com.golfapp.test.utils.Constants;
 import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
@@ -62,7 +63,7 @@ public class ProshopDetailActivity extends BaseActivity {
                 getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
         badgeCountTV.setLayoutParams(params);
         overridePendingTransition(0, 0);
-        String sid = GcmConstants.HOTEL + proShopID;
+        String sid = GcmConstants.PROSHOP + proShopID;
         int particularNewsBadgeCont = store.getInt(sid + "", 0);        // get Notification count for this proshop
         boolean isProShop = TinyDB.getInstance(this).getBoolean(sid + "", false);
         if (particularNewsBadgeCont > 0 && isProShop) {
@@ -70,6 +71,14 @@ public class ProshopDetailActivity extends BaseActivity {
             badgeCountTV.setVisibility(View.VISIBLE);
         } else {
             badgeCountTV.setVisibility(View.GONE);
+        }
+        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
+            clearNotification(proShopID, 0);                                      // clear notification on server
+            int totalNewsBadgeCount = store.getInt(Constants.PROSHOP_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
+            store.setInt(Constants.PROSHOP_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
+            store.setInt(sid + "", 0);
+            TinyDB.getInstance(this).putBoolean(sid, false);
         }
     }
 
