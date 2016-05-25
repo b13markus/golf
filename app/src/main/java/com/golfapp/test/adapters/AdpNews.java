@@ -15,9 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.activities.BaseActivity;
 import com.golfapp.test.datafiles.NewsData;
+import com.golfapp.test.utils.TinyDB;
 
 /**
  * Created by Golakiya on 6/29/2015.
@@ -48,8 +50,9 @@ public class AdpNews extends ArrayAdapter<NewsData> {
             rowView.setTag(viewHolder);
         }
         ViewHolder holder = (ViewHolder) rowView.getTag();
-        int notificationBadgeCount = context.store.getInt(obj.newsID + "", 0);
-        if (notificationBadgeCount > 0) {
+        int notificationBadgeCount = context.store.getInt(GcmConstants.NEWS + obj.newsID + "", 0);
+        boolean isNews = TinyDB.getInstance(context).getBoolean(GcmConstants.NEWS + obj.newsID + "", false);
+        if (notificationBadgeCount > 0 && isNews) {
             holder.badge.setVisibility(View.VISIBLE);
         } else {
             holder.badge.setVisibility(View.GONE);

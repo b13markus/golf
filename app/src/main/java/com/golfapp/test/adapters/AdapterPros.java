@@ -9,10 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.activities.BaseActivity;
 import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.BadgeView;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -52,8 +54,9 @@ public class AdapterPros extends ArrayAdapter<ProsData> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.data = getItem(position);
-        int notificationBadgeCount = context.store.getInt(viewHolder.data.prosID + "", 0);
-        if (notificationBadgeCount > 0) {
+        int notificationBadgeCount = context.store.getInt(GcmConstants.PROS + viewHolder.data.prosID + "", 0);
+        boolean isPros = TinyDB.getInstance(context).getBoolean(GcmConstants.PROS + viewHolder.data.prosID + "", false);
+        if (notificationBadgeCount > 0 && isPros) {
             viewHolder.notificationBadgeCountTV.setText(notificationBadgeCount + "");
             viewHolder.notificationBadgeCountTV.setVisibility(View.VISIBLE);
         } else {

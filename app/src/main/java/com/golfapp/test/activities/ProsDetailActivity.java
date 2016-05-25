@@ -22,9 +22,11 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.BadgeView;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -55,8 +57,10 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
                 getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
         badgeCountTV.setLayoutParams(params);
         overridePendingTransition(0, 0);
-        int particularNewsBadgeCont = store.getInt(prosID + "", 0);         // any notification for this pros
-        if (particularNewsBadgeCont > 0) {
+        String sid = GcmConstants.HOTEL + prosID;
+        int particularNewsBadgeCont = store.getInt(sid + "", 0);        // get Notification count for this pros
+        boolean isPros = TinyDB.getInstance(this).getBoolean(sid + "", false);
+        if (particularNewsBadgeCont > 0 && isPros) {
             badgeCountTV.setText(particularNewsBadgeCont + "");
             badgeCountTV.setVisibility(View.VISIBLE);
         } else {

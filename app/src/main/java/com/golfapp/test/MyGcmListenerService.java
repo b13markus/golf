@@ -45,7 +45,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 public class MyGcmListenerService extends GcmListenerService {
     private static final String TAG = "MyGcmListenerService";
     PrefStore store;
-    String tit = "", sid = "", page = "";
+    String tit = "", page = "";
     Intent intent;
 
     @Override
@@ -64,33 +64,34 @@ public class MyGcmListenerService extends GcmListenerService {
             int pack = data.getInt("package");
             switch (page) {
                 case "Hotel": {
+                    String key = GcmConstants.HOTEL + sid;
                     int totalHotelBadgeCount = store.getInt(Constants.HOTEL_PUSH_COUNT, 0);
-                    int particularHotelBadgeCont = store.getInt(sid + "", 0);                        // previous unread notification for this id
+                    int particularHotelBadgeCont = store.getInt(key + "", 0);                        // previous unread notification for this id
                     if (particularHotelBadgeCont == 0) {                                        // if no previous notification
                         totalHotelBadgeCount = totalHotelBadgeCount + 1;                        // then update the counter.
                         particularHotelBadgeCont = particularHotelBadgeCont + 1;
-                        store.setInt(sid + "", particularHotelBadgeCont);                            // then save the notification badge for this id.
+                        store.setInt(key + "", particularHotelBadgeCont);                            // then save the notification badge for this id.
 //                        store.setBoolean(sid + "" , true);
-                        TinyDB.getInstance(this).putBoolean(sid + "", true);
+                        TinyDB.getInstance(this).putBoolean(key + "", true);
                         store.setInt(Constants.HOTEL_PUSH_COUNT, totalHotelBadgeCount);         // update total badge count
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (packageID == null) {
                             packageID = pack + "";
                         } else {
                             packageID = packageID + " , " + pack;
                         }
-                        store.setString(Constants.PACKAGE + sid, packageID);
+                        store.setString(Constants.PACKAGE + key, packageID);
                     } else {
-                        String packageID = store.getString(Constants.PACKAGE + sid);            // get the notifications for which package notifications are there
+                        String packageID = store.getString(Constants.PACKAGE + key);            // get the notifications for which package notifications are there
                         if (!packageID.contains(pack + "")) {                                   // is this package already stored in our local storage
                             totalHotelBadgeCount = totalHotelBadgeCount + 1;                    // if not update total badge count for home screen as this is new notification
                             store.setInt(Constants.HOTEL_PUSH_COUNT, totalHotelBadgeCount);     // update total push counts for home screen
                             particularHotelBadgeCont = particularHotelBadgeCont + 1;            // Update push count for particular hotel
-                            store.setInt(sid + "", particularHotelBadgeCont);
+                            store.setInt(key + "", particularHotelBadgeCont);
 //                            store.setBoolean(sid + "" , true);
-                            TinyDB.getInstance(this).putBoolean(sid + "", true);
+                            TinyDB.getInstance(this).putBoolean(key + "", true);
                             packageID = packageID + " , " + pack;
-                            store.setString(Constants.PACKAGE + sid, packageID);                // Update the packages that have new notification
+                            store.setString(Constants.PACKAGE + key, packageID);                // Update the packages that have new notification
                         }
                     }
                     intent = new Intent(this, HotelPackageActivity.class);
@@ -100,29 +101,32 @@ public class MyGcmListenerService extends GcmListenerService {
                     break;
                 }
                 case "Restaurant": {
+                    String key = GcmConstants.RESTAURANT + sid;
                     int totalRestaurantBadgeCount = store.getInt(Constants.RESTAURANTS_PUSH_COUNT, 0);
-                    int particularRestaurantBadgeCont = store.getInt(sid + "", 0);                        // previous unread notification for this id
+                    int particularRestaurantBadgeCont = store.getInt(key + "", 0);                        // previous unread notification for this id
                     if (particularRestaurantBadgeCont == 0) {                                        // if no previous notification
                         totalRestaurantBadgeCount = totalRestaurantBadgeCount + 1;                        // then update the counter.
                         particularRestaurantBadgeCont = particularRestaurantBadgeCont + 1;
-                        store.setInt(sid + "", particularRestaurantBadgeCont);                                                   // then save the notification badge for this id.
+                        store.setInt(key + "", particularRestaurantBadgeCont);                                                   // then save the notification badge for this id.
+                        TinyDB.getInstance(this).putBoolean(key + "", true);
                         store.setInt(Constants.RESTAURANTS_PUSH_COUNT, totalRestaurantBadgeCount);         // update total badge count
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (packageID == null) {
                             packageID = pack + "";
                         } else {
                             packageID = packageID + " , " + pack;
                         }
-                        store.setString(Constants.PACKAGE + sid, packageID);
+                        store.setString(Constants.PACKAGE + key, packageID);
                     } else {
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (!packageID.contains(pack + "")) {
                             totalRestaurantBadgeCount = totalRestaurantBadgeCount + 1;
                             store.setInt(Constants.RESTAURANTS_PUSH_COUNT, totalRestaurantBadgeCount);
                             particularRestaurantBadgeCont = particularRestaurantBadgeCont + 1;
-                            store.setInt(sid + "", particularRestaurantBadgeCont);                                                   // then save the notification badge for this id.
+                            TinyDB.getInstance(this).putBoolean(key + "", true);
+                            store.setInt(key + "", particularRestaurantBadgeCont);                                                   // then save the notification badge for this id.
                             packageID = packageID + " , " + pack;
-                            store.setString(Constants.PACKAGE + sid, packageID);
+                            store.setString(Constants.PACKAGE + key, packageID);
                         }
                     }
                     intent = new Intent(this, RestaurantRatesActivity.class);
@@ -132,29 +136,32 @@ public class MyGcmListenerService extends GcmListenerService {
                     break;
                 }
                 case "Pro": {
+                    String key = GcmConstants.PROS + sid;
                     int totalProsBadgeCount = store.getInt(Constants.PROS_PUSH_COUNT, 0);
-                    int particularProsBadgeCont = store.getInt(sid + "", 0);                        // previous unread notification for this id
+                    int particularProsBadgeCont = store.getInt(key + "", 0);                        // previous unread notification for this id
                     if (particularProsBadgeCont == 0) {                                        // if no previous notification
                         totalProsBadgeCount = totalProsBadgeCount + 1;                        // then update the counter.
                         particularProsBadgeCont = particularProsBadgeCont + 1;
-                        store.setInt(sid + "", particularProsBadgeCont);                                                   // then save the notification badge for this id.
+                        store.setInt(key + "", particularProsBadgeCont);                                                   // then save the notification badge for this id.
+                        TinyDB.getInstance(this).putBoolean(key + "", true);
                         store.setInt(Constants.PROS_PUSH_COUNT, totalProsBadgeCount);         // update total badge count
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (packageID == null) {
                             packageID = pack + "";
                         } else {
                             packageID = packageID + " , " + pack;
                         }
-                        store.setString(Constants.PACKAGE + sid, packageID);
+                        store.setString(Constants.PACKAGE + key, packageID);
                     } else {
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (!packageID.contains(pack + "")) {
                             totalProsBadgeCount = totalProsBadgeCount + 1;
                             store.setInt(Constants.PROS_PUSH_COUNT, totalProsBadgeCount);
                             particularProsBadgeCont = particularProsBadgeCont + 1;
-                            store.setInt(sid + "", particularProsBadgeCont);                                                   // then save the notification badge for this id.
+                            TinyDB.getInstance(this).putBoolean(key + "", true);
+                            store.setInt(key + "", particularProsBadgeCont);                                                   // then save the notification badge for this id.
                             packageID = packageID + " , " + pack;
-                            store.setString(Constants.PACKAGE + sid, packageID);
+                            store.setString(Constants.PACKAGE + key, packageID);
                         }
                     }
                     intent = new Intent(this, ProDetailRateOffer.class);
@@ -164,29 +171,32 @@ public class MyGcmListenerService extends GcmListenerService {
                     break;
                 }
                 case "Proshop": {
+                    String key = GcmConstants.PROSHOP + sid;
                     int totalProsHopBadgeCount = store.getInt(Constants.PROSHOP_PUSH_COUNT, 0);
-                    int particularProsHopBadgeCont = store.getInt(sid + "", 0);                        // previous unread notification for this id
+                    int particularProsHopBadgeCont = store.getInt(key + "", 0);                        // previous unread notification for this id
                     if (particularProsHopBadgeCont == 0) {                                        // if no previous notification
                         totalProsHopBadgeCount = totalProsHopBadgeCount + 1;                        // then update the counter.
                         particularProsHopBadgeCont = particularProsHopBadgeCont + 1;
-                        store.setInt(sid + "", particularProsHopBadgeCont);                                                   // then save the notification badge for this id.
+                        store.setInt(key + "", particularProsHopBadgeCont);                                                   // then save the notification badge for this id.
+                        TinyDB.getInstance(this).putBoolean(key + "", true);
                         store.setInt(Constants.PROSHOP_PUSH_COUNT, totalProsHopBadgeCount);         // update total badge count
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (packageID == null) {
                             packageID = pack + "";
                         } else {
                             packageID = packageID + " , " + pack;
                         }
-                        store.setString(Constants.PACKAGE + sid, packageID);
+                        store.setString(Constants.PACKAGE + key, packageID);
                     } else {
-                        String packageID = store.getString(Constants.PACKAGE + sid);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (!packageID.contains(pack + "")) {
                             totalProsHopBadgeCount = totalProsHopBadgeCount + 1;
                             store.setInt(Constants.PROSHOP_PUSH_COUNT, totalProsHopBadgeCount);
                             particularProsHopBadgeCont = particularProsHopBadgeCont + 1;
-                            store.setInt(sid + "", particularProsHopBadgeCont);                                                   // then save the notification badge for this id.
+                            TinyDB.getInstance(this).putBoolean(key + "", true);
+                            store.setInt(key + "", particularProsHopBadgeCont);                                                   // then save the notification badge for this id.
                             packageID = packageID + " , " + pack;
-                            store.setString(Constants.PACKAGE + sid, packageID);
+                            store.setString(Constants.PACKAGE + key, packageID);
                         }
                     }
                     intent = new Intent(this, ProshopRateOfferActivity.class);
@@ -196,29 +206,32 @@ public class MyGcmListenerService extends GcmListenerService {
                     break;
                 }
                 case "News": {
+                    String key = GcmConstants.NEWS + pack;
                     int totalNewsBadgeCount = store.getInt(Constants.NEWS_PUSH_COUNT, 0);
-                    int particularNewsBadgeCont = store.getInt(pack + "", 0);                        // previous unread notification for this id
+                    int particularNewsBadgeCont = store.getInt(key + "", 0);                        // previous unread notification for this id
                     if (particularNewsBadgeCont == 0) {                                        // if no previous notification
                         totalNewsBadgeCount = totalNewsBadgeCount + 1;                        // then update the counter.
                         particularNewsBadgeCont = particularNewsBadgeCont + 1;
-                        store.setInt(pack + "", particularNewsBadgeCont);                                                   // then save the notification badge for this id.
+                        store.setInt(key + "", particularNewsBadgeCont);                                                   // then save the notification badge for this id.
+                        TinyDB.getInstance(this).putBoolean(key + "", true);
                         store.setInt(Constants.NEWS_PUSH_COUNT, totalNewsBadgeCount);         // update total badge count
-                        String packageID = store.getString(Constants.PACKAGE + pack);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (packageID == null) {
                             packageID = pack + "";
                         } else {
                             packageID = packageID + " , " + pack;
                         }
-                        store.setString(Constants.PACKAGE + pack, packageID);
+                        store.setString(Constants.PACKAGE + key, packageID);
                     } else {
-                        String packageID = store.getString(Constants.PACKAGE + pack);
+                        String packageID = store.getString(Constants.PACKAGE + key);
                         if (!packageID.contains(pack + "")) {
                             totalNewsBadgeCount = totalNewsBadgeCount + 1;
                             store.setInt(Constants.PROSHOP_PUSH_COUNT, totalNewsBadgeCount);
                             particularNewsBadgeCont = particularNewsBadgeCont + 1;
-                            store.setInt(pack + "", particularNewsBadgeCont);                                                   // then save the notification badge for this id.
+                            TinyDB.getInstance(this).putBoolean(key + "", true);
+                            store.setInt(key + "", particularNewsBadgeCont);                                                   // then save the notification badge for this id.
                             packageID = packageID + " , " + pack;
-                            store.setString(Constants.PACKAGE + pack, packageID);
+                            store.setString(Constants.PACKAGE + key, packageID);
                         }
                     }
                     intent = new Intent(this, NewsDetailActivity.class);

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.datafiles.HotelData;
 import com.golfapp.test.datafiles.ImageData;
@@ -61,8 +62,9 @@ public class HotelDetailActivity extends BaseActivity {
                 getResources().getDimensionPixelSize(R.dimen.badge_size),
                 getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
         badgeCountTV.setLayoutParams(params);
-        int particularNewsBadgeCont = store.getInt(hotelID + "", 0);        // get Notification count for this news
-        boolean isHotel = TinyDB.getInstance(this).getBoolean(hotelID + "", false);
+        String sid = GcmConstants.HOTEL + hotelID;
+        int particularNewsBadgeCont = store.getInt(sid + "", 0);        // get Notification count for this hotel
+        boolean isHotel = TinyDB.getInstance(this).getBoolean(sid + "", false);
         if (particularNewsBadgeCont > 0 && isHotel ) {
             badgeCountTV.setText(particularNewsBadgeCont + "");
             badgeCountTV.setVisibility(View.VISIBLE);

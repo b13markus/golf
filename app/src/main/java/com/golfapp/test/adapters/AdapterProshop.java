@@ -9,9 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.activities.BaseActivity;
 import com.golfapp.test.datafiles.ProshopData;
 import com.golfapp.test.utils.BadgeView;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -53,8 +55,9 @@ public class AdapterProshop extends ArrayAdapter<ProshopData> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.data = getItem(position);
-        int notificationBadgeCount = context.store.getInt(viewHolder.data.proShopID + "", 0);
-        if (notificationBadgeCount > 0) {
+        int notificationBadgeCount = context.store.getInt(GcmConstants.PROSHOP + viewHolder.data.proShopID + "", 0);
+        boolean isProShop = TinyDB.getInstance(context).getBoolean(GcmConstants.PROSHOP + viewHolder.data.proShopID + "", false);
+        if (notificationBadgeCount > 0 && isProShop) {
             viewHolder.notificationBadgeCountTV.setText(notificationBadgeCount + "");
             viewHolder.notificationBadgeCountTV.setVisibility(View.VISIBLE);
         } else {

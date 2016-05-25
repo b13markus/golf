@@ -25,7 +25,9 @@ import android.widget.TextView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -57,8 +59,10 @@ public class RestaurantDetailActivity extends BaseActivity {
                 getResources().getDimensionPixelSize(R.dimen.badge_size),
                 getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
         badgeCountTV.setLayoutParams(params);
-        int particularNewsBadgeCont = store.getInt(restaurantID + "", 0);
-        if (particularNewsBadgeCont > 0) {
+        String sid = GcmConstants.RESTAURANT + restaurantID;
+        int particularNewsBadgeCont = store.getInt(sid + "", 0);        // get Notification count for this news
+        boolean isRestaurant = TinyDB.getInstance(this).getBoolean(sid + "", false);
+        if (particularNewsBadgeCont > 0 && isRestaurant) {
             badgeCountTV.setText(particularNewsBadgeCont + "");
             badgeCountTV.setVisibility(View.VISIBLE);
         } else {

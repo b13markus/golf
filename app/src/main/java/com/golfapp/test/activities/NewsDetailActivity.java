@@ -24,10 +24,12 @@ import com.bluejamesbond.text.DocumentView;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.datafiles.ImageData;
 import com.golfapp.test.datafiles.NewsData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
 import com.orm.query.Select;
@@ -62,6 +64,16 @@ public class NewsDetailActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         overridePendingTransition(0, 0);
+        String sid = GcmConstants.NEWS + newsID;
+        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
+            clearNotification(newsID, 0);                                      // clear notification on server
+            int totalNewsBadgeCount = store.getInt(Constants.NEWS_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
+            store.setInt(Constants.NEWS_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
+            store.setInt(sid + "", 0);
+//            store.setBoolean(hotelID + "", false);
+            TinyDB.getInstance(this).putBoolean(sid, false);
+        }
     }
 
     @Override

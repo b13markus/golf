@@ -57,7 +57,6 @@ public class NewsActivity extends BaseActivity {
         }
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();

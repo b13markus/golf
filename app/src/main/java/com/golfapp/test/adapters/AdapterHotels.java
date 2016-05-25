@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
@@ -54,8 +55,8 @@ public class AdapterHotels extends ArrayAdapter<HotelData> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.data = getItem(position);
-        int notificationBadgeCount = context.store.getInt(viewHolder.data.hotelID + "", 0);
-        boolean isHotel = TinyDB.getInstance(context).getBoolean(viewHolder.data.hotelID + "", false);
+        int notificationBadgeCount = context.store.getInt(GcmConstants.HOTEL + viewHolder.data.hotelID + "", 0);
+        boolean isHotel = TinyDB.getInstance(context).getBoolean(GcmConstants.HOTEL + viewHolder.data.hotelID + "", false);
         if (notificationBadgeCount > 0 && isHotel) {
             viewHolder.notificationBadgeCountTV.setText(notificationBadgeCount + "");
             viewHolder.notificationBadgeCountTV.setVisibility(View.VISIBLE);

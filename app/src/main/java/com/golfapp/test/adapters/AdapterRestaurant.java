@@ -11,10 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.activities.BaseActivity;
 import com.golfapp.test.datafiles.RestaurantData;
 import com.golfapp.test.utils.BadgeView;
+import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -56,8 +58,9 @@ public class AdapterRestaurant extends ArrayAdapter<RestaurantData> {
             viewHolder = (ViewHolder) rowView.getTag();
         }
         RestaurantData data = getItem(position);
-        int notificationBadgeCount = context.store.getInt(data.restaurantID + "", 0);
-        if (notificationBadgeCount > 0) {
+        int notificationBadgeCount = context.store.getInt(GcmConstants.RESTAURANT + data.restaurantID + "", 0);
+        boolean isRestaurant = TinyDB.getInstance(context).getBoolean(GcmConstants.RESTAURANT + data.restaurantID + "", false);
+        if (notificationBadgeCount > 0 && isRestaurant) {
             viewHolder.notificationBadgeCountTV.setText(notificationBadgeCount + "");
             viewHolder.notificationBadgeCountTV.setVisibility(View.VISIBLE);
         } else {

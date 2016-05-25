@@ -16,6 +16,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.adapters.AdapterHotelPackage;
 import com.golfapp.test.datafiles.HotelData;
@@ -58,15 +59,16 @@ public class HotelPackageActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         overridePendingTransition(0, 0);
-        if (store.getString(Constants.PACKAGE + hotelID) != null) {             // Is any notification for this page.
-            notificationString = store.getString(Constants.PACKAGE + hotelID);             // Get all the packages which has new notificationwe will use this string to show new tag on list
-            store.setString(Constants.PACKAGE + hotelID, null);                 // Remove all the notification of package
+        String sid = GcmConstants.HOTEL + hotelID;
+        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            notificationString = store.getString(Constants.PACKAGE + sid);             // Get all the packages which has new notificationwe will use this string to show new tag on list
+            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
             clearNotification(hotelID, 0);                                      // clear notification on server
             int totalNewsBadgeCount = store.getInt(Constants.HOTEL_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
-            store.setInt(Constants.HOTEL_PUSH_COUNT, totalNewsBadgeCount - store.getInt(hotelID + "", 0));      // Subtract this hotel notification count from total notification count
-            store.setInt(hotelID + "", 0);
+            store.setInt(Constants.HOTEL_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
+            store.setInt(sid + "", 0);
 //            store.setBoolean(hotelID + "", false);
-            TinyDB.getInstance(this).putBoolean(hotelID + "", false);
+            TinyDB.getInstance(this).putBoolean(sid, false);
         }
     }
 
