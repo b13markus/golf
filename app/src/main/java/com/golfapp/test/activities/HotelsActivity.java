@@ -172,7 +172,7 @@ public class HotelsActivity extends BaseActivity {
 
     private void loadOffline() {
         clearList = true;
-        list = HotelData.listAll(HotelData.class);
+        list =  HotelData.findWithQuery(HotelData.class, "SELECT * FROM HOTEL_DATA ORDER BY position", null);
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("hotel_id").eq(list.get(a).hotelID)).list();
         }
@@ -232,6 +232,9 @@ public class HotelsActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        if(pageNumber == 1){
+            HotelData.deleteAll(HotelData.class);
+        }
         new SaveData().execute(jsonObject);
     }
 
@@ -268,7 +271,7 @@ public class HotelsActivity extends BaseActivity {
                         int package_count = obj.getInt("package_count");
                         String package_url = obj.getString("package_url");
 
-                        HotelData pros = Select.from(HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();
+                        HotelData pros = Select.from(HotelData.class).where(Condition.prop("position").eq(position)).first();
                         if (pros == null) {
                             pros = new HotelData(hotelID, position, package_count, longitude, latitude, name
                                     , descr, phone, email, website, address, streetno, route, city, state, postalcode, country, package_url);
