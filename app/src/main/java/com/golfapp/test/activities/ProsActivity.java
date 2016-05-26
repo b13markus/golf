@@ -226,6 +226,9 @@ public class ProsActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        if(pageNumber == 1){
+            ProsData.deleteAll(ProsData.class);
+        }
         new SaveData().execute(jsonObject);
     }
 
