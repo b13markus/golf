@@ -173,6 +173,8 @@ public class ProshopActivity extends BaseActivity {
     private void loadOffline() {
         clearList = true;
         list = ProshopData.listAll(ProshopData.class);
+        list =  ProshopData.findWithQuery(ProshopData.class, "SELECT * FROM PROSHOP_DATA ORDER BY position", null);
+
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("pro_shop_id").eq(list.get(a).proShopID)).list();
         }
@@ -228,6 +230,9 @@ public class ProshopActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        if(pageNumber == 1){
+            ProshopData.deleteAll(ProshopData.class);
+        }
         new SaveData().execute(jsonObject);
     }
 
