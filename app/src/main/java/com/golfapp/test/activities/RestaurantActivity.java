@@ -177,11 +177,11 @@ public class RestaurantActivity extends BaseActivity {
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("restaurant_id").eq(list.get(a).restaurantID)).list();
         }
-        setListView();
+        setListView(false);
     }
 
-    private void setListView() {
-        if (list.size() == 1) {
+    private void setListView(boolean openFirstPage) {
+        if ((list.size() == 1 && openFirstPage)||!isNetworkAvailable()) {
             Intent it = new Intent(RestaurantActivity.this, RestaurantDetailActivity.class);
             RestaurantData pro = list.get(0);
             it.putExtra("RestaurantID", pro.restaurantID);
@@ -232,7 +232,9 @@ public class RestaurantActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
-        RestaurantData.deleteAll(RestaurantData.class);
+        if(pageNumber == 1) {
+            RestaurantData.deleteAll(RestaurantData.class);
+        }
         new SaveData().execute(jsonObject);
     }
 
@@ -329,7 +331,7 @@ public class RestaurantActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setListView();
+                    setListView(true);
                     isLoading = false;
                     swipeRefreshLayout.setRefreshing(false);
                 }
