@@ -53,10 +53,6 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                getResources().getDimensionPixelSize(R.dimen.badge_size),
-                getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
-        badgeCountTV.setLayoutParams(params);
         overridePendingTransition(0, 0);
         String sid = GcmConstants.PROS + prosID;
         int particularNewsBadgeCont = store.getInt(sid + "", 0);        // get Notification count for this pros

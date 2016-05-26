@@ -106,9 +106,9 @@
 
                 <TextView
                     android:id="@+id/badgeCountTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|top"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right|center_vertical"
                     android:background="@drawable/a_push_badge"
                     android:textColor="@android:color/white"
                     android:gravity="center_vertical|center_horizontal"

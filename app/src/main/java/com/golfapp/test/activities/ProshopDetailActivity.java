@@ -11,12 +11,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -58,10 +56,6 @@ public class ProshopDetailActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                getResources().getDimensionPixelSize(R.dimen.badge_size),
-                getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
-        badgeCountTV.setLayoutParams(params);
         overridePendingTransition(0, 0);
         String sid = GcmConstants.PROSHOP + proShopID;
         int particularNewsBadgeCont = store.getInt(sid + "", 0);        // get Notification count for this proshop
