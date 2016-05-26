@@ -10,12 +10,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -83,9 +81,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initUI() {
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                getResources().getDimensionPixelSize(R.dimen.badge_size),
-                getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
+//        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+//                getResources().getDimensionPixelSize(R.dimen.badge_size),
+//                getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
         pros = (ImageView) findViewById(R.id.im_pros);
         tee = (ImageView) findViewById(R.id.im_tee);
         event = (ImageView) findViewById(R.id.im_event);
@@ -104,16 +102,16 @@ public class MainActivity extends BaseActivity {
         TextView tournamentsBadgeTV = (TextView) findViewById(R.id.tournamentsBadgeTV);
         TextView teeTimeBadgeTV = (TextView) findViewById(R.id.teeTimeBadgeTV);
         prosBadgeTV = (TextView) findViewById(R.id.prosBadgeTV);
-
-        restaurantBadgeTV.setLayoutParams(params);
-        newsBadgeTV.setLayoutParams(params);
-        contactUsBadgeTV.setLayoutParams(params);
-        hotelsBadgeTV.setLayoutParams(params);
-        proShopBadgeTV.setLayoutParams(params);
-        tournamentsBadgeTV.setLayoutParams(params);
-        teeTimeBadgeTV.setLayoutParams(params);
-        prosBadgeTV.setLayoutParams(params);
-        golfCourseBadgeTV.setLayoutParams(params);
+//
+//        restaurantBadgeTV.setLayoutParams(params);
+//        newsBadgeTV.setLayoutParams(params);
+//        contactUsBadgeTV.setLayoutParams(params);
+//        hotelsBadgeTV.setLayoutParams(params);
+//        proShopBadgeTV.setLayoutParams(params);
+//        tournamentsBadgeTV.setLayoutParams(params);
+//        teeTimeBadgeTV.setLayoutParams(params);
+//        prosBadgeTV.setLayoutParams(params);
+//        golfCourseBadgeTV.setLayoutParams(params);
 
         (findViewById(R.id.im_pros)).setOnClickListener(this);
         (findViewById(R.id.im_tee)).setOnClickListener(this);

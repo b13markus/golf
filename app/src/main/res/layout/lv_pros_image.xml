@@ -29,8 +29,8 @@
             app:riv_corner_radius="@dimen/round_radius_lvimage" />
         <TextView
             android:id="@+id/notificationBadgeCountTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="right|top"
             android:background="@drawable/a_push_badge"
             android:textColor="@android:color/white"
