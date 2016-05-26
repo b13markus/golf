@@ -178,11 +178,11 @@ public class ProshopActivity extends BaseActivity {
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("pro_shop_id").eq(list.get(a).proShopID)).list();
         }
-        setListView();
+        setListView(false);
     }
 
-    private void setListView() {
-        if (list.size() == 1) {
+    private void setListView(boolean openFirstPage) {
+        if ((list.size() == 1  && openFirstPage) || !isNetworkAvailable()) {
             Intent it = new Intent(ProshopActivity.this, ProshopDetailActivity.class);
             ProshopData pro = list.get(0);
             it.putExtra("ProShopID", pro.proShopID);
@@ -323,7 +323,7 @@ public class ProshopActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setListView();
+                    setListView(true);
                     isLoading = false;
                     swipeRefreshLayout.setRefreshing(false);
                 }

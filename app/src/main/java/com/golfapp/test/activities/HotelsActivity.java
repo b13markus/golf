@@ -176,11 +176,11 @@ public class HotelsActivity extends BaseActivity {
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("hotel_id").eq(list.get(a).hotelID)).list();
         }
-        setListView();
+        setListView(false);
     }
 
-    private void setListView() {
-        if (list.size() == 1) {
+    private void setListView(boolean isFirstPage) {
+        if ((list.size() == 1 && isFirstPage) || !isNetworkAvailable()) {
             Intent it = new Intent(HotelsActivity.this, HotelDetailActivity.class);
             HotelData pro = list.get(0);
             it.putExtra("HotelID", pro.hotelID);
@@ -328,7 +328,7 @@ public class HotelsActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setListView();
+                    setListView(true);
                     isLoading = false;
                     swipeRefreshLayout.setRefreshing(false);
                 }

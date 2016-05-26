@@ -172,11 +172,11 @@ public class ProsActivity extends BaseActivity {
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("pros_id").eq(list.get(a).prosID)).list();
         }
-        setListView();
+        setListView(false);
     }
 
-    private void setListView() {
-        if (list.size() == 1) {
+    private void setListView(boolean isFirstPage) {
+        if ((list.size() == 1 && isFirstPage) || !isNetworkAvailable()) {
             Intent it = new Intent(ProsActivity.this, ProsDetailActivity.class);
             ProsData pro = list.get(0);
             it.putExtra("ProsID", pro.prosID);
@@ -318,7 +318,7 @@ public class ProsActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setListView();
+                    setListView(true);
                     isLoading = false;
                     swipeRefreshLayout.setRefreshing(false);
                 }

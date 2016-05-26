@@ -21,7 +21,6 @@ import com.golfapp.test.R;
 import com.golfapp.test.adapters.AdapterCourse;
 import com.golfapp.test.datafiles.CoursesData;
 import com.golfapp.test.datafiles.ImageData;
-import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.Constants;
 import com.golfapp.test.utils.MyListView;
 import com.orm.query.Condition;
@@ -211,15 +210,15 @@ public class CourseActivity extends BaseActivity {
 
     private void loadOffline() {
         clearList = true;
-        list = ProsData.listAll(CoursesData.class);
+        list =  CoursesData.findWithQuery(CoursesData.class, "SELECT * FROM COURSES_DATA ORDER BY position", null);
         for (int a = 0; a < list.size(); a++) {
             list.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("course_id").eq(list.get(a).courseID)).list();
         }
-        setListView();
+        setListView(false);
     }
 
-    private void setListView() {
-        if (list.size() == 1) {
+    private void setListView(boolean openFirstPage) {
+        if ((list.size() == 1 && openFirstPage) || !isNetworkAvailable()) {
             AppConstants.currentCourse = 0;
             Intent it = new Intent(CourseActivity.this, CourseDetailActivity.class);
             CoursesData pro = list.get(0);
@@ -270,6 +269,9 @@ public class CourseActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        if(pageNumber == 1){
+            CoursesData.deleteAll(CoursesData.class);
+        }
         new SaveData().execute(jsonObject);
     }
 
@@ -343,7 +345,7 @@ public class CourseActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setListView();
+                    setListView(true);
                     isLoading = false;
                     swipeRefreshLayout.setRefreshing(false);
                 }
