@@ -33,8 +33,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.golfapp.test.R.id.badgeCountTV;
-
 /**
  * Created by Golakiya on 6/29/2015.
  */
@@ -65,6 +63,7 @@ public class ProDetailRateOffer extends BaseActivity {
         overridePendingTransition(0, 0);
 
         String sid = GcmConstants.PROS + prosID;
+        notificationString = store.getString(Constants.PACKAGE + sid);           // get rates which has notification
         boolean isPros = TinyDB.getInstance(this).getBoolean(sid + "", false);
         if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
             store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
@@ -76,7 +75,6 @@ public class ProDetailRateOffer extends BaseActivity {
         }
 
         if (store.getString(Constants.PACKAGE + prosID) != null) {          // is there any notification for this pro
-            notificationString = store.getString(Constants.PACKAGE + prosID);           // get rates which has notification
             store.setString(Constants.PACKAGE + prosID, null);                          // clear the notification for this pro on shared storage
             clearNotification(prosID, 0);                                               // clear notification on server
             int totalNewsBadgeCount = store.getInt(Constants.PROS_PUSH_COUNT, 0);       // get total notification bage count for pros
