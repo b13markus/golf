@@ -63,6 +63,7 @@ public class RestaurantRatesActivity extends BaseActivity {
         overridePendingTransition(0, 0);
         String sid = GcmConstants.RESTAURANT + restaurantID;
         if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            notificationString = store.getString(Constants.PACKAGE + sid);
             store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
             clearNotification(restaurantID, 0);                                      // clear notification on server
             int totalNewsBadgeCount = store.getInt(Constants.RESTAURANTS_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
