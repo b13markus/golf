@@ -16,11 +16,13 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.adapters.AdapterProsRateOffer;
 import com.golfapp.test.datafiles.ProRates;
 import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.TinyDB;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -30,6 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.golfapp.test.R.id.badgeCountTV;
 
 /**
  * Created by Golakiya on 6/29/2015.
@@ -59,6 +63,18 @@ public class ProDetailRateOffer extends BaseActivity {
     protected void onResume() {
         super.onResume();
         overridePendingTransition(0, 0);
+
+        String sid = GcmConstants.PROS + prosID;
+        boolean isPros = TinyDB.getInstance(this).getBoolean(sid + "", false);
+        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
+            clearNotification(prosID, 0);                                      // clear notification on server
+            int totalNewsBadgeCount = store.getInt(Constants.PROS_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
+            store.setInt(Constants.PROS_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
+            store.setInt(sid + "", 0);
+            TinyDB.getInstance(this).putBoolean(sid, false);
+        }
+
         if (store.getString(Constants.PACKAGE + prosID) != null) {          // is there any notification for this pro
             notificationString = store.getString(Constants.PACKAGE + prosID);           // get rates which has notification
             store.setString(Constants.PACKAGE + prosID, null);                          // clear the notification for this pro on shared storage
