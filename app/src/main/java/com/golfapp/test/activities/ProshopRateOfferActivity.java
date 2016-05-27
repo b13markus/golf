@@ -63,6 +63,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
         overridePendingTransition(0, 0);
         String sid = GcmConstants.PROSHOP + proShopID;
         if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            notificationString = store.getString(Constants.PACKAGE + sid);
             store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
             clearNotification(proShopID, 0);                                      // clear notification on server
             int totalNewsBadgeCount = store.getInt(Constants.PROSHOP_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
@@ -155,7 +156,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
     }
 
     private void loadOflineData() {
-        rateList = Select.from(ProShopRatesData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).list();
+        rateList = Select.from(ProShopRatesData.class).where(Condition.prop("pro_shop_id").eq(proShopID)).orderBy("pub_Date ASC").list();
         adp = new ProShopRatesAdapter(this, rateList, true, notificationString);
         lv.setAdapter(adp);
     }
@@ -241,6 +242,7 @@ public class ProshopRateOfferActivity extends BaseActivity {
     @Override
     public void onResponse(JSONObject jsonObject) {
         super.onResponse(jsonObject);
+        ProShopRatesData.deleteAll(ProShopRatesData.class);
         new SaveData().execute(jsonObject);
 
     }

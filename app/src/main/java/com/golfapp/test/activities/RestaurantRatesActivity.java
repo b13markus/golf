@@ -174,7 +174,7 @@ public class RestaurantRatesActivity extends BaseActivity {
     }
 
     private void loadOflineData() {
-        rateList = Select.from(RestaurantRatesData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).list();
+        rateList = Select.from(RestaurantRatesData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).orderBy("pub_Date DESC").list();
         adp = new AdapterRestaurantRates(this, rateList, true, notificationString);
         lv.setAdapter(adp);
     }
