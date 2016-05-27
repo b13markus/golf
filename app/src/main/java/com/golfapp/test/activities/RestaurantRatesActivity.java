@@ -16,11 +16,13 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.adapters.AdapterRestaurantRates;
 import com.golfapp.test.datafiles.RestaurantData;
 import com.golfapp.test.datafiles.RestaurantRatesData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.TinyDB;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -59,16 +61,16 @@ public class RestaurantRatesActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         overridePendingTransition(0, 0);
-        if (store.getString(Constants.PACKAGE + restaurantID) != null) {
-            notificationString = store.getString(Constants.PACKAGE + restaurantID);
-            store.setString(Constants.PACKAGE + restaurantID, null);
-            clearNotification(restaurantID, 0);
-            int totalNewsBadgeCount = store.getInt(Constants.RESTAURANTS_PUSH_COUNT, 0);
-            store.setInt(Constants.RESTAURANTS_PUSH_COUNT, totalNewsBadgeCount - store.getInt(restaurantID + "", 0));
-            store.setInt(restaurantID + "", 0);
+        String sid = GcmConstants.RESTAURANT + restaurantID;
+        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
+            clearNotification(restaurantID, 0);                                      // clear notification on server
+            int totalNewsBadgeCount = store.getInt(Constants.RESTAURANTS_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
+            store.setInt(Constants.RESTAURANTS_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
+            store.setInt(sid + "", 0);
+            TinyDB.getInstance(this).putBoolean(sid, false);
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

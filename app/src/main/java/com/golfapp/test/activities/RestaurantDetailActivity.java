@@ -64,14 +64,7 @@ public class RestaurantDetailActivity extends BaseActivity {
         } else {
             badgeCountTV.setVisibility(View.GONE);
         }
-        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
-            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
-            clearNotification(restaurantID, 0);                                      // clear notification on server
-            int totalNewsBadgeCount = store.getInt(Constants.RESTAURANTS_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
-            store.setInt(Constants.RESTAURANTS_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
-            store.setInt(sid + "", 0);
-            TinyDB.getInstance(this).putBoolean(sid, false);
-        }
+
     }
 
     @Override
