@@ -16,11 +16,13 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.adapters.ProShopRatesAdapter;
 import com.golfapp.test.datafiles.ProShopRatesData;
 import com.golfapp.test.datafiles.ProshopData;
 import com.golfapp.test.utils.Constants;
+import com.golfapp.test.utils.TinyDB;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -59,14 +61,16 @@ public class ProshopRateOfferActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         overridePendingTransition(0, 0);
-        if (store.getString(Constants.PACKAGE + proShopID) != null) {               //get notification count for this proshop
-            notificationString = store.getString(Constants.PACKAGE + proShopID);        // get offers having notification
-            store.setString(Constants.PACKAGE + proShopID, null);                       // update all ofers notification to be seen
-            clearNotification(proShopID, 0);                                            // clear notification on server
-            int totalNewsBadgeCount = store.getInt(Constants.PROSHOP_PUSH_COUNT, 0);       // total notification count for all pros
-            store.setInt(Constants.PROSHOP_PUSH_COUNT, totalNewsBadgeCount - store.getInt(proShopID + "", 0));     // update total pros notification count not seen
-            store.setInt(proShopID + "", 0);
+        String sid = GcmConstants.PROSHOP + proShopID;
+        if (store.getString(Constants.PACKAGE + sid) != null) {             // Is any notification for this page.
+            store.setString(Constants.PACKAGE + sid, null);                 // Remove all the notification of package
+            clearNotification(proShopID, 0);                                      // clear notification on server
+            int totalNewsBadgeCount = store.getInt(Constants.PROSHOP_PUSH_COUNT, 0);          // get the total notification badge count for Hotels
+            store.setInt(Constants.PROSHOP_PUSH_COUNT, totalNewsBadgeCount - store.getInt(sid + "", 0));      // Subtract this hotel notification count from total notification count
+            store.setInt(sid + "", 0);
+            TinyDB.getInstance(this).putBoolean(sid, false);
         }
+
     }
 
     @Override
