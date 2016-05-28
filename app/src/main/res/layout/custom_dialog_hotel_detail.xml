@@ -29,6 +29,35 @@
     </FrameLayout>
 
     <RelativeLayout
+        android:id="@+id/pros_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/cust_dialog_button"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:padding="@dimen/image_button_padding"
+            android:src="@drawable/a_phone_icon" />
+
+        <TextView
+            android:id="@+id/tvNewsDialogPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/pros_mail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,34 +86,7 @@
             android:textSize="18dp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/pros_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/cust_dialog_button"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="@dimen/button_width"
-            android:layout_height="@dimen/button_height"
-            android:padding="@dimen/image_button_padding"
-            android:src="@drawable/a_phone_icon" />
-
-        <TextView
-            android:id="@+id/tvNewsDialogPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:padding="3dp"
-            android:textColor="#ffffff"
-            android:textSize="18dp" />
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/pros_dir"
