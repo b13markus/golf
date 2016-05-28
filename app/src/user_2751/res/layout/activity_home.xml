@@ -53,8 +53,8 @@
 
                         <TextView
                             android:id="@+id/teeTimeBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -114,8 +114,8 @@
 
                         <TextView
                             android:id="@+id/restaurantBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -176,8 +176,8 @@
 
                         <TextView
                             android:id="@+id/tournamentsBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -247,8 +247,8 @@
 
                         <TextView
                             android:id="@+id/proShopBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -311,8 +311,8 @@
 
                         <TextView
                             android:id="@+id/golfCourseBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -372,8 +372,8 @@
 
                         <TextView
                             android:id="@+id/prosBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -443,8 +443,8 @@
 
                         <TextView
                             android:id="@+id/contactUsBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -508,8 +508,8 @@
 
                         <TextView
                             android:id="@+id/newsBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
@@ -570,8 +570,8 @@
 
                         <TextView
                             android:id="@+id/hotelsBadgeTV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="right|top"
                             android:background="@drawable/a_push_badge"
                             android:gravity="center_horizontal|center_vertical"
