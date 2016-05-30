@@ -47,7 +47,7 @@ android {
             applicationId "com.golfapp.royalgc"
         }
         user_141 {
-            applicationId "com.soulvant.golfclub"
+            applicationId "soulvant.golfclub"
         }
 
         user_6499 {
