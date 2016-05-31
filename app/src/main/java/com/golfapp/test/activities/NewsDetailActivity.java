@@ -207,15 +207,6 @@ public class NewsDetailActivity extends BaseActivity {
         strBuilder.removeSpan(span);
     }
 
-    @Override
-    public void startActivity(Intent intent) {
-        if (TextUtils.equals(intent.getAction(), Intent.ACTION_VIEW)) {
-            String url = intent.getDataString();
-            startActivity(new Intent(getApplicationContext(), BrowserActivity.class).putExtra(BrowserActivity.URL, url).putExtra(BrowserActivity.AD_NAME, url));
-        } else {
-            super.startActivity(intent);
-        }
-    }
 
     public void setd(String objjj) {
         title.setText(selectedNews.title);

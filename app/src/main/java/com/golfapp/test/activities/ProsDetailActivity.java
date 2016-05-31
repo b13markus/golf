@@ -4,11 +4,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,6 +94,8 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         tit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tit.setText(selectedPros.name);
         des.setText(selectedPros.desc);
+        des.setLinkTextColor(Color.parseColor("#94BC0D"));
+        Linkify.addLinks(des, Linkify.WEB_URLS);
         if (selectedPros.package_count == 0) {
             rates.setBackgroundResource(R.drawable.btn_disable);
         } else {

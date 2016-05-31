@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -260,6 +261,15 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
                 e.printStackTrace();
             }
 
+        }
+    }
+    @Override
+    public void startActivity(Intent intent) {
+        if (TextUtils.equals(intent.getAction(), Intent.ACTION_VIEW)) {
+            String url = intent.getDataString();
+            startActivity(new Intent(getApplicationContext(), BrowserActivity.class).putExtra(BrowserActivity.URL, url).putExtra(BrowserActivity.AD_NAME, url));
+        } else {
+            super.startActivity(intent);
         }
     }
 

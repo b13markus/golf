@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,6 +97,8 @@ public class HotelDetailActivity extends BaseActivity {
         selectedHotel = Select.from(HotelData.class).where(Condition.prop("hotel_id").eq(hotelID)).first();
         selectedHotel.imageList = Select.from(ImageData.class).where(Condition.prop("hotel_id").eq(hotelID)).list();
         des.setText(selectedHotel.desc);
+        des.setLinkTextColor(Color.parseColor("#94BC0D"));
+        Linkify.addLinks(des, Linkify.WEB_URLS);
         TextView tit = (TextView) findViewById(R.id.title1);
         tit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tit.setText(selectedHotel.name);
