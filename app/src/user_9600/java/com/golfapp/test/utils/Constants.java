@@ -63,7 +63,7 @@ public class Constants {
     public static String PROSHOP_PUSH_COUNT = "proshop_badge_count";
     public static String HOTEL_PUSH_COUNT = "hotel_badge_count";
     public static String PACKAGE = "Package";
-    public static int AD_SERVING_TIME_IN_SEC = 15*60;
+    public static int AD_SERVING_TIME_IN_SEC = 15;
     public static int CLEAR_BACKSTACK_TIME_IN_SECONDS = 10;
     public static final long TASK_KILL_DURATION_IN_MILISECONDS = 10 * 1000;
     public static String APP_START_TIME = "Start Time";
