@@ -147,8 +147,4 @@
     <string name="events_friday">Vendredi</string>
     <string name="events_saturday">Samedi</string>
 
-    <string name="course_id" translatable="false">course_id</string>
-    <string name="course_list_position" translatable="false">position</string>
-    <string name="course_res_id" translatable="false">course res id</string>
-
 </resources>
