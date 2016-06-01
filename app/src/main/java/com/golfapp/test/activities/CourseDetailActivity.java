@@ -2,8 +2,10 @@ package com.golfapp.test.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +57,8 @@ public class CourseDetailActivity extends BaseActivity {
         TextView tit = (TextView) findViewById(R.id.title1);
         tit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         TextView stit = (TextView) findViewById(R.id.subtitle);
+
+
         JustifiedTextView jst = (JustifiedTextView) findViewById(R.id.jst);
         SliderLayout mDemoSlider = (SliderLayout) findViewById(R.id.slider);
         Typeface tp = Typeface.createFromAsset(getAssets(), "fonts/B.ttf");
@@ -63,6 +67,8 @@ public class CourseDetailActivity extends BaseActivity {
         jst.setTypeFace(Typeface.createFromAsset(getAssets(), "fonts/LT.ttf"));
         TextView des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(lt);
+        Linkify.addLinks(des, Linkify.WEB_URLS);
+        des.setLinkTextColor(Color.parseColor("#94BC0D"));
         thecourse.setTypeface(tp);
         fac.setTypeface(tp);
         rates.setTypeface(tp);
@@ -83,6 +89,13 @@ public class CourseDetailActivity extends BaseActivity {
             stit.setText(hole + " - " + par + " - " + len);
             jst.setText(selectedCourse.descr);
             des.setText(selectedCourse.descr);
+            Linkify.addLinks(des, Linkify.WEB_URLS);
+            des.setLinkTextColor(Color.parseColor("#94BC0D"));
+
+
+
+
+
             String r = selectedCourse.rateCount + "";
             Log.d("", "rr--" + r);
             if (r.compareToIgnoreCase("0") == 0) {

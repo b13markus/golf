@@ -3,6 +3,7 @@ package com.golfapp.test.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +56,6 @@ public class AdapterHotelPackage extends ArrayAdapter<HotelRatesData> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        //  TextView desc = (TextView) rowView.findViewById(R.id.descc);
-        //DocumentView dv=(DocumentView)rowView.findViewById(R.id.desctextpros); rowView.setOnClickListener(new View.OnClickListener() {
         if (notificationString != null) {
             if (notificationString.contains(obj.rateID + "")) {
                 viewHolder.badge.setVisibility(View.VISIBLE);
@@ -71,22 +70,6 @@ public class AdapterHotelPackage extends ArrayAdapter<HotelRatesData> {
             viewHolder.ll.setBackgroundResource(R.drawable.tvgg);
             viewHolder.tit.setTextColor(context.getResources().getColor(R.color.actionBarColor));
         }
-        /*String nes = null;
-        try {
-            if (ishotel) {
-                nes = obj.getString("id");
-            } else {
-                nes = obj.getString("id");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.d("", "Nesid--" + nes);
-        if (ids.contains(nes)) {
-            viewHolder.badge.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.badge.setVisibility(View.GONE);
-        }*/
         viewHolder.jst1.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
         viewHolder.tit.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/B.ttf"));
         viewHolder.stit.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/I.ttf"));
@@ -95,6 +78,8 @@ public class AdapterHotelPackage extends ArrayAdapter<HotelRatesData> {
         viewHolder.stit.setText(obj.subTitle);
         viewHolder.jst.setText(obj.desc);
         viewHolder.jst1.setText(obj.desc);
+        Linkify.addLinks(viewHolder.jst1, Linkify.WEB_URLS);
+        viewHolder.jst1.setLinkTextColor(Color.parseColor("#94BC0D"));
         return convertView;
     }
 

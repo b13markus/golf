@@ -3,6 +3,7 @@ package com.golfapp.test.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,22 +71,6 @@ public class ProShopRatesAdapter extends ArrayAdapter<ProShopRatesData> {
             viewHolder.ll.setBackgroundResource(R.drawable.tvgg);
             viewHolder.tit.setTextColor(context.getResources().getColor(R.color.actionBarColor));
         }
-        /*String nes = null;
-        try {
-            if (ishotel) {
-                nes = obj.getString("id");
-            } else {
-                nes = obj.getString("id");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.d("", "Nesid--" + nes);
-        if (ids.contains(nes)) {
-            viewHolder.badge.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.badge.setVisibility(View.GONE);
-        }*/
         viewHolder.jst1.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
         viewHolder.tit.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/B.ttf"));
         viewHolder.stit.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/I.ttf"));
@@ -94,6 +79,8 @@ public class ProShopRatesAdapter extends ArrayAdapter<ProShopRatesData> {
         viewHolder.stit.setText(obj.subTitle);
         viewHolder.jst.setText(obj.desc);
         viewHolder.jst1.setText(obj.desc);
+        Linkify.addLinks(viewHolder.jst1, Linkify.WEB_URLS);
+        viewHolder.jst1.setLinkTextColor(Color.parseColor("#94BC0D"));
         return convertView;
     }
 

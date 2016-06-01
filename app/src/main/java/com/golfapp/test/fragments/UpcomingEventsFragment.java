@@ -113,14 +113,7 @@ public class UpcomingEventsFragment extends BaseFragment {
     @Override
     public void onRefresh() {
         super.onRefresh();
-        /*if (baseActivity.isNetworkAvailable()) {
-            if (list.size() > 0)
-                checkIfUpdateReuired(list.get(0).eventID);
-            else
-                swipeRefreshLayout.setRefreshing(false);
-        } else {
-            swipeRefreshLayout.setRefreshing(false);
-        }*/
+
         if (baseActivity.isNetworkAvailable()) {
             clearList = true;
             pageNumber = 0;

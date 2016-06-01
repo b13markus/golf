@@ -111,6 +111,8 @@ public class NewsDetailActivity extends BaseActivity {
         Typeface tfi = Typeface.createFromAsset(getAssets(), "fonts/BI.ttf");
         des = (TextView) findViewById(R.id.desctext1);
         des.setTypeface(tf);
+        Linkify.addLinks(des, Linkify.WEB_URLS);
+        des.setLinkTextColor(Color.parseColor("#94BC0D"));
         title.setTypeface(tfb);
         stit.setTypeface(tfi);
         sdate.setTypeface(tf);

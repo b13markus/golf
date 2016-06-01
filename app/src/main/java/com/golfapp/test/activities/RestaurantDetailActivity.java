@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,6 +93,9 @@ public class RestaurantDetailActivity extends BaseActivity {
         selectedRasturant = Select.from(com.golfapp.test.datafiles.RestaurantData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).first();
         selectedRasturant.imageList = Select.from(com.golfapp.test.datafiles.ImageData.class).where(Condition.prop("restaurant_id").eq(restaurantID)).list();
         des.setText(selectedRasturant.descr);
+
+        Linkify.addLinks(des, Linkify.WEB_URLS);
+        des.setLinkTextColor(Color.parseColor("#94BC0D"));
         TextView tit = (TextView) findViewById(R.id.title1);
         tit.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tit.setText(selectedRasturant.name);

@@ -2,7 +2,9 @@ package com.golfapp.test.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +53,9 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
             viewHolder.tvEventDay = (TextView) convertView.findViewById(R.id.dateet);
             viewHolder.tvDesc1 = (TextView) convertView.findViewById(R.id.lvEventDesc1);
             viewHolder.tvDesc2 = (TextView) convertView.findViewById(R.id.lvEventDesc2);
+            Linkify.addLinks(viewHolder.tvDesc2, Linkify.WEB_URLS);
+            viewHolder.tvDesc2.setLinkTextColor(Color.parseColor("#94BC0D"));
+
             viewHolder.ivEventWinner = (ImageView) convertView.findViewById(R.id.ivEventWinner);
             viewHolder.tvDesc3 = (TextView) convertView.findViewById(R.id.lvEventDesc3);
             viewHolder.tvDesc4 = (TextView) convertView.findViewById(R.id.lvEventDesc4);
@@ -61,6 +66,9 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
         }
         viewHolder.tvDesc1.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/B.ttf"));
         viewHolder.tvDesc2.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
+        Linkify.addLinks(viewHolder.tvDesc1, Linkify.WEB_URLS);
+        viewHolder.tvDesc1.setLinkTextColor(Color.parseColor("#94BC0D"));
+
         viewHolder.tvDesc3.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
         viewHolder.tvDesc4.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
         viewHolder.tvEventDay.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/B.ttf"));
@@ -148,6 +156,8 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
                 }
             }
         });
+        Linkify.addLinks(viewHolder.tvDesc2, Linkify.WEB_URLS);
+        viewHolder.tvDesc2.setLinkTextColor(Color.parseColor("#94BC0D"));
 
         return convertView;
     }
