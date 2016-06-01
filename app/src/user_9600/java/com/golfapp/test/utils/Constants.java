@@ -12,7 +12,7 @@ import java.util.Locale;
  */
 public class Constants {
 
-    public static final String app_name = "Golf App";
+    public static final String app_name = "Royal Golf Club";
     public static final String clientId = "9600";
 
     public static int draw = 7;
