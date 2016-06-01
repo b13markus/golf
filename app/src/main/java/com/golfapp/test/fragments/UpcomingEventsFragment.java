@@ -140,7 +140,7 @@ public class UpcomingEventsFragment extends BaseFragment {
         try {
             if (clearList) {
                 clearList = false;
-                adapterEvent = new AdapterEvent(baseActivity, list);
+                adapterEvent = new AdapterEvent(baseActivity, list, false);
                 lv.setAdapter(adapterEvent);
             } else {
                 adapterEvent.notifyDataSetChanged();

@@ -33,13 +33,15 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
     private BaseActivity context;
     private int event = 1;
     private PDFtools df;
+    private boolean mShowUrl;
 
     //1 Upcoming , //0 Past
 
 
-    public AdapterEvent(BaseActivity context, List<EventsData> objects) {
+    public AdapterEvent(BaseActivity context, List<EventsData> objects, boolean showUrl) {
         super(context, 0, objects);
         this.context = context;
+        mShowUrl = showUrl;
     }
 
     @Override
@@ -53,8 +55,7 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
             viewHolder.tvEventDay = (TextView) convertView.findViewById(R.id.dateet);
             viewHolder.tvDesc1 = (TextView) convertView.findViewById(R.id.lvEventDesc1);
             viewHolder.tvDesc2 = (TextView) convertView.findViewById(R.id.lvEventDesc2);
-            Linkify.addLinks(viewHolder.tvDesc2, Linkify.WEB_URLS);
-            viewHolder.tvDesc2.setLinkTextColor(Color.parseColor("#94BC0D"));
+
 
             viewHolder.ivEventWinner = (ImageView) convertView.findViewById(R.id.ivEventWinner);
             viewHolder.tvDesc3 = (TextView) convertView.findViewById(R.id.lvEventDesc3);
@@ -66,8 +67,10 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
         }
         viewHolder.tvDesc1.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/B.ttf"));
         viewHolder.tvDesc2.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
-        Linkify.addLinks(viewHolder.tvDesc1, Linkify.WEB_URLS);
-        viewHolder.tvDesc1.setLinkTextColor(Color.parseColor("#94BC0D"));
+        if (mShowUrl) {
+            Linkify.addLinks(viewHolder.tvDesc1, Linkify.WEB_URLS);
+            viewHolder.tvDesc1.setLinkTextColor(Color.parseColor("#94BC0D"));
+        }
 
         viewHolder.tvDesc3.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
         viewHolder.tvDesc4.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/LT.ttf"));
@@ -127,9 +130,6 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
                 }
                 viewHolder.ivEventWinner.setVisibility(View.VISIBLE);
                 viewHolder.arrow.setVisibility(View.GONE);
-                /*viewHolder.arrow.setImageResource(R.drawable.a_winner_icon);
-                viewHolder.arrow.setRotation(0);
-                viewHolder.arrow.setMaxHeight(20);*/
                 viewHolder.ivEventWinner.setPadding(10, 10, 10, 10);
                 viewHolder.ivEventWinner.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -137,7 +137,7 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
                         df.showPDFUrl(context, viewHolder.obj.fileResult);
                     }
                 });
-            }else {
+            } else {
                 viewHolder.ivEventWinner.setVisibility(View.GONE);
             }
         } else {
@@ -156,8 +156,10 @@ public class AdapterEvent extends ArrayAdapter<EventsData> {
                 }
             }
         });
-        Linkify.addLinks(viewHolder.tvDesc2, Linkify.WEB_URLS);
-        viewHolder.tvDesc2.setLinkTextColor(Color.parseColor("#94BC0D"));
+        if (mShowUrl) {
+            Linkify.addLinks(viewHolder.tvDesc2, Linkify.WEB_URLS);
+            viewHolder.tvDesc2.setLinkTextColor(Color.parseColor("#94BC0D"));
+        }
 
         return convertView;
     }

@@ -130,7 +130,7 @@ public class PastEventsFragment extends com.golfapp.test.fragments.BaseFragment 
         try {
             if (clearList) {
                 clearList = false;
-                adapterEvent = new com.golfapp.test.adapters.AdapterEvent(baseActivity, list);
+                adapterEvent = new com.golfapp.test.adapters.AdapterEvent(baseActivity, list, true);
                 lv.setAdapter(adapterEvent);
             } else {
                 adapterEvent.notifyDataSetChanged();
