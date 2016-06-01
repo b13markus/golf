@@ -1,10 +1,12 @@
 package com.golfapp.test.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,17 +68,28 @@ public class EventDetailActivity extends BaseActivity {
         if(selectedEvent!=null) {
             ti.setText(selectedEvent.name);
             sub.setText(selectedEvent.format);
+            Linkify.addLinks(ti, Linkify.WEB_URLS);
+            ti.setLinkTextColor(Color.parseColor("#94BC0D"));
+
+            Linkify.addLinks(sub, Linkify.WEB_URLS);
+            sub.setLinkTextColor(Color.parseColor("#94BC0D"));
+
+
             String rf = selectedEvent.remark1;
             if (rf.equals("") || rf.equals("null")) {
                 rem1.setVisibility(View.GONE);
             } else {
                 rem1.setText(rf);
+                Linkify.addLinks(rem1, Linkify.WEB_URLS);
+                rem1.setLinkTextColor(Color.parseColor("#94BC0D"));
             }
             String r = selectedEvent.remark2;
             if (r.equals("") || r.equals("null")) {
                 rem2.setVisibility(View.GONE);
             } else {
                 rem2.setText(r);
+                Linkify.addLinks(rem2, Linkify.WEB_URLS);
+                rem2.setLinkTextColor(Color.parseColor("#94BC0D"));
             }
         }
 
