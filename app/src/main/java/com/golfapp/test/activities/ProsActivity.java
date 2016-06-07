@@ -176,7 +176,7 @@ public class ProsActivity extends BaseActivity {
     }
 
     private void setListView(boolean isFirstPage) {
-        if ((list.size() == 1 && isFirstPage) || !isNetworkAvailable()) {
+        if ((list.size() == 1 && isFirstPage) || (!isNetworkAvailable() && list.size() == 1)) {
             Intent it = new Intent(ProsActivity.this, ProsDetailActivity.class);
             ProsData pro = list.get(0);
             it.putExtra("ProsID", pro.prosID);

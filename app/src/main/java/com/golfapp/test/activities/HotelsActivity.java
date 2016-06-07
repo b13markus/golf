@@ -180,7 +180,7 @@ public class HotelsActivity extends BaseActivity {
     }
 
     private void setListView(boolean isFirstPage) {
-        if ((list.size() == 1 && isFirstPage) || !isNetworkAvailable()) {
+        if ((list.size() == 1 && isFirstPage)  || (!isNetworkAvailable() && list.size() == 1)) {
             Intent it = new Intent(HotelsActivity.this, HotelDetailActivity.class);
             HotelData pro = list.get(0);
             it.putExtra("HotelID", pro.hotelID);

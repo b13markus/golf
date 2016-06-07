@@ -218,7 +218,7 @@ public class CourseActivity extends BaseActivity {
     }
 
     private void setListView(boolean openFirstPage) {
-        if ((list.size() == 1 && openFirstPage) || !isNetworkAvailable()) {
+        if ((list.size() == 1 && openFirstPage)  || (!isNetworkAvailable() && list.size() == 1)) {
             AppConstants.currentCourse = 0;
             Intent it = new Intent(CourseActivity.this, CourseDetailActivity.class);
             CoursesData pro = list.get(0);

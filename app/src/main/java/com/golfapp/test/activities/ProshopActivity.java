@@ -182,7 +182,7 @@ public class ProshopActivity extends BaseActivity {
     }
 
     private void setListView(boolean openFirstPage) {
-        if ((list.size() == 1  && openFirstPage) || !isNetworkAvailable()) {
+        if ((list.size() == 1  && openFirstPage)  || (!isNetworkAvailable() && list.size() == 1)) {
             Intent it = new Intent(ProshopActivity.this, ProshopDetailActivity.class);
             ProshopData pro = list.get(0);
             it.putExtra("ProShopID", pro.proShopID);
