@@ -54,6 +54,10 @@ android {
             applicationId "com.golfapp.gccranssursierre"
         }
 
+        user_2794 {
+            applicationId "com.golfapp.gcmontsaintjean"
+        }
+
     }
     signingConfigs {
         releaseApp {
