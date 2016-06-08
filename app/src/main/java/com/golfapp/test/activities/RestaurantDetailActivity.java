@@ -76,6 +76,12 @@ public class RestaurantDetailActivity extends BaseActivity {
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
         Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.re_contact_btn));
+        thecourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTeetime();
+            }
+        });
         Button fac = (Button) findViewById(R.id.faci);
         fac.setText(getString(R.string.re_menu_btn));
         TextView rates = (TextView) findViewById(R.id.ratess);
@@ -124,12 +130,13 @@ public class RestaurantDetailActivity extends BaseActivity {
                 mDemoSlider.stopAutoCycle();
             }
         }
-        thecourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTeetime();
+        if (selectedRasturant.email == null || selectedRasturant.email.equals("") || selectedRasturant.email.equals("null")) {
+            if (selectedRasturant.phone == null || selectedRasturant.phone.equals("") || selectedRasturant.phone.equals("null")) {
+                thecourse.setBackgroundResource(R.drawable.btn_disable);
+                thecourse.setClickable(false);
             }
-        });
+        }
+
 
         String r = selectedRasturant.packageCount + "";
         Log.d("", "rate----" + r);
@@ -259,25 +266,24 @@ public class RestaurantDetailActivity extends BaseActivity {
         tvCancel.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvdir.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         emm = selectedRasturant.email;
-        if (emm.equals("") || emm.equals("null")) {
+        if (emm == null || emm.equals("") || emm.equals("null")) {
             email.setBackgroundResource(R.drawable.btn_disable);
             email.setClickable(false);
         }
         ccc = selectedRasturant.phone;
-        if (ccc.equals("") || ccc.equals("null")) {
+        if (ccc == null || ccc.equals("") || ccc.equals("null")) {
             phone.setBackgroundResource(R.drawable.btn_disable);
+            phone.setClickable(false);
         }
         dirr = selectedRasturant.latitude + "";
-        if (dirr.equals("") || dirr.equals("null")) {
-
+        if (dirr == null || dirr.equals("") || dirr.equals("null")) {
             dir.setBackgroundResource(R.drawable.btn_disable);
+            phone.setClickable(false);
         }
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent emailIntent = null;
-                if (emm.equals("") || emm.equals("null")) {
-                } else {
                     try {
                         emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", emm, null));
                     } catch (Exception e) {
@@ -286,15 +292,12 @@ public class RestaurantDetailActivity extends BaseActivity {
                     //  emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                     //  emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                     startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.events_share_btn)));
-                }
             }
         });
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = null;
-                if (ccc.equals("") || ccc.equals("null")) {
-                } else {
                     try {
                         intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + ccc));
                     } catch (Exception e) {
@@ -302,20 +305,16 @@ public class RestaurantDetailActivity extends BaseActivity {
                     }
                     startActivity(intent);
                 }
-            }
         });
 
         dir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String uri = null;
-                if (dirr.equals("") || dirr.equals("null")) {
-                } else {
                     uri = "http://maps.google.com/maps?q=" + selectedRasturant.latitude + "," + selectedRasturant.longitude;
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
                 }
-            }
         });
         //m_llMain.setBackgroundResource(R.drawable.btn_style_border_roundcorner);
 

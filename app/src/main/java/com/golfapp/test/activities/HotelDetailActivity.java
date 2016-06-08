@@ -79,6 +79,12 @@ public class HotelDetailActivity extends BaseActivity {
         getSupportActionBar().hide();
         Button thecourse = (Button) findViewById(R.id.thecour);
         thecourse.setText(getString(R.string.htl_contact_pop_up_title));
+        thecourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTeetime();
+            }
+        });
         addToBack(this);
         badgeCountTV = (TextView) findViewById(R.id.badgeCountTV);
         Button fac = (Button) findViewById(R.id.faci);
@@ -134,12 +140,14 @@ public class HotelDetailActivity extends BaseActivity {
             }
             mDemoSlider.stopAutoCycle();
         }
-        thecourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTeetime();
+
+        if (selectedHotel.email == null || selectedHotel.email.equals("") || selectedHotel.email.equals("null")) {
+            if (selectedHotel.phone == null || selectedHotel.phone.equals("") || selectedHotel.phone.equals("null")) {
+                thecourse.setBackgroundResource(R.drawable.btn_disable);
+                thecourse.setClickable(false);
             }
-        });
+        }
+
         if (selectedHotel.website != null) {
             if (selectedHotel.website.equals("") || selectedHotel.website.equals("null")) {
                 fac.setEnabled(false);
@@ -236,25 +244,11 @@ public class HotelDetailActivity extends BaseActivity {
         tvdir.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         emm = selectedHotel.email;
 
-        if (email == null || emm.equals("") || emm.equals("null")) {
-            email.setBackgroundResource(R.drawable.btn_disable);
-            email.setClickable(false);
-        }
-        ccc = selectedHotel.phone;
-        if (ccc == null || ccc.equals("") || ccc.equals("null")) {
-            phone.setBackgroundResource(R.drawable.btn_disable);
-            //email.setClickable(false);
-        }
-        dirr = selectedHotel.latitude + "";
-        if (dirr == null || dirr.equals("") || dirr.equals("null")) {
-            dir.setBackgroundResource(R.drawable.btn_disable);
-        }
+
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent emailIntent = null;
-                if (emm.equals("") || emm.equals("null")) {
-                } else {
                     try {
                         emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", emm, null));
                     } catch (Exception e) {
@@ -264,14 +258,11 @@ public class HotelDetailActivity extends BaseActivity {
                     //  emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                     startActivity(Intent.createChooser(emailIntent, getString(R.string.ps_share_btn)));
                 }
-            }
         });
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = null;
-                if (ccc.equals("") || ccc.equals("null")) {
-                } else {
                     try {
                         intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + ccc));
                     } catch (Exception e) {
@@ -279,7 +270,6 @@ public class HotelDetailActivity extends BaseActivity {
                     }
                     startActivity(intent);
                 }
-            }
         });
 
         dir.setOnClickListener(new View.OnClickListener() {
@@ -295,7 +285,19 @@ public class HotelDetailActivity extends BaseActivity {
             }
         });
         //m_llMain.setBackgroundResource(R.drawable.btn_style_border_roundcorner);
-
+        if (emm == null || emm.equals("") || emm.equals("null")) {
+            email.setBackgroundResource(R.drawable.btn_disable);
+            email.setClickable(false);
+        }
+        ccc = selectedHotel.phone;
+        if (ccc == null || ccc.equals("") || ccc.equals("null")) {
+            phone.setBackgroundResource(R.drawable.btn_disable);
+            phone.setClickable(false);
+        }
+        dirr = selectedHotel.latitude + "";
+        if (dirr == null || dirr.equals("") || dirr.equals("null")) {
+            dir.setBackgroundResource(R.drawable.btn_disable);
+        }
         layout.findViewById(R.id.cancel_pros).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

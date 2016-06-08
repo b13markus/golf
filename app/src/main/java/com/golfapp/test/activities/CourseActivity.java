@@ -1,10 +1,12 @@
 package com.golfapp.test.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -70,16 +72,17 @@ public class CourseActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        urlCourse = Constants.urlCourseData + "?client=" + Constants.clientId + "&sectoken=" + Constants.md5() + "&language=" +
-                Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         loadItems = true;
         addToBack(this);
+        urlCourse = Constants.urlCourseData + "?client=" + Constants.clientId + "&sectoken=" + Constants.md5() + "&language=" +
+                Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         ((TextView) findViewById(R.id.courseActionTitle)).setText(R.string.crs_the_course_list_nav_bar);
         ((TextView) findViewById(R.id.courseActionTitle)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         getSupportActionBar().hide();
         clearList = true;
         lv = ((MyListView) findViewById(R.id.listnews));
-
+        footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
+//        lv.addFooterView(footerView);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
@@ -97,8 +100,9 @@ public class CourseActivity extends BaseActivity {
         } else {
             toast(getString(R.string.no_inet));
         }
-        footerView = inflater.inflate(R.layout.footer_view, null, false);
-        lv.addFooterView(footerView);
+
+        lv.setOnItemClickListener(this);
+        setupActionBar();
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -122,8 +126,7 @@ public class CourseActivity extends BaseActivity {
                 }
             }
         });
-        lv.setOnItemClickListener(this);
-        setupActionBar();
+
     }
 
     @Override
