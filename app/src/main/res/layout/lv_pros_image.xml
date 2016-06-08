@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/left_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:adjustViewBounds="true">
+
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ivListPros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/a_place_holder_list_view"
+            app:riv_corner_radius="@dimen/round_radius_lvimage" />
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/placeHolderImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/a_place_holder_list_view"
+            android:visibility="gone"
+            app:riv_corner_radius="@dimen/round_radius_lvimage" />
+        <TextView
+            android:id="@+id/notificationBadgeCountTV"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="right|top"
+            android:background="@drawable/a_push_badge"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal|center_vertical"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/left_margin"
+            android:layout_marginLeft="@dimen/left_margin"
+            android:layout_marginRight="@dimen/left_margin"
+            android:background="#70000000"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/right_margin"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/tvgg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="center"
+            android:text="Title "
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/actionBarColor"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Subtitle"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sub_title_size" />
+
+        <TextView
+            android:id="@+id/descc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="@dimen/des_size"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/jst1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_descr"
+
+            ></TextView>
+
+        <com.golfapp.test.utils.JustifiedTextView
+            xmlns:noghteh="http://noghteh.ir"
+            android:id="@+id/jst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="2dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            noghteh:textColor="#ffffff"
+            noghteh:textSize="16sp"></com.golfapp.test.utils.JustifiedTextView>
+
+
+        <com.bluejamesbond.text.DocumentView xmlns:ext="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/desctextpros"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:visibility="gone"
+            ext:documentView_antialias="true"
+            ext:documentView_cacheConfig="auto_quality"
+            ext:documentView_hyphen="-"
+            ext:documentView_insetPadding="0dp"
+            ext:documentView_insetPaddingBottom="0dp"
+            ext:documentView_insetPaddingLeft="0dp"
+            ext:documentView_insetPaddingRight="0dp"
+            ext:documentView_insetPaddingTop="0dp"
+            ext:documentView_lineHeightMultiplier="1.0"
+            ext:documentView_maxLines="300"
+            ext:documentView_offsetX="0dp"
+            ext:documentView_offsetY="0dp"
+            ext:documentView_reverse="false"
+            ext:documentView_textAlignment="center"
+            ext:documentView_textColor="@android:color/white"
+            ext:documentView_textFormat="plain"
+            ext:documentView_textSize="16sp"
+            ext:documentView_textSubPixel="true"
+            ext:documentView_textTypefacePath="fonts/LT.ttf"
+            ext:documentView_wordSpacingMultiplier="1.0" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="@dimen/new_badge_width"
+        android:layout_height="@dimen/new_badge_width"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/left_margin"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/a_new_news"
+        android:visibility="gone" />
+</RelativeLayout>

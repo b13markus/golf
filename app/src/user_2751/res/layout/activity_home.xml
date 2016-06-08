@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/a_home"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_tee"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_tee_time" />
+
+                        <TextView
+                            android:id="@+id/teeTimeBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttTeeTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_tee_time_btn"
+                        android:textColor="@color/tvColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_rest"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_restaurant" />
+
+                        <TextView
+                            android:id="@+id/restaurantBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttRest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_rest_btn"
+                        android:textColor="@color/tvColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_event"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_events" />
+
+                        <TextView
+                            android:id="@+id/tournamentsBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttEvents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_events_btn"
+                        android:textColor="@color/tvColor" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_proshop"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_proshop" />
+
+                        <TextView
+                            android:id="@+id/proShopBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttProshop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_proshp_btn"
+                        android:textColor="@color/tvColor" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_course"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_courses" />
+
+                        <TextView
+                            android:id="@+id/golfCourseBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttCourse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_courses_btn"
+                        android:textColor="@color/tvColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_pros"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_pros" />
+
+                        <TextView
+                            android:id="@+id/prosBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttPros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_pros_btn"
+                        android:textColor="@color/tvColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/im_cont"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_contact" />
+
+                        <TextView
+                            android:id="@+id/contactUsBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttContact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_contact_btn"
+                        android:textColor="@color/tvColor" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+
+                        <ImageView
+                            android:id="@+id/im_news"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_news" />
+
+                        <TextView
+                            android:id="@+id/newsBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttNews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_news_btn"
+                        android:textColor="@color/tvColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/home_background"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <FrameLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1">
+
+
+                        <ImageView
+                            android:id="@+id/im_hotel"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/a_hotel" />
+
+                        <TextView
+                            android:id="@+id/hotelsBadgeTV"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/a_push_badge"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingTop="1dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/ttHotels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:singleLine="true"
+                        android:text="@string/hm_htls_btn"
+                        android:textColor="@color/tvColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

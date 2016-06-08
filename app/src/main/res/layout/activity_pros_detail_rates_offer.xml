@@ -1,0 +1,109 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/a_screen_bkg">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/actionBarColor"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/prosOfferActionBack"
+            android:layout_width="@dimen/width_action_bar_buttons"
+            android:layout_height="@dimen/height_action_bar_buttons"
+            android:layout_weight="1"
+            android:padding="@dimen/left_margin"
+            android:src="@drawable/a_back_btn" />
+
+
+        <ImageView
+            android:id="@+id/prosOfferActionHome"
+            android:layout_width="@dimen/width_action_bar_buttons"
+            android:layout_height="@dimen/height_action_bar_buttons"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:padding="@dimen/left_margin"
+            android:src="@drawable/a_home_icon" />
+
+        <TextView
+            android:id="@+id/prosOfferActionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/prosOfferActionBack"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/prosOfferActionHome"
+            android:layout_toRightOf="@+id/prosOfferActionBack"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/title_size"  />
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout4"
+        android:height="2dp"
+        android:background="#000000"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout4"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/left_margin"
+            android:layout_marginRight="@dimen/right_margin"
+            android:background="@drawable/llbg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_height"
+                android:layout_marginBottom="@dimen/bnt_margin"
+                android:layout_marginTop="@dimen/bnt_margin"
+                android:background="@drawable/btn_disable"
+                android:paddingLeft="60dp"
+                android:textColor="@android:color/white"
+                android:paddingRight="60dp"
+                android:textAllCaps="false"
+                android:textSize="@dimen/btn_size" />
+
+
+        </LinearLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lvProsRateOffer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
+                android:choiceMode="singleChoice"
+                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:paddingBottom="15dp" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+</RelativeLayout>
