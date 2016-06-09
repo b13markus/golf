@@ -525,7 +525,7 @@ public class MainActivity extends BaseActivity {
         TextView tvCancel = (TextView) layout.findViewById(R.id.tvNewsDialogCancel);
         tvCancel.setText(getString(R.string.cnt_cancel_btn));
         TextView tvWebsite = (TextView) layout.findViewById(R.id.tvNewsDialogWebsite);
-        tvWebsite.setText(getString(R.string.cnt_website_btn));
+        tvWebsite.setText(getString(R.string.htl_website_btn));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setText(getString(R.string.cnt_contact_pop_up_title));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvEmail.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
