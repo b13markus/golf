@@ -267,18 +267,21 @@ public class RestaurantDetailActivity extends BaseActivity {
         tvdir.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         emm = selectedRasturant.email;
         if (emm == null || emm.equals("") || emm.equals("null")) {
+            email.setVisibility(View.GONE);
             email.setBackgroundResource(R.drawable.btn_disable);
             email.setClickable(false);
         }
         ccc = selectedRasturant.phone;
         if (ccc == null || ccc.equals("") || ccc.equals("null")) {
+            phone.setVisibility(View.GONE);
             phone.setBackgroundResource(R.drawable.btn_disable);
             phone.setClickable(false);
         }
         dirr = selectedRasturant.latitude + "";
         if (dirr == null || dirr.equals("") || dirr.equals("null")) {
+            dir.setVisibility(View.GONE);
             dir.setBackgroundResource(R.drawable.btn_disable);
-            phone.setClickable(false);
+            dir.setClickable(false);
         }
         email.setOnClickListener(new View.OnClickListener() {
             @Override

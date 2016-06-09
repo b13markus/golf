@@ -286,17 +286,21 @@ public class HotelDetailActivity extends BaseActivity {
         });
         //m_llMain.setBackgroundResource(R.drawable.btn_style_border_roundcorner);
         if (emm == null || emm.equals("") || emm.equals("null")) {
+            email.setVisibility(View.GONE);
             email.setBackgroundResource(R.drawable.btn_disable);
             email.setClickable(false);
         }
         ccc = selectedHotel.phone;
         if (ccc == null || ccc.equals("") || ccc.equals("null")) {
+            phone.setVisibility(View.GONE);
             phone.setBackgroundResource(R.drawable.btn_disable);
             phone.setClickable(false);
         }
         dirr = selectedHotel.latitude + "";
         if (dirr == null || dirr.equals("") || dirr.equals("null")) {
+            dir.setVisibility(View.GONE);
             dir.setBackgroundResource(R.drawable.btn_disable);
+            dir.setClickable(false);
         }
         layout.findViewById(R.id.cancel_pros).setOnClickListener(new View.OnClickListener() {
             @Override
