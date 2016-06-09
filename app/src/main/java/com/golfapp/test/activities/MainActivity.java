@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
     private ArrayList<String> ons;
     private JSONObject obj;
     private Dialog m_dialog;
-    private String emm = "", c_phone = "", cemm = "", cc_phone = "", cdir = "", clong = "";
+    private String emm = "", c_phone = "", cemm = "", cc_phone = "", cdir = "", clong = "", c_web = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,8 @@ public class MainActivity extends BaseActivity {
         if (store.getString(Constants.PROFILE_STRING) != null) {
             try {
                 obj = new JSONObject(store.getString(Constants.PROFILE_STRING));
+                JSONArray array = obj.names();
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -505,13 +507,14 @@ public class MainActivity extends BaseActivity {
 
         // inflate and adjust layout
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.custom_dialog_hotel_detail, null);
+        View layout = inflater.inflate(R.layout.home_custom_dialog_hotel_detail, null);
         layout.setMinimumWidth((int) (displayRectangle.width() * 0.9f));
         layout.setMinimumHeight((int) (displayRectangle.height() * 0.2f));
 
         RelativeLayout email = (RelativeLayout) layout.findViewById(R.id.pros_mail);
         RelativeLayout phone = (RelativeLayout) layout.findViewById(R.id.pros_phone);
         RelativeLayout dir = (RelativeLayout) layout.findViewById(R.id.pros_dir);
+        RelativeLayout web = (RelativeLayout) layout.findViewById(R.id.websiteRL);
 
         TextView tvEmail = (TextView) layout.findViewById(R.id.tvNewsDialogEmail);
         tvEmail.setText(getString(R.string.cnt_email_btn));
@@ -521,11 +524,14 @@ public class MainActivity extends BaseActivity {
         tvdir.setText(getString(R.string.cnt_direction_btn));
         TextView tvCancel = (TextView) layout.findViewById(R.id.tvNewsDialogCancel);
         tvCancel.setText(getString(R.string.cnt_cancel_btn));
+        TextView tvWebsite = (TextView) layout.findViewById(R.id.tvNewsDialogWebsite);
+        tvWebsite.setText(getString(R.string.cnt_website_btn));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setText(getString(R.string.cnt_contact_pop_up_title));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvEmail.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvPhone.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvCancel.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
+        tvWebsite.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvdir.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
 
         JSONObject prof = null;
@@ -541,6 +547,11 @@ public class MainActivity extends BaseActivity {
             if (cc_phone.equals("") || cc_phone.equals("null")) {
                 phone.setBackgroundResource(R.drawable.btn_disable);
                 phone.setClickable(false);
+            }
+            c_web = prof.getString("website");
+            if (c_web.equals("") || c_web.equals("null")) {
+                web.setBackgroundResource(R.drawable.btn_disable);
+                web.setClickable(false);
             }
             cdir = prof.getString("latitude");
             clong = prof.getString("longitude");
@@ -583,6 +594,24 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uri = null;
+                if (c_web.equals("") || c_web.equals("null")) {
+                } else {
+                    try {
+                        uri = c_web;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+            }
+        });
+
         dir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -597,7 +626,6 @@ public class MainActivity extends BaseActivity {
                     }
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
-                    ;
                 }
             }
         });
