@@ -90,7 +90,7 @@ public class NewsActivity extends BaseActivity {
             toast(getString(R.string.no_inet));
         }
         footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
-        lv.addFooterView(footerView);
+//        lv.addFooterView(footerView);
         lv.setOnItemClickListener(this);
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
