@@ -61,7 +61,7 @@ android {
     }
     signingConfigs {
         releaseApp {
-            storeFile file('GC_La_Cote.jks')
+            storeFile file('Golf_app.jks')
             storePassword 'wordpass'
             keyAlias 'golf'
             keyPassword 'wordpass'
