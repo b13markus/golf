@@ -542,22 +542,26 @@ public class MainActivity extends BaseActivity {
             if (cemm.equals("") || cemm.equals("null")) {
                 email.setBackgroundResource(R.drawable.btn_disable);
                 email.setClickable(false);
+                email.setVisibility(View.GONE);
             }
             cc_phone = prof.getString("phone");
             if (cc_phone.equals("") || cc_phone.equals("null")) {
                 phone.setBackgroundResource(R.drawable.btn_disable);
                 phone.setClickable(false);
+                phone.setVisibility(View.GONE);
             }
             c_web = prof.getString("website");
             if (c_web.equals("") || c_web.equals("null")) {
                 web.setBackgroundResource(R.drawable.btn_disable);
                 web.setClickable(false);
+                web.setVisibility(View.GONE);
             }
             cdir = prof.getString("latitude");
             clong = prof.getString("longitude");
             if (cdir.equals("") || cdir.equals("null")) {
                 dir.setBackgroundResource(R.drawable.btn_disable);
                 dir.setClickable(false);
+                dir.setVisibility(View.GONE);
             }
 
         } catch (JSONException e) {
