@@ -207,7 +207,7 @@ public class HotelDetailActivity extends BaseActivity {
         });
     }
 
-    String emm = "", ccc = "", dirr = "";
+    String emm = "", ccc = "", dirr = "", c_web = "";
 
     public void showTeetime() {
         m_dialog = new Dialog(this);
@@ -227,11 +227,14 @@ public class HotelDetailActivity extends BaseActivity {
         RelativeLayout email = (RelativeLayout) layout.findViewById(R.id.pros_mail);
         RelativeLayout phone = (RelativeLayout) layout.findViewById(R.id.pros_phone);
         RelativeLayout dir = (RelativeLayout) layout.findViewById(R.id.pros_dir);
+        RelativeLayout web = (RelativeLayout) layout.findViewById(R.id.websiteRL);
 
         TextView tvEmail = (TextView) layout.findViewById(R.id.tvNewsDialogEmail);
         TextView tvPhone = (TextView) layout.findViewById(R.id.tvNewsDialogPhone);
         TextView tvdir = (TextView) layout.findViewById(R.id.tvNewsDialogdir);
         TextView tvCancel = (TextView) layout.findViewById(R.id.tvNewsDialogCancel);
+        TextView tvWebsite = (TextView) layout.findViewById(R.id.tvNewsDialogWebsite);
+        tvWebsite.setText(getString(R.string.htl_website_btn));
         tvEmail.setText(getString(R.string.cnt_email_btn));
         tvdir.setText(getString(R.string.cnt_direction_btn));
         tvPhone.setText(getString(R.string.cnt_phone_btn));
@@ -242,6 +245,7 @@ public class HotelDetailActivity extends BaseActivity {
         tvPhone.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvCancel.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvdir.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
+        tvWebsite.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         emm = selectedHotel.email;
 
 
@@ -272,6 +276,25 @@ public class HotelDetailActivity extends BaseActivity {
                 }
         });
 
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uri = null;
+                if (c_web.equals("") || c_web.equals("null")) {
+                } else {
+                    try {
+                        uri = c_web;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+            }
+        });
+
+
         dir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -285,22 +308,32 @@ public class HotelDetailActivity extends BaseActivity {
             }
         });
         //m_llMain.setBackgroundResource(R.drawable.btn_style_border_roundcorner);
+        c_web = selectedHotel.website;
+        if (c_web.equals("") || c_web.equals("null")) {
+            web.setBackgroundResource(R.drawable.btn_disable);
+            web.setClickable(false);
+            web.setVisibility(View.GONE);
+        }
+
         if (emm == null || emm.equals("") || emm.equals("null")) {
             email.setVisibility(View.GONE);
             email.setBackgroundResource(R.drawable.btn_disable);
             email.setClickable(false);
+            email.setVisibility(View.GONE);
         }
         ccc = selectedHotel.phone;
         if (ccc == null || ccc.equals("") || ccc.equals("null")) {
             phone.setVisibility(View.GONE);
             phone.setBackgroundResource(R.drawable.btn_disable);
             phone.setClickable(false);
+            phone.setVisibility(View.GONE);
         }
         dirr = selectedHotel.latitude + "";
         if (dirr == null || dirr.equals("") || dirr.equals("null")) {
             dir.setVisibility(View.GONE);
             dir.setBackgroundResource(R.drawable.btn_disable);
             dir.setClickable(false);
+            dir.setVisibility(View.GONE);
         }
         layout.findViewById(R.id.cancel_pros).setOnClickListener(new View.OnClickListener() {
             @Override
