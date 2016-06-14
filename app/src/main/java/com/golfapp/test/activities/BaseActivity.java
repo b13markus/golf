@@ -65,7 +65,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 public class BaseActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener, SwipeRefreshLayout.OnRefreshListener,
         OnClickListener, Response.Listener<JSONObject>, Response.ErrorListener, AdapterView.OnItemClickListener {
 
-    private static final int MY_SOCKET_TIMEOUT_MS = 100*30;
+    private static final int MY_SOCKET_TIMEOUT_MS = 100 * 30;
     public PrefStore store;
     public LayoutInflater inflater;
     public ApplicationClass applicationInstance;
@@ -263,11 +263,16 @@ public class BaseActivity extends AppCompatActivity implements NetworkStateRecei
 
         }
     }
+
     @Override
     public void startActivity(Intent intent) {
         if (TextUtils.equals(intent.getAction(), Intent.ACTION_VIEW)) {
             String url = intent.getDataString();
-            startActivity(new Intent(getApplicationContext(), BrowserActivity.class).putExtra(BrowserActivity.URL, url).putExtra(BrowserActivity.AD_NAME, url));
+            if (url.contains("maps.google")) {
+                super.startActivity(intent);
+            } else {
+                startActivity(new Intent(getApplicationContext(), BrowserActivity.class).putExtra(BrowserActivity.URL, url).putExtra(BrowserActivity.AD_NAME, url));
+            }
         } else {
             super.startActivity(intent);
         }
