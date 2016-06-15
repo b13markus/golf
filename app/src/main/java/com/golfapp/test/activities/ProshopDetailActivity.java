@@ -48,6 +48,7 @@ public class ProshopDetailActivity extends BaseActivity {
     private SharedPreferences sp;
     private int proShopID;
     private ProshopData selectedProShop;
+    private String c_web;
 
     @Override
     protected void onPause() {
@@ -182,6 +183,11 @@ public class ProshopDetailActivity extends BaseActivity {
     public void showCustomDialog() {
         m_dialog = new Dialog(this);
         m_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        c_web = selectedProShop.website;
+
+
+
+
 
         // retrieve display dimensions
         Rect displayRectangle = new Rect();
@@ -201,6 +207,11 @@ public class ProshopDetailActivity extends BaseActivity {
         TextView tvPhone = (TextView) layout.findViewById(R.id.tvNewsDialogPhone);
         TextView tvCancel = (TextView) layout.findViewById(R.id.tvNewsDialogCancel);
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(tf);
+
+        TextView vtWebSite = (TextView) layout.findViewById(R.id.tvNewsDialogWebsite);
+        RelativeLayout web = (RelativeLayout) layout.findViewById(R.id.websiteRL);
+
+
         tvEmail.setText(getString(R.string.cnt_email_btn));
         tvPhone.setText(getString(R.string.cnt_phone_btn));
         tvCancel.setText(getString(R.string.cnt_cancel_btn));
@@ -208,6 +219,9 @@ public class ProshopDetailActivity extends BaseActivity {
         tvEmail.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvPhone.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvCancel.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
+        vtWebSite.setText(getString(R.string.htl_website_btn));
+        ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
+        vtWebSite.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
 
         if (selectedProShop.email == null || selectedProShop.email.equals("") || selectedProShop.email.equals("null")) {
             email.setBackgroundResource(R.drawable.btn_disable);
@@ -217,6 +231,30 @@ public class ProshopDetailActivity extends BaseActivity {
             phone.setBackgroundResource(R.drawable.btn_disable);
             phone.setClickable(false);
         }
+        if (c_web.equals("") || c_web.equals("null")) {
+            web.setBackgroundResource(R.drawable.btn_disable);
+            web.setClickable(false);
+            web.setVisibility(View.GONE);
+        }
+
+
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uri = null;
+                if (c_web.equals("") || c_web.equals("null")) {
+                } else {
+                    try {
+                        uri = c_web;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+            }
+        });
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
