@@ -11,12 +11,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.util.Linkify;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,7 +26,6 @@ import com.golfapp.test.GcmConstants;
 import com.golfapp.test.R;
 import com.golfapp.test.datafiles.ProsData;
 import com.golfapp.test.utils.BadgeView;
-import com.golfapp.test.utils.Constants;
 import com.golfapp.test.utils.TinyDB;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.orm.query.Condition;
@@ -45,6 +42,7 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
     private TextView badgeCountTV;
     private Typeface tf;
     private ProsData selectedPros;
+    private String c_web;
 
     @Override
     protected void onPause() {
@@ -87,6 +85,7 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         des.setTypeface(tf);
         con.setOnClickListener(this);
         prosID = getIntent().getIntExtra("ProsID", 0);
+
 
         selectedPros = Select.from(com.golfapp.test.datafiles.ProsData.class).where(Condition.prop("pros_id").eq(prosID)).first();
         selectedPros.imageList = Select.from(com.golfapp.test.datafiles.ImageData.class).where(Condition.prop("pros_id").eq(prosID)).list();
@@ -177,6 +176,8 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
     public void showCustomDialog() {
         m_dialog = new Dialog(this);
         m_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        c_web = selectedPros.website;
+
 
         // retrieve display dimensions
         Rect displayRectangle = new Rect();
@@ -195,14 +196,22 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         TextView tvEmail = (TextView) layout.findViewById(R.id.tvNewsDialogEmail);
         TextView tvPhone = (TextView) layout.findViewById(R.id.tvNewsDialogPhone);
         TextView tvCancel = (TextView) layout.findViewById(R.id.tvNewsDialogCancel);
+        TextView vtWebSite = (TextView) layout.findViewById(R.id.tvNewsDialogWebsite);
+        RelativeLayout web = (RelativeLayout) layout.findViewById(R.id.websiteRL);
+
+
+
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(tf);
         tvEmail.setText(getString(R.string.cnt_email_btn));
         tvPhone.setText(getString(R.string.cnt_phone_btn));
         tvCancel.setText(getString(R.string.cnt_cancel_btn));
+        vtWebSite.setText(getString(R.string.htl_website_btn));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setText(getString(R.string.cnt_contact_pop_up_title));
+        ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvEmail.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvPhone.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvCancel.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
+        vtWebSite.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
 
         if (selectedPros.email == null || selectedPros.email.equals("") || selectedPros.email.equals("null")) {
             email.setBackgroundResource(R.drawable.btn_disable);
@@ -211,6 +220,13 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
         if (selectedPros.phone == null || selectedPros.phone.equals("") || selectedPros.phone.equals("null")) {
             phone.setBackgroundResource(R.drawable.btn_disable);
             phone.setClickable(false);
+        }
+
+        c_web = selectedPros.website;
+        if (c_web.equals("") || c_web.equals("null")) {
+            web.setBackgroundResource(R.drawable.btn_disable);
+            web.setClickable(false);
+            web.setVisibility(View.GONE);
         }
         email.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,6 +250,26 @@ public class ProsDetailActivity extends com.golfapp.test.activities.BaseActivity
                 }
             }
         });
+
+
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uri = null;
+                if (c_web.equals("") || c_web.equals("null")) {
+                } else {
+                    try {
+                        uri = c_web;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+            }
+        });
+
         //m_llMain.setBackgroundResource(R.drawable.btn_style_border_roundcorner);
 
         layout.findViewById(R.id.cancel_pros).setOnClickListener(new View.OnClickListener() {
