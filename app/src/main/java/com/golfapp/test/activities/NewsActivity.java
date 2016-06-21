@@ -184,7 +184,7 @@ public class NewsActivity extends BaseActivity {
         for (int a = 0; a < newsList.size(); a++) {
             newsList.get(a).imageList = Select.from(ImageData.class).where(Condition.prop("news_id").eq(newsList.get(a).newsID)).list();
         }
-        setListView();
+        setListView(false);
     }
 
     @Override
@@ -252,7 +252,7 @@ public class NewsActivity extends BaseActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setListView();
+                    setListView(true);
                     isLoading = false;
                     swipeRefreshLayout.setRefreshing(false);
                 }
@@ -261,8 +261,8 @@ public class NewsActivity extends BaseActivity {
     }
 
 
-    private void setListView() {
-        if (newsList.size() == 1) {
+    private void setListView(boolean isFirstPage) {
+        if ((newsList.size() == 1 && isFirstPage)  || (!isNetworkAvailable() && newsList.size() == 1)) {
             Intent it = new Intent(NewsActivity.this, NewsDetailActivity.class);
             NewsData pro = newsList.get(0);
             it.putExtra("NewsID", pro.newsID);
