@@ -83,9 +83,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initUI() {
-//        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-//                getResources().getDimensionPixelSize(R.dimen.badge_size),
-//                getResources().getDimensionPixelSize(R.dimen.badge_size), Gravity.RIGHT);
+
         pros = (ImageView) findViewById(R.id.im_pros);
         tee = (ImageView) findViewById(R.id.im_tee);
         event = (ImageView) findViewById(R.id.im_event);
@@ -97,23 +95,9 @@ public class MainActivity extends BaseActivity {
         resta = (ImageView) findViewById(R.id.im_rest);
         restaurantBadgeTV = (TextView) findViewById(R.id.restaurantBadgeTV);
         newsBadgeTV = (TextView) findViewById(R.id.newsBadgeTV);
-        TextView contactUsBadgeTV = (TextView) findViewById(R.id.contactUsBadgeTV);
         hotelsBadgeTV = (TextView) findViewById(R.id.hotelsBadgeTV);
-        TextView golfCourseBadgeTV = (TextView) findViewById(R.id.golfCourseBadgeTV);
         proShopBadgeTV = (TextView) findViewById(R.id.proShopBadgeTV);
-        TextView tournamentsBadgeTV = (TextView) findViewById(R.id.tournamentsBadgeTV);
-        TextView teeTimeBadgeTV = (TextView) findViewById(R.id.teeTimeBadgeTV);
         prosBadgeTV = (TextView) findViewById(R.id.prosBadgeTV);
-//
-//        restaurantBadgeTV.setLayoutParams(params);
-//        newsBadgeTV.setLayoutParams(params);
-//        contactUsBadgeTV.setLayoutParams(params);
-//        hotelsBadgeTV.setLayoutParams(params);
-//        proShopBadgeTV.setLayoutParams(params);
-//        tournamentsBadgeTV.setLayoutParams(params);
-//        teeTimeBadgeTV.setLayoutParams(params);
-//        prosBadgeTV.setLayoutParams(params);
-//        golfCourseBadgeTV.setLayoutParams(params);
 
         (findViewById(R.id.im_pros)).setOnClickListener(this);
         (findViewById(R.id.im_tee)).setOnClickListener(this);
@@ -124,15 +108,7 @@ public class MainActivity extends BaseActivity {
         (findViewById(R.id.im_hotel)).setOnClickListener(this);
         (findViewById(R.id.im_cont)).setOnClickListener(this);
         (findViewById(R.id.im_news)).setOnClickListener(this);
-        /*(findViewById(R.id.llpros)).setOnClickListener(this);
-        (findViewById(R.id.llNews)).setOnClickListener(this);
-        (findViewById(R.id.llCourse)).setOnClickListener(this);
-        (findViewById(R.id.llEvent)).setOnClickListener(this);
-        (findViewById(R.id.llproshop)).setOnClickListener(this);
-        (findViewById(R.id.lltee)).setOnClickListener(this);
-        (findViewById(R.id.llhotel)).setOnClickListener(this);
-        (findViewById(R.id.llrest)).setOnClickListener(this);
-        (findViewById(R.id.llcont)).setOnClickListener(this);*/
+
         setButtons();
         ((TextView) findViewById(R.id.ttPros)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         ((TextView) findViewById(R.id.ttTeeTime)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
@@ -425,12 +401,33 @@ public class MainActivity extends BaseActivity {
         tvPhone.setText(getString(R.string.tt_phone_btn));
         TextView tvCancel = (TextView) layout.findViewById(R.id.tvNewsDialogCancel);
         tvCancel.setText(getString(R.string.tt_cancel_btn));
+        TextView tvWebsite = (TextView) layout.findViewById(R.id.tvNewsDialogWebsite);
+        tvWebsite.setText(getString(R.string.htl_website_btn));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         ((TextView) layout.findViewById(R.id.tvCDProDetailContact)).setText(getString(R.string.tt_book_tee_pop_up_title));
         tvEmail.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvPhone.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
         tvCancel.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
+        tvWebsite.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/B.ttf"));
 
+
+        tvWebsite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uri = null;
+                if (c_web.equals("") || c_web.equals("null")) {
+                } else {
+                    try {
+                        uri = c_web;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+            }
+        });
 
         try {
             JSONObject prof = obj.getJSONObject("profile");
@@ -439,6 +436,11 @@ public class MainActivity extends BaseActivity {
             if (emm.equals("") || emm.equals("null")) {
                 email.setBackgroundResource(R.drawable.btn_disable);
                 email.setClickable(false);
+            }
+
+            c_web = prof.getString("website");
+            if (c_web.equals("") || c_web.equals("null")) {
+                layout.findViewById(R.id.websiteRL).setVisibility(View.GONE);
             }
             c_phone = prof.getString("phone");
             Log.d("", "phone--" + c_phone);
@@ -450,6 +452,7 @@ public class MainActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

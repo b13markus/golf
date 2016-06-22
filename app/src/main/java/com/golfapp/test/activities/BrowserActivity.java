@@ -90,7 +90,7 @@ public class BrowserActivity extends BaseActivity {
             adUrl = "http://" + adUrl;
         }
         webview.loadUrl(adUrl);
-        tvTitle.setText(adName);
+        tvTitle.setText(getString(R.string.htl_website_btn));
     }
 
     @Override
