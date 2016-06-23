@@ -42,6 +42,7 @@ public class ProsActivity extends BaseActivity {
     private MyListView lv;
     private String urlPros;
     private List<ProsData> list = new ArrayList<>();
+    private ArrayList<ProsData> updatedPros= new ArrayList<>();
     private AdapterPros adapterPros;
     private SwipeRefreshLayout swipeRefreshLayout;
     private int pageNumber = 0;
@@ -238,10 +239,13 @@ public class ProsActivity extends BaseActivity {
         protected Void doInBackground(JSONObject... params) {
             JSONObject jsonObject = params[0];
             try {
+                if (clearList) {
+                    updatedPros.clear();
+                }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("pros");
-                    ArrayList<ProsData> updatedPros= new ArrayList<>();
+
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int prosID = obj.getInt("id");

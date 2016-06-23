@@ -50,6 +50,8 @@ public class HotelsActivity extends BaseActivity {
     private boolean clearList = false;
     private View footerView;
     private static boolean loadItems = false;
+    private List<HotelData> updatedHotels = new ArrayList<>();
+
 
     @Override
     protected void onPause() {
@@ -244,10 +246,12 @@ public class HotelsActivity extends BaseActivity {
         protected Void doInBackground(JSONObject... params) {
             JSONObject jsonObject = params[0];
             try {
+                if(clearList){
+                    updatedHotels.clear();
+                }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("hotels");
-                    List<HotelData> hotelDatas = new ArrayList<>();
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int hotelID = obj.getInt("id");
@@ -307,9 +311,9 @@ public class HotelsActivity extends BaseActivity {
                             pros.imageList.add(image);
 
                         }
-                        hotelDatas.add(pros);
+                        updatedHotels.add(pros);
                     }
-                    list = hotelDatas;
+                    list = updatedHotels;
 
                 }
             } catch (Exception e) {

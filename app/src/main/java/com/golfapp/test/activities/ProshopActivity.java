@@ -49,6 +49,8 @@ public class ProshopActivity extends BaseActivity {
     private boolean clearList = false;
     private View footerView;
     private static boolean loadItems = false;
+    private ArrayList<ProshopData> updatedProshop = new ArrayList<>();
+
 
     @Override
     protected void onPause() {
@@ -242,10 +244,12 @@ public class ProshopActivity extends BaseActivity {
         protected Void doInBackground(JSONObject... params) {
             JSONObject jsonObject = params[0];
             try {
+                if(clearList){
+                    updatedProshop.clear();
+                }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("proshops");
-                    ArrayList<ProshopData> proshopDatas = new ArrayList<>();
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int proShopID = obj.getInt("id");
@@ -304,9 +308,9 @@ public class ProshopActivity extends BaseActivity {
                             image.save();
                             pros.imageList.add(image);
                         }
-                        proshopDatas.add(pros);
+                        updatedProshop.add(pros);
                     }
-                    list = proshopDatas;
+                    list = updatedProshop;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
