@@ -50,6 +50,7 @@ public class RestaurantActivity extends BaseActivity {
     private boolean clearList = false;
     private View footerView;
     private static boolean loadItems = false;
+    private ArrayList<RestaurantData> updatedRestaurants = new ArrayList<>();
 
 
     @Override
@@ -245,7 +246,7 @@ public class RestaurantActivity extends BaseActivity {
             JSONObject jsonObject = params[0];
             try {
                 if (clearList) {
-                    list.clear();
+                    updatedRestaurants.clear();
                 }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
@@ -313,9 +314,9 @@ public class RestaurantActivity extends BaseActivity {
                             restaurantData.imageList.add(image);
 
                         }
-                        list.add(restaurantData);
+                        updatedRestaurants.add(restaurantData);
                     }
-
+                    list = updatedRestaurants;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
