@@ -238,12 +238,10 @@ public class ProsActivity extends BaseActivity {
         protected Void doInBackground(JSONObject... params) {
             JSONObject jsonObject = params[0];
             try {
-                if (clearList) {
-                    list.clear();
-                }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("pros");
+                    ArrayList<ProsData> updatedPros= new ArrayList<>();
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int prosID = obj.getInt("id");
@@ -301,8 +299,9 @@ public class ProsActivity extends BaseActivity {
                             image.save();
                             pros.imageList.add(image);
                         }
-                        list.add(pros);
+                        updatedPros.add(pros);
                     }
+                    list = updatedPros;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
