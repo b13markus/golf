@@ -244,12 +244,10 @@ public class HotelsActivity extends BaseActivity {
         protected Void doInBackground(JSONObject... params) {
             JSONObject jsonObject = params[0];
             try {
-                if (clearList) {
-                    list.clear();
-                }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("hotels");
+                    List<HotelData> hotelDatas = new ArrayList<>();
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int hotelID = obj.getInt("id");
@@ -309,8 +307,9 @@ public class HotelsActivity extends BaseActivity {
                             pros.imageList.add(image);
 
                         }
-                        list.add(pros);
+                        hotelDatas.add(pros);
                     }
+                    list = hotelDatas;
 
                 }
             } catch (Exception e) {
