@@ -47,6 +47,7 @@ public class NewsActivity extends BaseActivity {
     private View footerView;
     private String urlNews;
     private static boolean loadItems = false;
+    private ArrayList<NewsData> updatedNews = new ArrayList<>();
 
     @Override
     protected void onResume() {
@@ -201,7 +202,7 @@ public class NewsActivity extends BaseActivity {
             try {
                 if (jsonObject.getInt("success") == 1) {
                     if (clearList) {
-                        newsList.clear();
+                        updatedNews.clear();
                     }
                     JSONArray newsArray = jsonObject.getJSONArray("news");
                     total = jsonObject.getJSONObject("paging").getInt("total");
@@ -236,8 +237,9 @@ public class NewsActivity extends BaseActivity {
                             image.save();
                             news.imageList.add(image);
                         }
-                        newsList.add(news);
+                        updatedNews.add(news);
                     }
+                    newsList = updatedNews;
                 }
             } catch (Exception e) {
 
