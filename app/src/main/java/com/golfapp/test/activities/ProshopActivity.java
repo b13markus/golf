@@ -242,12 +242,10 @@ public class ProshopActivity extends BaseActivity {
         protected Void doInBackground(JSONObject... params) {
             JSONObject jsonObject = params[0];
             try {
-                if (clearList) {
-                    list.clear();
-                }
                 if (jsonObject.getInt("success") == 1) {
                     total = jsonObject.getJSONObject("paging").getInt("total");
                     JSONArray prosArray = jsonObject.getJSONArray("proshops");
+                    ArrayList<ProshopData> proshopDatas = new ArrayList<>();
                     for (int a = 0; a < prosArray.length(); a++) {
                         JSONObject obj = prosArray.getJSONObject(a);
                         int proShopID = obj.getInt("id");
@@ -306,8 +304,9 @@ public class ProshopActivity extends BaseActivity {
                             image.save();
                             pros.imageList.add(image);
                         }
-                        list.add(pros);
+                        proshopDatas.add(pros);
                     }
+                    list = proshopDatas;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
