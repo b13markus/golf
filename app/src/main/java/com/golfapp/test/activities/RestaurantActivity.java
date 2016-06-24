@@ -82,7 +82,6 @@ public class RestaurantActivity extends BaseActivity {
         lv = (MyListView) findViewById(R.id.lvPros);
         clearList = true;
         footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
-        lv.addFooterView(footerView);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
@@ -193,6 +192,7 @@ public class RestaurantActivity extends BaseActivity {
             if (clearList) {
                 clearList = false;
                 adapterRestaurant = new AdapterRestaurant(this, list);
+                lv.addFooterView(footerView);
                 lv.setAdapter(adapterRestaurant);
             } else {
                 adapterRestaurant.notifyDataSetChanged();

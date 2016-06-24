@@ -80,7 +80,6 @@ public class ProsActivity extends BaseActivity {
         setupActionBar();
         clearList = true;
         footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
-        lv.addFooterView(footerView);
         urlPros = Constants.urlProDetail + "?client=" + Constants.clientId + "&language=" +
                 Constants.getLanguage()+"&sectoken="+ Constants.md5() + "&draw=" + Constants.draw + "&page=";
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
@@ -188,6 +187,7 @@ public class ProsActivity extends BaseActivity {
             if (clearList) {
                 clearList = false;
                 adapterPros = new AdapterPros(this, list);
+                lv.addFooterView(footerView);
                 lv.setAdapter(adapterPros);
             } else {
                 adapterPros.notifyDataSetChanged();

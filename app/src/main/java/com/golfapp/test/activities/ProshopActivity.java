@@ -79,7 +79,6 @@ public class ProshopActivity extends BaseActivity {
         lv = (MyListView) findViewById(R.id.lvPros);
         clearList = true;
         footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
-        lv.addFooterView(footerView);
         urlPros = Constants.urlProShopData + "?client=" + Constants.clientId + "&language=" +
                 Constants.getLanguage() +"&sectoken="+ Constants.md5() + "&draw=" + Constants.draw + "&page=";
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
@@ -195,6 +194,7 @@ public class ProshopActivity extends BaseActivity {
             if (clearList) {
                 clearList = false;
                 adapterPros = new AdapterProshop(this, list);
+                lv.addFooterView(footerView);
                 lv.setAdapter(adapterPros);
             } else {
                 adapterPros.notifyDataSetChanged();
