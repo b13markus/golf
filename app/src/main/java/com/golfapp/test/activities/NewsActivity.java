@@ -73,6 +73,7 @@ public class NewsActivity extends BaseActivity {
         urlNews = Constants.urlNews + "?client=" + Constants.clientId + "&language=" + Constants.getLanguage() + "&draw=" + Constants.draw + "&page=";
         getSupportActionBar().hide();
         lv = (MyListView) findViewById(R.id.listnews);
+        footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_light,
@@ -90,7 +91,6 @@ public class NewsActivity extends BaseActivity {
         } else {
             toast(getString(R.string.no_inet));
         }
-        footerView = ((LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
         lv.setOnItemClickListener(this);
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
