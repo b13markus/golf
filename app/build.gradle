@@ -2,7 +2,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 def getDateTime() {
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    DateFormat df = new SimpleDateFormat("dd-MM-yy-HH.mm");
 
     return df.format(new Date());
 }
@@ -87,13 +87,13 @@ android {
 
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_22-release.apk", "Golf_App_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_141-release.apk", "Golf_Parc_Signal_de_Bougy_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2751-release.apk", "Golf_Club_Giez_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2794-release.apk", "GC_Mont_Saint_Jean_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6492-release.apk", "Golf_Club_Verbier_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6499-release.apk", "GC_Crans_sur_Sierre_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_9600-release.apk", "Royal_Golf_Club_release_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_22-release.apk", "user_22_Golf_App_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_141-release.apk", "user_141_Golf_Parc_Signal_de_Bougy_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2751-release.apk", "user_2751_Golf_Club_Giez_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2794-release.apk", "user_2794_GC_Mont_Saint_Jean_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6492-release.apk", "user_6492_Golf_Club_Verbier_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6499-release.apk", "user_6499_GC_Crans_sur_Sierre_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_9600-release.apk", "user_9600_Royal_Golf_Club_" + getDateTime()+"("+ versionName+"_version)" + "_release.apk"))
                 }
             }
         }
@@ -101,13 +101,13 @@ android {
         debug {
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_22-debug.apk", "Golf_App_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_141-debug.apk", "Golf_Parc_Signal_de_Bougy_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2751-debug.apk", "Golf_Club_Giez_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2794-debug.apk", "GC_Mont_Saint_Jean_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6492-debug.apk", "Golf_Club_Verbier_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6499-debug.apk", "GC_Crans_sur_Sierre_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
-                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_9600-debug.apk", "Royal_Golf_Club_debug_" + getDateTime()+"("+ versionName+"_version)" + ".apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_22-debug.apk", "user_22_Golf_App_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_141-debug.apk", "user_141_Golf_Parc_Signal_de_Bougy_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2751-debug.apk", "user_2751_Golf_Club_Giez_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_2794-debug.apk", "user_2794_GC_Mont_Saint_Jean_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6492-debug.apk", "user_6492_Golf_Club_Verbier_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_6499-debug.apk", "user_6499_GC_Crans_sur_Sierre_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace("app-user_9600-debug.apk", "user_9600_Royal_Golf_Club_" + getDateTime()+"("+ versionName+"_version)" + "_debug.apk"))
                 }
             }
         }
